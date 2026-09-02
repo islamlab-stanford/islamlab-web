@@ -41,11 +41,11 @@
     <div class="eyebrow">Structural language &middot; Graph reasoning &middot; Interpretable roles</div>
     <h1>A network, stated in&nbsp;words.</h1>
     <p class="paper-title">Language-encoded network topology enables large language models to reason about complex networks</p>
-    <p class="lead">Language models read text fluently and still struggle with structure, even when the
-    whole network is handed to them as text. BioGlyph is a deterministic compiler that runs classical
-    graph algorithms, applies one fixed rule per structural role, and writes each role as a short
-    statement with the measurements that triggered it and what would happen if that part were
-    removed. The model is never trained, fine-tuned, or changed.</p>
+    <p class="lead">BioGlyph is a deterministic compiler that states a network's structure in
+    words: named roles, the measurements behind each one, and what removing that part would do. A
+    frozen open model reading those descriptions answers 70.6% of benchmark questions correctly.
+    Handed the identical measurements as a table it manages 39.5% &mdash; worse than being shown no
+    network at all.</p>
     <p class="author-line">Ucchwas Talukder Utsha, Sakib Mostafa, James Zou, Md Tauhidul Islam</p>
     <div class="hero-actions">
       <a class="button primary" href="https://app.islamlab.org/bioglyph/">Ask a network a question</a>
@@ -58,9 +58,9 @@
 <main>
 <section class="numbers">
   <div class="wrap number-grid">
-    <div><strong>70.6% vs 39.5%</strong><span>accuracy reading named roles versus the same measurements printed as a table, pooled over eight networks and two frozen 8B models</span></div>
-    <div><strong>0.3% vs 41.7%</strong><span>share of prompts that outgrow the context window in those two renderings of the same regions</span></div>
-    <div><strong>74.1% vs 74.8%</strong><span>BioGlyph against a graph neural network trained on the questions themselves, with no task-specific training</span></div>
+    <div><strong>70.6% vs 39.5%</strong><span>named roles against the same numbers as a table, over 1,239 questions</span></div>
+    <div><strong>39.5% below 50.7%</strong><span>the table scores under what the model gets from no network at all</span></div>
+    <div><strong>74.1% vs 74.8%</strong><span>against a graph network trained on the questions, with no training at all</span></div>
   </div>
 </section>
 
@@ -90,7 +90,7 @@
           <span class="video-cc-mark">CC</span><span class="video-cc-state">Off</span>
         </button>
       </div>
-      <figcaption><b>Video 1 | How BioGlyph compiles a region.</b> A narrated, captioned animation
+      <figcaption><b class="fignum">Video 1</b> <b>How BioGlyph compiles a region.</b> A narrated, captioned animation
       follows one 45-node region through retrieval, exact measurement, role assignment, and the
       evidence and removal-consequence each role carries. Accuracy and essentiality figures are
       those reported in the manuscript. The narration is synthesized speech.</figcaption>
@@ -136,7 +136,8 @@
       <div class="render win">
         <div class="render-head">
           <b>What BioGlyph writes</b>
-          <span>Named roles, each with its evidence and its perturbation implication</span>
+          <span>Named roles, each with its evidence and its perturbation implication &middot;
+          <b>70.6% correct</b></span>
         </div>
 <pre>BioGlyph map (named structural roles); communities: 6
 Completeness: every articulation point of this region is
@@ -166,7 +167,8 @@ NODE 2553 = <span class="rolename">CROSS_COMMUNITY_CONNECTOR</span>
       <div class="render lose">
         <div class="render-head">
           <b>What a measurement table writes</b>
-          <span>Identical numbers, no threshold applied and no consequence stated</span>
+          <span>Identical numbers, no threshold applied and no consequence stated &middot;
+          <b>39.5% correct</b></span>
         </div>
 <pre>Structural measurements for this region, every quantity
 the analysis computes, printed for every node, edge and
@@ -250,7 +252,7 @@ node degree norm_deg betweenness pagerank core community
     <div class="section-head">
       <div>
         <div class="eyebrow">Evidence</div>
-        <h2>The wording is what changes, and it changes the answer.</h2>
+        <h2>Change only the wording. 70.6% becomes 39.5%.</h2>
       </div>
       <p>Every arm below is built from the identical measurements on the identical retrieved region.
       Only the rendering differs. Accuracy is pooled over seven question families on the eight main
@@ -278,8 +280,8 @@ node degree norm_deg betweenness pagerank core community
         <div class="bar"><i style="--w:54.1%"></i></div>
         <div class="v">54.1<small>52.7&ndash;55.5</small></div>
       </div>
-      <div class="chart-row">
-        <div class="k"><b>No graph at all</b>the question alone</div>
+      <div class="chart-row floor">
+        <div class="k"><b>No graph at all</b>the question alone &mdash; the floor</div>
         <div class="bar"><i style="--w:50.7%"></i></div>
         <div class="v">50.7<small>49.3&ndash;52.0</small></div>
       </div>
@@ -305,11 +307,11 @@ node degree norm_deg betweenness pagerank core community
       </div>
       <div class="chart-axis"><div class="ticks"><span>0</span><span>25</span><span>50</span><span>75%</span></div></div>
       <p class="chart-cap"><b>Accuracy by what the model was shown</b>, percent correct with 95%
-      confidence intervals. Three results are worth pausing on. Handing a model graph neural network
-      embeddings is no better than handing it no graph at all. Printing every measurement is
-      <i>worse</i> than no graph, because the table crowds out the question. And keeping BioGlyph's
-      structure while replacing its role names with meaningless tokens loses 16.5 percent, so the
-      gain lives in the words, not in the layout.</p>
+      confidence intervals. Read the bottom row first: printing every measurement scores 39.5%,
+      <i>below</i> the 50.7% the same model gets from no network at all, because the table crowds out
+      the question. Graph neural network embeddings do no better than that floor either. And keeping
+      BioGlyph's structure while replacing its role names with meaningless tokens takes 70.6% down to
+      54.1%, so the gain lives in the words rather than the layout.</p>
     </div>
 
     <div class="finds">
