@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BioGlyph &middot; Language-encoded network topology for large language models</title>
+<meta name="description" content="BioGlyph is a deterministic compiler that states a network's structure in words. Small open models reading its named structural roles answer connectivity, importance and perturbation questions far more reliably than from any other rendering of the same region.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BioGlyph &middot; Islam Lab">
+<meta property="og:description" content="A compiler that states network structure in words, so language models can reason about topology and counterfactuals. Explore the method, the evidence, and a live workspace.">
+<meta property="og:url" content="https://islamlab.org/bioglyph/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://islamlab.org/bioglyph/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c2436'/><circle cx='10' cy='11' r='2.4' fill='%23f2c94c'/><circle cx='21' cy='14' r='2.4' fill='%23e07a5f'/><circle cx='14' cy='21.5' r='2' fill='%234f7290'/><circle cx='23' cy='23' r='1.8' fill='%237f9d6a'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/"><span class="glyph"></span>Islam<b>Lab</b></a>
+    <div class="nav-links">
+      <a href="#idea">The idea</a>
+      <a href="#vocabulary">Vocabulary</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#biology">Biology</a>
+      <a href="#networks">Networks</a>
+      <a href="#paper">Paper</a>
+      <a href="#try">Try it live</a>
+      <a class="back" href="/">Lab home&nbsp;&#8599;</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Structural language &middot; Graph reasoning &middot; Interpretable roles</div>
+    <h1>A network, stated in&nbsp;words.</h1>
+    <p class="paper-title">Language-encoded network topology enables large language models to reason about complex networks</p>
+    <p class="lead">Language models read text fluently and still struggle with structure, even when the
+    whole network is handed to them as text. BioGlyph is a deterministic compiler that runs classical
+    graph algorithms, applies one fixed rule per structural role, and writes each role as a short
+    statement with the measurements that triggered it and what would happen if that part were
+    removed. The model is never trained, fine-tuned, or changed.</p>
+    <p class="author-line">Ucchwas Talukder Utsha, Sakib Mostafa, Jiajun Wu, Lei Xing, Ehsan Adeli,
+    James Zou, Md Tauhidul Islam</p>
+    <div class="hero-actions">
+      <a class="button primary" href="https://app.islamlab.org/bioglyph/">Ask a network a question</a>
+      <a class="button ghost" href="#idea">How it works</a>
+      <a class="button ghost" href="#paper">Read the abstract</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="numbers">
+  <div class="wrap number-grid">
+    <div><strong>70.6% vs 39.5%</strong><span>question accuracy reading named roles versus the same measurements printed as a table, pooled over 4,956 questions</span></div>
+    <div><strong>0.3% vs 41.7%</strong><span>share of prompts that outgrow the context window in those two renderings of the same regions</span></div>
+    <div><strong>74.1% vs 74.8%</strong><span>BioGlyph against a graph neural network trained on the questions themselves, with no task-specific training</span></div>
+  </div>
+</section>
+
+<section id="idea">
+  <div class="wrap">
+    <div class="eyebrow">The idea</div>
+    <h2>Do the measurement exactly. Then say what it means.</h2>
+    <p class="lead">Existing methods hand a model an edge list, the same edges as sentences, or a
+    table of centrality measurements, and leave it to work out what any of that implies. BioGlyph
+    does the arithmetic with classical algorithms, which are exact, and spends the language on the
+    part language is good at: naming the role and stating its consequence.</p>
+
+    <div class="steps">
+      <article>
+        <span>01</span>
+        <h3>Measure</h3>
+        <p>Degree, betweenness, PageRank, k-core, articulation points, bridges and Leiden
+        communities, computed on the retrieved region with a fixed seed. Same graph in, same
+        numbers out.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>Name</h3>
+        <p>One fixed rule per role. A node above the degree threshold is a <em>HUB</em>; a node whose
+        removal splits its component is a <em>CUT_NODE</em>. No model decides this, so the vocabulary
+        is auditable and reproducible.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>State the consequence</h3>
+        <p>Every role carries the measurements that triggered it and what removing that part would
+        do. The gain comes from that clause, not from the name: replacing the names with meaningless
+        tokens costs 16.5 percent of accuracy.</p>
+      </article>
+    </div>
+
+    <div class="render-pair">
+      <div class="render win">
+        <div class="render-head">
+          <b>What BioGlyph writes</b>
+          <span>Named roles, each with its evidence and its perturbation implication</span>
+        </div>
+<pre>BioGlyph map (named structural roles); communities: 6
+Completeness: every articulation point of this region is
+listed below as CUT_NODE and every bridge as BRIDGE_EDGE.
+
+NODE 2553 = <span class="rolename">HUB</span>
+  [degree=19, mean_degree=3.16, threshold=9.15]
+  -&gt; high-degree node; removing it drops many direct
+     connections, but it does not split its component
+     unless it is also a CUT_NODE
+
+NODE 2553 = <span class="rolename">CUT_NODE</span>
+  [components_before=1, <mark>components_after=6</mark>]
+  -&gt; articulation point, the only kind of node whose
+     removal splits its own connected component; it
+     breaks into the number of pieces shown
+
+NODE 2553 = <span class="rolename">CROSS_COMMUNITY_CONNECTOR</span>
+  [communities=[0,1,2,3,4,5], betweenness=0.839147]
+  -&gt; lies on many inter-community shortest paths;
+     removing it reroutes or lengthens cross-community
+     traffic but does not disconnect the communities
+     unless it is also a CUT_NODE</pre>
+        <div class="render-foot"><span>five roles for this one node</span><span>the answer is stated</span></div>
+      </div>
+
+      <div class="render lose">
+        <div class="render-head">
+          <b>What a measurement table writes</b>
+          <span>Identical numbers, no threshold applied and no consequence stated</span>
+        </div>
+<pre>Structural measurements for this region, every quantity
+the analysis computes, printed for every node, edge and
+community with no threshold applied.
+
+PER-NODE
+node degree norm_deg betweenness pagerank core community
+     intra_deg cross_deg participation touched size
+     articulation components_if_removed
+
+2529   4  0.0909  0.010571  0.026903  3  3  3  1
+       0.3750  2  45  no   1
+2544   1  0.0227  0.000000  0.009118  1  0  1  0
+       0.0000  1  45  no   1
+2553  19  0.4318  0.839147  0.119518  3  0  8  11
+       0.7368  6  45  <mark>yes</mark>  <mark>6</mark>
+2554   4  0.0909  0.019027  0.028794  2  2  3  1
+       0.3750  2  45  no   1
+...  and 41 more rows, then every edge, then every
+     community</pre>
+        <div class="render-foot"><span>fourteen columns per node</span><span>the answer must be inferred</span></div>
+      </div>
+    </div>
+    <p class="render-note">Both panes are real compiler output for the same 45-node region of the
+    western US power grid, retrieved for the question <i>is node 2553 an articulation point?</i>
+    Excerpted and wrapped to fit this page; nothing is reworded. The table is not a weaker input in
+    principle, because it holds every number the compiler read. It is a weaker input in practice:
+    the model has to find the right column, apply the right threshold, and know what crossing it
+    implies, before it can answer.</p>
+  </div>
+</section>
+
+<section id="vocabulary" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">The vocabulary</div>
+        <h2>Eleven roles, each one a rule you can check.</h2>
+      </div>
+      <p>The compiler is label-free: it reads connections only, never node names, gene symbols or
+      any annotation. Every role below is decided by a threshold or an exact graph property, so the
+      same region always compiles to the same description.</p>
+    </div>
+    <div class="roles">
+      <div class="role"><b>HUB</b><p>Degree above the region's threshold. <em>Removing it drops many
+      connections but does not split anything</em> unless it is also a cut node.</p></div>
+      <div class="role"><b>CUT_NODE</b><p>An articulation point. <em>The only kind of node whose
+      removal splits its own component</em>, and the description says into how many pieces.</p></div>
+      <div class="role"><b>BRIDGE_EDGE</b><p>An edge whose removal disconnects the two sides. The
+      edge-level counterpart of a cut node.</p></div>
+      <div class="role"><b>COMMUNITY_CORE</b><p>Central inside its own community by intra-community
+      degree. <em>A module hub, not necessarily a cut point.</em></p></div>
+      <div class="role"><b>CROSS_COMMUNITY_CONNECTOR</b><p>Lies on many shortest paths between
+      communities. Removing it lengthens cross-community routes rather than severing them.</p></div>
+      <div class="role"><b>BOUNDARY_NODE</b><p>A gateway spanning several communities' boundaries,
+      by participation coefficient.</p></div>
+      <div class="role"><b>PERIPHERAL</b><p>Low k-core embeddedness and low degree. Little influence
+      on global structure.</p></div>
+      <div class="role"><b>FRAGILE_REGION</b><p>A part of the network where a single removal
+      disconnects a disproportionate share of what remains.</p></div>
+      <div class="role"><b>Evidence, always attached</b><p>Every role prints the measurements that
+      triggered it, so a reader can disagree with the compiler on its own terms.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Evidence</div>
+        <h2>The wording is what changes, and it changes the answer.</h2>
+      </div>
+      <p>Every arm below is built from the identical measurements on the identical retrieved region.
+      Only the rendering differs. Accuracy is pooled over 4,956 questions in seven families across
+      eight networks, on two frozen 8-billion-parameter open models, with no task-specific
+      training.</p>
+    </div>
+
+    <div class="chart">
+      <div class="chart-row hi">
+        <div class="k"><b>BioGlyph</b>named roles, evidence, implication</div>
+        <div class="bar"><i style="--w:70.6%"></i></div>
+        <div class="v">70.6<small>69.4&ndash;71.9</small></div>
+      </div>
+      <div class="chart-row">
+        <div class="k"><b>Names and evidence</b>no implication clause</div>
+        <div class="bar"><i style="--w:64.3%"></i></div>
+        <div class="v">64.3<small>62.9&ndash;65.6</small></div>
+      </div>
+      <div class="chart-row">
+        <div class="k"><b>Names only</b>no evidence, no implication</div>
+        <div class="bar"><i style="--w:63.6%"></i></div>
+        <div class="v">63.6<small>62.3&ndash;65.0</small></div>
+      </div>
+      <div class="chart-row">
+        <div class="k"><b>Meaningless role names</b>same structure, opaque tokens</div>
+        <div class="bar"><i style="--w:54.1%"></i></div>
+        <div class="v">54.1<small>52.7&ndash;55.5</small></div>
+      </div>
+      <div class="chart-row">
+        <div class="k"><b>No graph at all</b>the question alone</div>
+        <div class="bar"><i style="--w:50.7%"></i></div>
+        <div class="v">50.7<small>49.3&ndash;52.0</small></div>
+      </div>
+      <div class="chart-row">
+        <div class="k"><b>GNN node embeddings</b>best of GCN, SAGE, GAT, GIN</div>
+        <div class="bar"><i style="--w:50.0%"></i></div>
+        <div class="v">50.0<small>48.6&ndash;51.4</small></div>
+      </div>
+      <div class="chart-row">
+        <div class="k"><b>Adjacency as sentences</b>the edges, written out</div>
+        <div class="bar"><i style="--w:49.4%"></i></div>
+        <div class="v">49.4<small>48.0&ndash;50.8</small></div>
+      </div>
+      <div class="chart-row">
+        <div class="k"><b>Edge list</b>the raw pairs</div>
+        <div class="bar"><i style="--w:48.7%"></i></div>
+        <div class="v">48.7<small>47.3&ndash;50.0</small></div>
+      </div>
+      <div class="chart-row">
+        <div class="k"><b>Measurement table</b>every number, no threshold</div>
+        <div class="bar"><i style="--w:39.5%"></i></div>
+        <div class="v">39.5<small>38.2&ndash;40.9</small></div>
+      </div>
+      <div class="chart-axis"><div class="ticks"><span>0</span><span>25</span><span>50</span><span>75%</span></div></div>
+      <p class="chart-cap"><b>Accuracy by what the model was shown</b>, percent correct with 95%
+      confidence intervals. Three results are worth pausing on. Handing a model graph neural network
+      embeddings is no better than handing it no graph at all. Printing every measurement is
+      <i>worse</i> than no graph, because the table crowds out the question. And keeping BioGlyph's
+      structure while replacing its role names with meaningless tokens loses 16.5 percent, so the
+      gain lives in the words, not in the layout.</p>
+    </div>
+
+    <div class="finds">
+      <div class="find">
+        <strong>0.3%</strong><span>of BioGlyph prompts overflow, against 41.7% of tables</span>
+        <h3>The gain is not just a shorter prompt.</h3>
+        <p>A named description is more compact, so a fair reader asks whether BioGlyph simply wins by
+        fitting. In the perturbation screen on the Reactome network, neither rendering overflows on
+        any module, every format reaches the model, and the description still leads.</p>
+      </div>
+      <div class="find">
+        <strong>74.1%</strong><span>against a supervised GNN's 74.8% on the same questions</span>
+        <h3>It reaches a trained model without training.</h3>
+        <p>A graph neural network trained directly on these questions scores 74.8%. A frozen model
+        reading BioGlyph scores 74.1% on the same 381 questions, having never seen a training
+        example, and it explains each answer in words a reader can check.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="biology" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Biology</div>
+        <h2>The same roles carry biological meaning, from structure alone.</h2>
+      </div>
+      <p>The compiler never sees a gene symbol or an essentiality label. In the budding-yeast STRING
+      network, its roles nonetheless separate essential from non-essential genes, which is a check on
+      the vocabulary rather than a prediction task.</p>
+    </div>
+
+    <div class="enrich">
+      <div class="enrich-row">
+        <div class="k">CROSS_COMMUNITY_CONNECTOR</div>
+        <div class="track"><i style="--l:50%;--w:32%"></i></div>
+        <div class="v">OR 3.14 &middot; 57.6%</div>
+      </div>
+      <div class="enrich-row">
+        <div class="k">COMMUNITY_CORE</div>
+        <div class="track"><i style="--l:50%;--w:22%"></i></div>
+        <div class="v">OR 2.27 &middot; 46.9%</div>
+      </div>
+      <div class="enrich-row">
+        <div class="k">HUB</div>
+        <div class="track"><i style="--l:50%;--w:12%"></i></div>
+        <div class="v">OR 1.67 &middot; 42.1%</div>
+      </div>
+      <div class="enrich-row">
+        <div class="k">CUT_NODE</div>
+        <div class="track"><i style="--l:50%;--w:4%"></i></div>
+        <div class="v">OR 1.23 &middot; 35.0%</div>
+      </div>
+      <div class="enrich-row dep">
+        <div class="k">PERIPHERAL</div>
+        <div class="track"><i style="--l:20%;--w:30%"></i></div>
+        <div class="v">OR 0.27 &middot; 12.9%</div>
+      </div>
+      <div class="enrich-legend">
+        <span><i class="up"></i>enriched for essential genes</span>
+        <span><i class="down"></i>depleted</span>
+        <span>midline: no enrichment (odds ratio 1)</span>
+        <span>background rate: 30.9% of 3,384 proteins essential</span>
+      </div>
+      <p class="chart-cap"><b>Gene essentiality by structural role</b>, budding-yeast STRING network
+      against SGD phenotype labels. Cross-community connectors are essential 57.6% of the time
+      against a 30.9% background, and peripheral proteins only 12.9% of the time. Both survive
+      multiple-testing correction. The roles were compiled from connections alone, with the labels
+      held back.</p>
+    </div>
+
+    <div class="pill-row">
+      <span>STRING yeast, human and E. coli</span>
+      <span>HuRI reference interactome</span>
+      <span>Reactome functional interactions</span>
+      <span>DepMap 24Q4 gene effect</span>
+      <span>SGD essentiality</span>
+      <span>HuDiNe disease comorbidity</span>
+      <span>TCGA glioblastoma patient similarity</span>
+    </div>
+  </div>
+</section>
+
+<section id="networks">
+  <div class="wrap">
+    <div class="eyebrow">Networks</div>
+    <h2>Twenty public networks, biological and not.</h2>
+    <p class="lead">A structural vocabulary should not be tuned to one domain. The benchmark spans
+    protein interaction, disease comorbidity, patient similarity, citation, co-purchase, social,
+    email and infrastructure networks, from 222 nodes to 169,343.</p>
+    <div class="datasets">
+      <table>
+        <thead><tr><th>Network</th><th>Domain</th><th class="n">Nodes</th><th class="n">Edges</th><th class="n">Cut nodes</th></tr></thead>
+        <tbody>
+          <tr><td>STRING-Yeast</td><td>Protein interaction</td><td class="n">3,384</td><td class="n">43,030</td><td class="n">363</td></tr>
+          <tr><td>STRING-Human</td><td>Protein interaction</td><td class="n">10,746</td><td class="n">86,519</td><td class="n">1,299</td></tr>
+          <tr><td>HuRI</td><td>Reference interactome</td><td class="n">8,275</td><td class="n">52,088</td><td class="n">1,132</td></tr>
+          <tr><td>Reactome-FI</td><td>Functional interaction</td><td class="n">10,022</td><td class="n">194,494</td><td class="n">417</td></tr>
+          <tr><td>HuDiNe</td><td>Disease comorbidity</td><td class="n">222</td><td class="n">831</td><td class="n">17</td></tr>
+          <tr><td>ego-Facebook</td><td>Social</td><td class="n">4,039</td><td class="n">88,234</td><td class="n">11</td></tr>
+          <tr><td>email-Eu-core</td><td>Email</td><td class="n">986</td><td class="n">16,064</td><td class="n">73</td></tr>
+          <tr><td>Wiki-Vote</td><td>Social voting</td><td class="n">7,115</td><td class="n">100,762</td><td class="n">1,033</td></tr>
+          <tr><td>Amazon-Photo</td><td>Co-purchase</td><td class="n">7,650</td><td class="n">119,081</td><td class="n">151</td></tr>
+          <tr><td>Coauthor-CS</td><td>Co-authorship</td><td class="n">18,333</td><td class="n">81,894</td><td class="n">1,281</td></tr>
+          <tr><td>Cora</td><td>Citation</td><td class="n">2,708</td><td class="n">5,278</td><td class="n">389</td></tr>
+          <tr><td>ogbn-arxiv</td><td>Citation</td><td class="n">169,343</td><td class="n">1,157,799</td><td class="n">18,591</td></tr>
+          <tr><td>Power-Grid</td><td>Infrastructure</td><td class="n">4,941</td><td class="n">6,594</td><td class="n">1,229</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="chart-cap">A representative slice; the study reports twenty networks in total, all
+    public. Cut-node counts are exact, computed on the whole network. Every compiled description,
+    question set with its exact answer, stored model reply and scored result table is released with
+    the analysis code.</p>
+  </div>
+</section>
+
+<section id="paper" class="alt">
+  <div class="wrap">
+    <div class="paper-grid">
+      <div>
+        <div class="eyebrow">Abstract</div>
+        <h2>Structure, said out loud.</h2>
+        <div class="abstract-copy">
+          <p>Networks describe many systems in biology and beyond, from proteins that interact inside
+          a cell to power grids and citation records. Understanding a network requires reasoning
+          about its structure: which parts are most central, which connections link otherwise
+          separate regions, how the network divides into communities, and how the network changes
+          when a part is removed. Large language models read and reason over text fluently, yet they
+          often struggle with this kind of structural reasoning, even when the full network is
+          provided in text form.</p>
+          <p>Here we present BioGlyph, a compiler that states a network's structure in words.
+          BioGlyph runs classical graph algorithms and applies one fixed rule per role. Each role is
+          written as a short statement, such as a hub with many connections, a cut node whose removal
+          splits the region, or a connector between communities. BioGlyph also reports the
+          measurements that triggered the role and explains what would happen if that part were
+          removed. The compiler uses only network connections, and the language model remains
+          unchanged.</p>
+          <p>Across networks from several domains, small open models reading these named roles answer
+          questions about connectivity, importance and change far more reliably than from any other
+          rendering of the same region. They come close to a graph neural network trained on the
+          questions themselves, with no task-specific training. The gain comes from saying what a
+          role means for the network, not from naming it. In the budding-yeast protein interaction
+          network, cross-community connectors are enriched for essential genes while peripheral
+          proteins are less often essential, identified from network structure alone without seeing
+          gene-essentiality labels. The same readable description can therefore support both model
+          reasoning and scientific interpretation.</p>
+        </div>
+      </div>
+      <aside class="paper-links">
+        <h3>Read and cite</h3>
+        <a href="#try">Live workspace <span>app.islamlab.org</span></a>
+        <a href="https://github.com/tauhidstanford" target="_blank" rel="noopener">Code and data <span>GitHub</span></a>
+        <p class="status-note"><b>Manuscript in preparation.</b> A preprint link and the paper PDF
+        will be posted here on submission. For a copy in the meantime, write to
+        <a href="mailto:tauhid@stanford.edu">tauhid@stanford.edu</a>.</p>
+      </aside>
+    </div>
+
+    <div class="citation-grid" id="cite">
+      <div>
+        <div class="eyebrow">BibTeX</div>
+        <h2>Cite the current manuscript.</h2>
+      </div>
+      <pre>@article{utsha2026bioglyph,
+  title   = {Language-encoded network topology enables large language
+             models to reason about complex networks},
+  author  = {Utsha, Ucchwas Talukder and Mostafa, Sakib and Wu, Jiajun
+             and Xing, Lei and Adeli, Ehsan and Zou, James
+             and Islam, Md Tauhidul},
+  year    = {2026},
+  note    = {Manuscript in preparation}
+}</pre>
+    </div>
+
+    <div class="authors-section">
+      <div class="eyebrow">Authors</div>
+      <div class="author-grid">
+        <span><b>Ucchwas Talukder Utsha</b>Stanford Radiation Oncology</span>
+        <span><b>Sakib Mostafa</b>Stanford Radiation Oncology</span>
+        <span><b>Jiajun Wu</b>Stanford Computer Science</span>
+        <span><b>Lei Xing</b>Stanford Radiation Oncology</span>
+        <span><b>Ehsan Adeli</b>Stanford Psychiatry &amp; Computer Science</span>
+        <span><b>James Zou</b>Stanford Biomedical Data Science</span>
+        <span><b>Md Tauhidul Islam *</b>Corresponding author &middot; Islam Lab</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="try" class="cta-section">
+  <div class="wrap cta-grid">
+    <div>
+      <div class="eyebrow light">Try it live</div>
+      <h2>Ask a network a question.</h2>
+      <p>Pick a network, choose whether the model reads the compiled description or the raw
+      measurement table, and ask. A frozen open model answers, and an exact classical algorithm
+      answers beside it, so you can see where the model is right and where it is not. Nothing is
+      graded by another model. The workspace shows the full text the model read, and says so when
+      the measurement table is too long to send at all.</p>
+      <a class="button light-button" href="https://app.islamlab.org/bioglyph/">Open the workspace&nbsp;&#8594;</a>
+    </div>
+  </div>
+</section>
+
+<section class="limits">
+  <div class="wrap limits-grid">
+    <div>
+      <div class="eyebrow">Read it honestly</div>
+      <h2>A reasoning aid, not a replacement for the algorithm.</h2>
+    </div>
+    <div>
+      <p>BioGlyph does not compete with exact graph algorithms, and should never be used where one
+      will do. It earns its place when several structural facts must be weighed together, when the
+      questions keep coming, and when the person asking wants an explanation or wants to
+      disagree.</p>
+      <p>Structural enrichment is not a causal claim. That cross-community connectors are more often
+      essential describes an association in one network against one label set; it does not establish
+      that the position causes the essentiality.</p>
+      <p>The live workspace runs a 4-bit quantized model with a smaller context window than the
+      study, so that it can share one GPU with the lab's other demos. Single answers there can differ
+      from a published run, and the measurement table runs out of window sooner than it does in the
+      paper. Read the workspace as the mechanism, not as the measurement.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="footer-brand">Islam <b>Lab</b></div>
+      <p>Department of Radiation Oncology, Stanford University School of Medicine.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/">Lab home</a>
+      <a href="#cite">BibTeX</a>
+      <a href="https://app.islamlab.org/bioglyph/">Live workspace</a>
+      <a href="mailto:tauhid@stanford.edu">Contact</a>
+    </div>
+    <div class="fine">&copy; 2026 Islam Lab, Stanford University.</div>
+  </div>
+</footer>
+
+</body>
+</html>
