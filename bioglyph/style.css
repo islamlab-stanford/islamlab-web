@@ -131,12 +131,16 @@ footer p{color:#aeb8c2;font-size:.82rem;margin:4px 0}
 .enrich-row .track{position:relative;height:16px;background:linear-gradient(90deg,#f2eee6 0 calc(50% - 1px),#c9c3b8 calc(50% - 1px) calc(50% + 1px),#f2eee6 calc(50% + 1px) 100%)}
 .enrich-row .track i{position:absolute;top:2px;bottom:2px;left:var(--l);width:var(--w);background:var(--accent)}
 .enrich-row.dep .track i{background:var(--blue)}
+/* Fig. 3e greys the roles whose essentiality rate is not clearly apart from the background, so
+   colouring them like the significant ones would overstate the result. */
+.enrich-row.ns .track i{background:#b9b3a7}
 .enrich-row .v{font:500 .76rem var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
 .enrich-legend{display:flex;gap:20px;margin-top:14px;border-top:1px solid var(--line);padding-top:12px;font-size:.75rem;color:var(--muted);flex-wrap:wrap}
 .enrich-legend span{display:flex;align-items:center;gap:7px}
 .enrich-legend i{width:11px;height:11px;display:block}
 .enrich-legend i.up{background:var(--accent)}
 .enrich-legend i.down{background:var(--blue)}
+.enrich-legend i.ns{background:#b9b3a7}
 
 /* Plain findings, one number each. */
 .finds{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}

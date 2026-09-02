@@ -326,10 +326,15 @@ node degree norm_deg betweenness pagerank core community
         <div class="track"><i style="--l:50%;--w:12%"></i></div>
         <div class="v">OR 1.67 &middot; 42.1%</div>
       </div>
-      <div class="enrich-row">
+      <div class="enrich-row ns">
         <div class="k">CUT_NODE</div>
         <div class="track"><i style="--l:50%;--w:4%"></i></div>
         <div class="v">OR 1.23 &middot; 35.0%</div>
+      </div>
+      <div class="enrich-row ns">
+        <div class="k">BOUNDARY_NODE</div>
+        <div class="track"><i style="--l:50%;--w:3%"></i></div>
+        <div class="v">OR 1.18 &middot; 34.0%</div>
       </div>
       <div class="enrich-row dep">
         <div class="k">PERIPHERAL</div>
@@ -339,14 +344,16 @@ node degree norm_deg betweenness pagerank core community
       <div class="enrich-legend">
         <span><i class="up"></i>enriched for essential genes</span>
         <span><i class="down"></i>depleted</span>
+        <span><i class="ns"></i>not clearly apart from the background rate</span>
         <span>midline: no enrichment (odds ratio 1)</span>
         <span>background rate: 30.9% of 3,384 proteins essential</span>
       </div>
       <p class="chart-cap"><b>Gene essentiality by structural role</b>, budding-yeast STRING network
       against SGD phenotype labels. Cross-community connectors are essential 57.6% of the time
       against a 30.9% background, and peripheral proteins only 12.9% of the time. Both survive
-      multiple-testing correction. The roles were compiled from connections alone, with the labels
-      held back.</p>
+      Benjamini&ndash;Hochberg correction across roles; cut nodes and boundary nodes do not, and are
+      drawn in gray for that reason. The roles were compiled from connections alone, with the
+      essentiality labels withheld from both the compiler and the models.</p>
     </div>
 
     <div class="pill-row">
