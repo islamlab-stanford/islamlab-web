@@ -30,10 +30,10 @@ import imageio_ffmpeg
 HERE = Path(__file__).parent
 ASSETS = HERE.parent / "assets"
 FPS = 30
-W, H = 1920, 1080
+W, H = 1280, 720   # GFM explainer size
 TAIL_PAD = 1.4        # silence after each segment's speech, so lines do not run together
 POSTER_AT = 3.0       # seconds; a frame from segment 1 that shows the title card
-SAMPLE_RATE = 22050
+SAMPLE_RATE = 24000   # neural TTS output, matching GFM
 
 
 def load_timeline() -> list[dict]:
@@ -131,7 +131,7 @@ def main() -> int:
             "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p",
             # so browsers can start playing before the whole file arrives
             "-movflags", "+faststart",
-            "-c:a", "aac", "-b:a", "128k", "-ar", "44100",
+            "-c:a", "aac", "-b:a", "96k", "-ar", "24000",   # GFM audio profile
             str(mp4),
         ], check=True)
 

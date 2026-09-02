@@ -1,58 +1,58 @@
-﻿[
-    {
-        "n":  1,
-        "wav":  "wav\\seg01.wav",
-        "seconds":  11.018,
-        "scripted":  14,
-        "words":  31,
-        "wpm":  169
-    },
-    {
-        "n":  2,
-        "wav":  "wav\\seg02.wav",
-        "seconds":  10.553,
-        "scripted":  13,
-        "words":  25,
-        "wpm":  142
-    },
-    {
-        "n":  3,
-        "wav":  "wav\\seg03.wav",
-        "seconds":  12.958,
-        "scripted":  14,
-        "words":  19,
-        "wpm":  88
-    },
-    {
-        "n":  4,
-        "wav":  "wav\\seg04.wav",
-        "seconds":  12.168,
-        "scripted":  15,
-        "words":  29,
-        "wpm":  143
-    },
-    {
-        "n":  5,
-        "wav":  "wav\\seg05.wav",
-        "seconds":  10.173,
-        "scripted":  16,
-        "words":  29,
-        "wpm":  171
-    },
-    {
-        "n":  6,
-        "wav":  "wav\\seg06.wav",
-        "seconds":  16.526,
-        "scripted":  16,
-        "words":  40,
-        "wpm":  145
-    },
-    {
-        "n":  7,
-        "wav":  "wav\\seg07.wav",
-        "seconds":  16.257,
-        "scripted":  16,
-        "words":  38,
-        "wpm":  140
-    }
+[
+ {
+  "n": 1,
+  "wav": "C:\\Users\\ucchw\\islamlab-web\\bioglyph\\video\\wav\\seg01.wav",
+  "seconds": 10.776,
+  "scripted": 14.0,
+  "words": 31,
+  "wpm": 173
+ },
+ {
+  "n": 2,
+  "wav": "C:\\Users\\ucchw\\islamlab-web\\bioglyph\\video\\wav\\seg02.wav",
+  "seconds": 10.128,
+  "scripted": 13.0,
+  "words": 25,
+  "wpm": 148
+ },
+ {
+  "n": 3,
+  "wav": "C:\\Users\\ucchw\\islamlab-web\\bioglyph\\video\\wav\\seg03.wav",
+  "seconds": 13.248,
+  "scripted": 14.0,
+  "words": 19,
+  "wpm": 86
+ },
+ {
+  "n": 4,
+  "wav": "C:\\Users\\ucchw\\islamlab-web\\bioglyph\\video\\wav\\seg04.wav",
+  "seconds": 12.624,
+  "scripted": 15.0,
+  "words": 29,
+  "wpm": 138
+ },
+ {
+  "n": 5,
+  "wav": "C:\\Users\\ucchw\\islamlab-web\\bioglyph\\video\\wav\\seg05.wav",
+  "seconds": 10.584,
+  "scripted": 16.0,
+  "words": 29,
+  "wpm": 164
+ },
+ {
+  "n": 6,
+  "wav": "C:\\Users\\ucchw\\islamlab-web\\bioglyph\\video\\wav\\seg06.wav",
+  "seconds": 16.128,
+  "scripted": 16.0,
+  "words": 40,
+  "wpm": 149
+ },
+ {
+  "n": 7,
+  "wav": "C:\\Users\\ucchw\\islamlab-web\\bioglyph\\video\\wav\\seg07.wav",
+  "seconds": 15.552,
+  "scripted": 16.0,
+  "words": 38,
+  "wpm": 147
+ }
 ]

@@ -25,6 +25,7 @@
     <div class="nav-links">
       <a href="#watch">Watch</a>
       <a href="#idea">The idea</a>
+      <a href="#explore">Explore</a>
       <a href="#vocabulary">Vocabulary</a>
       <a href="#evidence">Evidence</a>
       <a href="#biology">Biology</a>
@@ -201,7 +202,30 @@ node degree norm_deg betweenness pagerank core community
   </div>
 </section>
 
-<section id="vocabulary" class="alt">
+<section id="explore" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Explore &middot; six real regions</div>
+        <h2>Remove a node and watch the region come apart.</h2>
+      </div>
+      <p>These are six of the retrieved regions the paper reports, with the descriptions the model
+      actually read and the answers it actually gave. Removing the node is not a simulation: the
+      component each node lands in was computed by the graph algorithm, so the picture is the exact
+      answer.</p>
+    </div>
+    <div id="regionExplorer" class="rx">
+      <p class="rx-loading">Loading six regions&hellip;</p>
+    </div>
+    <p class="chart-cap"><b class="fignum">Figure 1</b> <b>One region, four renderings.</b> Node
+    positions, edges and post-removal components come from the manuscript's own figure data. The
+    meters show each rendering's prompt length against the 24,576-token limit the paper used; a
+    rendering over that limit never reached the model and was scored wrong. Pick a rendering to read
+    the text the model was given.</p>
+  </div>
+</section>
+
+<section id="vocabulary">
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -247,7 +271,7 @@ node degree norm_deg betweenness pagerank core community
   </div>
 </section>
 
-<section id="evidence">
+<section id="evidence" class="alt">
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -260,58 +284,14 @@ node degree norm_deg betweenness pagerank core community
     </div>
 
     <div class="chart">
-      <div class="chart-row hi">
-        <div class="k"><b>BioGlyph</b>named roles, evidence, implication</div>
-        <div class="bar"><i style="--w:70.6%"></i></div>
-        <div class="v">70.6<small>69.4&ndash;71.9</small></div>
-      </div>
-      <div class="chart-row">
-        <div class="k"><b>Names and evidence</b>no implication clause</div>
-        <div class="bar"><i style="--w:64.3%"></i></div>
-        <div class="v">64.3<small>62.9&ndash;65.6</small></div>
-      </div>
-      <div class="chart-row">
-        <div class="k"><b>Names only</b>no evidence, no implication</div>
-        <div class="bar"><i style="--w:63.6%"></i></div>
-        <div class="v">63.6<small>62.3&ndash;65.0</small></div>
-      </div>
-      <div class="chart-row">
-        <div class="k"><b>Meaningless role names</b>same structure, opaque tokens</div>
-        <div class="bar"><i style="--w:54.1%"></i></div>
-        <div class="v">54.1<small>52.7&ndash;55.5</small></div>
-      </div>
-      <div class="chart-row floor">
-        <div class="k"><b>No graph at all</b>the question alone &mdash; the floor</div>
-        <div class="bar"><i style="--w:50.7%"></i></div>
-        <div class="v">50.7<small>49.3&ndash;52.0</small></div>
-      </div>
-      <div class="chart-row">
-        <div class="k"><b>GNN node embeddings</b>best of GCN, SAGE, GAT, GIN</div>
-        <div class="bar"><i style="--w:50.0%"></i></div>
-        <div class="v">50.0<small>48.6&ndash;51.4</small></div>
-      </div>
-      <div class="chart-row">
-        <div class="k"><b>Adjacency as sentences</b>the edges, written out</div>
-        <div class="bar"><i style="--w:49.4%"></i></div>
-        <div class="v">49.4<small>48.0&ndash;50.8</small></div>
-      </div>
-      <div class="chart-row">
-        <div class="k"><b>Edge list</b>the raw pairs</div>
-        <div class="bar"><i style="--w:48.7%"></i></div>
-        <div class="v">48.7<small>47.3&ndash;50.0</small></div>
-      </div>
-      <div class="chart-row">
-        <div class="k"><b>Measurement table</b>every number, no threshold</div>
-        <div class="bar"><i style="--w:39.5%"></i></div>
-        <div class="v">39.5<small>38.2&ndash;40.9</small></div>
-      </div>
-      <div class="chart-axis"><div class="ticks"><span>0</span><span>25</span><span>50</span><span>75%</span></div></div>
-      <p class="chart-cap"><b>Accuracy by what the model was shown</b>, percent correct with 95%
-      confidence intervals. Read the bottom row first: printing every measurement scores 39.5%,
-      <i>below</i> the 50.7% the same model gets from no network at all, because the table crowds out
-      the question. Graph neural network embeddings do no better than that floor either. And keeping
-      BioGlyph's structure while replacing its role names with meaningless tokens takes 70.6% down to
-      54.1%, so the gain lives in the words rather than the layout.</p>
+      <div id="accChart" class="chart-svg"><p class="rx-loading">Loading results&hellip;</p></div>
+      <p class="chart-cap"><b class="fignum">Figure 2</b> <b>Accuracy by what the model was
+      shown</b>, percent correct over the eight main networks. Read the bottom row first: printing
+      every measurement scores 39.5%, <i>below</i> the 50.7% the same model gets from no network at
+      all, because the table crowds out the question. Graph neural network embeddings do no better
+      than that floor either. Keeping BioGlyph's structure while replacing its role names with
+      meaningless tokens takes 70.6% down to 54.1%, so the gain lives in the words rather than the
+      layout. <span id="accChartNote"></span></p>
     </div>
 
     <div class="finds">
@@ -335,7 +315,7 @@ node degree norm_deg betweenness pagerank core community
   </div>
 </section>
 
-<section id="biology" class="alt">
+<section id="biology">
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -405,7 +385,7 @@ node degree norm_deg betweenness pagerank core community
   </div>
 </section>
 
-<section id="networks">
+<section id="networks" class="alt">
   <div class="wrap">
     <div class="eyebrow">Networks</div>
     <h2>Twenty public networks, biological and not.</h2>
@@ -443,7 +423,7 @@ node degree norm_deg betweenness pagerank core community
   </div>
 </section>
 
-<section id="paper" class="alt">
+<section id="paper">
   <div class="wrap">
     <div class="paper-grid">
       <div>
@@ -606,5 +586,6 @@ node degree norm_deg betweenness pagerank core community
   sync();
 })();
 </script>
+<script src="interactive.js"></script>
 </body>
 </html>

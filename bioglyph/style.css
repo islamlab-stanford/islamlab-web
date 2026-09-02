@@ -136,23 +136,9 @@ footer p{color:#aeb8c2;font-size:.82rem;margin:4px 0}
 
 /* One axis, one series, sorted, direct labels: accuracy by what the model was shown. */
 .chart{margin-top:38px;border:1px solid var(--line);background:#fff;padding:26px 28px 20px}
-.chart-row{display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr) 84px;gap:14px;align-items:center;padding:6px 0}
-.chart-row .k{font-size:.85rem;color:var(--soft);text-align:right;line-height:1.3}
-.chart-row .k b{display:block;font-weight:600;color:var(--ink)}
-.chart-row .bar{height:15px;background:#eeeae2;position:relative}
 /* The blind floor drawn across every row. The paper treats 50.7% as the number any representation
    has to beat, and one rendering falls under it -- which is invisible if the floor is just another
    bar. Drawn over the fill so it still reads on the rows that pass it. */
-.chart-row .bar::after{content:"";position:absolute;left:50.7%;top:-7px;bottom:-7px;width:2px;background:rgba(23,32,44,.42);z-index:2}
-.chart-row.floor .k b{color:var(--ink)}
-.chart-row.floor .bar i{background:var(--muted)}
-.chart-row .bar i{position:absolute;left:0;top:0;bottom:0;width:var(--w);background:var(--blue);display:block}
-.chart-row.hi .bar i{background:var(--accent)}
-.chart-row.hi .k b{color:var(--accent)}
-.chart-row .v{font:500 .82rem var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
-.chart-row .v small{display:block;color:var(--muted);font-size:.66rem;margin-top:2px}
-.chart-axis{display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr) 84px;gap:14px;margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
-.chart-axis .ticks{display:flex;justify-content:space-between;font:400 .66rem var(--mono);color:var(--muted);grid-column:2}
 .chart-cap{margin:18px 0 0;font-size:.79rem;line-height:1.6;color:var(--muted)}
 .chart-cap b{color:var(--ink)}
 
@@ -173,6 +159,62 @@ footer p{color:#aeb8c2;font-size:.82rem;margin:4px 0}
 .enrich-legend i.up{background:var(--accent)}
 .enrich-legend i.down{background:var(--blue)}
 .enrich-legend i.ns{background:#b9b3a7}
+
+/* ---- region explorer -------------------------------------------------------
+   Interactive widgets follow scvision's contract: JSON in, inline SVG out, and a visible failure
+   message rather than an empty box if the fetch fails. */
+.rx{min-width:0}
+.rx-figure{min-width:0}
+.rx-loading,.widget-fail{color:var(--muted);font-size:.9rem;padding:26px 0;margin:0}
+.rx-picker{display:flex;gap:8px;flex-wrap:wrap;margin-top:34px}
+.rx-picker button{border:1px solid var(--line);background:#fff;color:var(--soft);padding:10px 14px;font:600 .84rem var(--sans);cursor:pointer;text-align:left;line-height:1.2}
+.rx-picker button small{display:block;font-weight:400;font-size:.7rem;color:var(--muted);margin-top:3px}
+.rx-picker button:hover{border-color:var(--accent);color:var(--accent)}
+.rx-picker button.on{border-color:var(--accent);background:#f8eeeb;color:var(--accent)}
+.rx-picker button.on small{color:var(--accent)}
+.rx-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:24px;margin-top:18px;align-items:start}
+.rx-canvas{border:1px solid var(--line);background:#fff;min-width:0}
+.rx-canvas svg{display:block;width:100%;height:auto}
+.rx-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.rx-controls .button{cursor:pointer}
+.rx-legend{display:flex;gap:15px;font-size:.76rem;color:var(--muted);flex-wrap:wrap}
+.rx-legend span{display:flex;align-items:center;gap:6px}
+.rx-legend i{width:10px;height:10px;display:block;border-radius:50%}
+.sw-blue{background:var(--blue)}
+.sw-accent{background:var(--accent)}
+.rx-state{margin:12px 0 0;font-size:.86rem;color:var(--soft);line-height:1.55}
+.rx-side{min-width:0;display:grid;gap:18px}
+.rx-q{border-top:3px solid var(--accent);background:#fff;padding:18px 20px}
+.rx-q p{margin:8px 0 0;font:1rem/1.5 var(--serif);color:var(--ink)}
+.rx-answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rx-answers>div{border:1px solid var(--line);background:#fff;padding:14px 16px}
+.rx-answers small{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.rx-answers b{display:block;font:600 1.2rem var(--mono);margin-top:6px;color:var(--ink)}
+.rx-answers .ok{border-left:3px solid var(--green)}
+.rx-answers .bad{border-left:3px solid var(--accent)}
+.rx-arms{border:1px solid var(--line);background:#fff;padding:16px 18px 14px}
+.arm-row{display:grid;grid-template-columns:minmax(0,1fr) 96px 62px 74px;gap:10px;align-items:center;width:100%;border:0;border-top:1px solid var(--line);background:none;padding:9px 0;cursor:pointer;text-align:left;font:inherit}
+.rx-arms .arm-row:first-of-type{border-top:0}
+.arm-row:hover .arm-name{color:var(--accent)}
+.arm-row.on .arm-name{color:var(--accent);font-weight:700}
+.arm-name{font-size:.82rem;color:var(--soft);font-weight:600;min-width:0;overflow-wrap:anywhere}
+.arm-meter{height:9px;background:#eeeae2;display:block;position:relative}
+.arm-meter i{display:block;height:100%}
+.arm-tok{font:500 .74rem var(--mono);color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.arm-verdict{font:500 .68rem var(--mono);text-align:right}
+.arm-verdict.yes{color:var(--green)}
+.arm-verdict.no{color:var(--accent)}
+.arm-verdict.never{color:var(--muted)}
+.rx-context{margin-top:20px;border:1px solid var(--line);background:#fff}
+.rx-context-head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:13px 18px;border-bottom:1px solid var(--line);background:var(--warm)}
+.rx-context-head b{font:600 .92rem var(--sans)}
+.rx-context-head span{font:400 .74rem var(--mono);color:var(--muted)}
+.rx-context pre{margin:0;padding:16px 18px;font:400 .7rem/1.62 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--soft);max-height:420px;overflow:auto}
+.rx-nocontext{margin:0;padding:18px;font-size:.86rem;color:var(--muted)}
+.chart-svg svg{display:block;width:100%;height:auto}
+
+@media(max-width:900px){.rx-grid{grid-template-columns:1fr}.arm-row{grid-template-columns:minmax(0,1fr) 70px 56px 66px}}
+@media(max-width:620px){.rx-answers{grid-template-columns:1fr}.arm-row{grid-template-columns:minmax(0,1fr) 52px 62px;row-gap:4px}.arm-row .arm-verdict{grid-column:2/4;text-align:left}}
 
 /* Plain findings, one number each. */
 .finds{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}
@@ -209,9 +251,6 @@ footer p{color:#aeb8c2;font-size:.82rem;margin:4px 0}
   .hero-actions .button{text-align:center}
   .nav-links .back{border-left:0;padding-left:0}
   .chart,.enrich{padding:18px 16px}
-  .chart-row,.chart-axis,.enrich-row{grid-template-columns:1fr}
-  .chart-row .k,.enrich-row .k{text-align:left}
-  .chart-axis .ticks{grid-column:1}
   .author-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .footer-links{margin-top:8px;flex-wrap:wrap}
