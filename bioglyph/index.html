@@ -57,7 +57,7 @@
 <main>
 <section class="numbers">
   <div class="wrap number-grid">
-    <div><strong>70.6% vs 39.5%</strong><span>question accuracy reading named roles versus the same measurements printed as a table, pooled over 4,956 questions</span></div>
+    <div><strong>70.6% vs 39.5%</strong><span>accuracy reading named roles versus the same measurements printed as a table, pooled over eight networks and two frozen 8B models</span></div>
     <div><strong>0.3% vs 41.7%</strong><span>share of prompts that outgrow the context window in those two renderings of the same regions</span></div>
     <div><strong>74.1% vs 74.8%</strong><span>BioGlyph against a graph neural network trained on the questions themselves, with no task-specific training</span></div>
   </div>
@@ -91,8 +91,9 @@
         <span>03</span>
         <h3>State the consequence</h3>
         <p>Every role carries the measurements that triggered it and what removing that part would
-        do. The gain comes from that clause, not from the name: replacing the names with meaningless
-        tokens costs 16.5 percent of accuracy.</p>
+        do. Ablations show both halves earn their place: adding the consequence clause raises yeast
+        accuracy from 68.8% to 82.7%, and swapping the role names for meaningless tokens drops it
+        from 66.8% to 51.1%.</p>
       </article>
     </div>
 
@@ -170,27 +171,39 @@ node degree norm_deg betweenness pagerank core community
         <div class="eyebrow">The vocabulary</div>
         <h2>Eleven roles, each one a rule you can check.</h2>
       </div>
-      <p>The compiler is label-free: it reads connections only, never node names, gene symbols or
-      any annotation. Every role below is decided by a threshold or an exact graph property, so the
+      <p>Eight describe nodes, two describe edges, one describes a community. The compiler is
+      label-free: it reads connections only, never node names, gene symbols or any annotation. Two
+      roles come from exact connectivity decompositions and the rest from a fixed threshold, so the
       same region always compiles to the same description.</p>
     </div>
     <div class="roles">
-      <div class="role"><b>HUB</b><p>Degree above the region's threshold. <em>Removing it drops many
-      connections but does not split anything</em> unless it is also a cut node.</p></div>
       <div class="role"><b>CUT_NODE</b><p>An articulation point. <em>The only kind of node whose
-      removal splits its own component</em>, and the description says into how many pieces.</p></div>
-      <div class="role"><b>BRIDGE_EDGE</b><p>An edge whose removal disconnects the two sides. The
-      edge-level counterpart of a cut node.</p></div>
-      <div class="role"><b>COMMUNITY_CORE</b><p>Central inside its own community by intra-community
-      degree. <em>A module hub, not necessarily a cut point.</em></p></div>
-      <div class="role"><b>CROSS_COMMUNITY_CONNECTOR</b><p>Lies on many shortest paths between
-      communities. Removing it lengthens cross-community routes rather than severing them.</p></div>
-      <div class="role"><b>BOUNDARY_NODE</b><p>A gateway spanning several communities' boundaries,
-      by participation coefficient.</p></div>
-      <div class="role"><b>PERIPHERAL</b><p>Low k-core embeddedness and low degree. Little influence
-      on global structure.</p></div>
-      <div class="role"><b>FRAGILE_REGION</b><p>A part of the network where a single removal
-      disconnects a disproportionate share of what remains.</p></div>
+      removal splits its own component</em>, and the description says into how many pieces. Exact,
+      no threshold.</p></div>
+      <div class="role"><b>BRIDGE_EDGE</b><p>A bridge: an edge whose removal disconnects the two
+      sides. Also exact, the edge-level counterpart of a cut node.</p></div>
+      <div class="role"><b>HUB</b><p>Degree more than <em>2.0</em> standard deviations above the
+      region's mean. Removing it drops many connections but splits nothing unless it is also a cut
+      node.</p></div>
+      <div class="role"><b>CROSS_COMMUNITY_CONNECTOR</b><p>Node betweenness <em>2.0</em> SD above the
+      mean, <em>and</em> neighbors in at least two communities. Removing it lengthens
+      cross-community routes rather than severing them.</p></div>
+      <div class="role"><b>BOUNDARY_NODE</b><p>Participation coefficient <em>1.5</em> SD above the
+      mean: a gateway spanning several communities' boundaries.</p></div>
+      <div class="role"><b>COMMUNITY_CORE</b><p>Intra-community degree <em>1.0</em> SD above the
+      mean, compared within each community of at least three nodes. A module hub, not necessarily a
+      cut point.</p></div>
+      <div class="role"><b>BOTTLENECK_LINK</b><p>Edge betweenness <em>2.0</em> SD above the mean:
+      an edge carrying disproportionate shortest-path traffic without being a bridge.</p></div>
+      <div class="role"><b>AUTHORITY</b><p>PageRank <em>2.0</em> SD above the mean. Defined for
+      directed networks, and so unused in the undirected networks this study reports.</p></div>
+      <div class="role"><b>PERIPHERAL</b><p>Core number at most 1, in a component with more than one
+      node. Low embeddedness, little influence on global structure.</p></div>
+      <div class="role"><b>ISOLATE</b><p>A node whose connected component contains only
+      itself.</p></div>
+      <div class="role"><b>FRAGILE_REGION</b><p>The one community-level role: a community whose
+      induced subgraph has edge connectivity at most 1, evaluated for communities of 3 to 1,500
+      nodes.</p></div>
       <div class="role"><b>Evidence, always attached</b><p>Every role prints the measurements that
       triggered it, so a reader can disagree with the compiler on its own terms.</p></div>
     </div>
@@ -205,9 +218,8 @@ node degree norm_deg betweenness pagerank core community
         <h2>The wording is what changes, and it changes the answer.</h2>
       </div>
       <p>Every arm below is built from the identical measurements on the identical retrieved region.
-      Only the rendering differs. Accuracy is pooled over 4,956 questions in seven families across
-      eight networks, on two frozen 8-billion-parameter open models, with no task-specific
-      training.</p>
+      Only the rendering differs. Accuracy is pooled over seven question families on the eight main
+      networks, with two frozen 8-billion-parameter open models and no task-specific training.</p>
     </div>
 
     <div class="chart">
@@ -270,8 +282,10 @@ node degree norm_deg betweenness pagerank core community
         <strong>0.3%</strong><span>of BioGlyph prompts overflow, against 41.7% of tables</span>
         <h3>The gain is not just a shorter prompt.</h3>
         <p>A named description is more compact, so a fair reader asks whether BioGlyph simply wins by
-        fitting. In the perturbation screen on the Reactome network, neither rendering overflows on
-        any module, every format reaches the model, and the description still leads.</p>
+        fitting. In the 60-module protein-removal screen on the Reactome network, neither the
+        descriptions nor the raw-measurement tables exceeded the context limit, so both reached the
+        model on every module &mdash; and BioGlyph still answered 42.5% of them within two proteins,
+        against 1.7% from the tables.</p>
       </div>
       <div class="find">
         <strong>74.1%</strong><span>against a supervised GNN's 74.8% on the same questions</span>
@@ -351,33 +365,37 @@ node degree norm_deg betweenness pagerank core community
   <div class="wrap">
     <div class="eyebrow">Networks</div>
     <h2>Twenty public networks, biological and not.</h2>
-    <p class="lead">A structural vocabulary should not be tuned to one domain. The benchmark spans
-    protein interaction, disease comorbidity, patient similarity, citation, co-purchase, social,
-    email and infrastructure networks, from 222 nodes to 169,343.</p>
+    <p class="lead">A structural vocabulary should not be tuned to one domain. The twenty networks
+    span biology, pharmacology, medicine, social, citation, co-authorship, e-commerce and
+    infrastructure systems, from 222 nodes to 169,343. The benchmark itself asks 1,239 questions
+    over the eight main networks, drawn from five domains.</p>
     <div class="datasets">
       <table>
         <thead><tr><th>Network</th><th>Domain</th><th class="n">Nodes</th><th class="n">Edges</th><th class="n">Cut nodes</th></tr></thead>
         <tbody>
-          <tr><td>STRING-Yeast</td><td>Protein interaction</td><td class="n">3,384</td><td class="n">43,030</td><td class="n">363</td></tr>
-          <tr><td>STRING-Human</td><td>Protein interaction</td><td class="n">10,746</td><td class="n">86,519</td><td class="n">1,299</td></tr>
-          <tr><td>HuRI</td><td>Reference interactome</td><td class="n">8,275</td><td class="n">52,088</td><td class="n">1,132</td></tr>
-          <tr><td>Reactome-FI</td><td>Functional interaction</td><td class="n">10,022</td><td class="n">194,494</td><td class="n">417</td></tr>
-          <tr><td>HuDiNe</td><td>Disease comorbidity</td><td class="n">222</td><td class="n">831</td><td class="n">17</td></tr>
-          <tr><td>ego-Facebook</td><td>Social</td><td class="n">4,039</td><td class="n">88,234</td><td class="n">11</td></tr>
-          <tr><td>email-Eu-core</td><td>Email</td><td class="n">986</td><td class="n">16,064</td><td class="n">73</td></tr>
-          <tr><td>Wiki-Vote</td><td>Social voting</td><td class="n">7,115</td><td class="n">100,762</td><td class="n">1,033</td></tr>
-          <tr><td>Amazon-Photo</td><td>Co-purchase</td><td class="n">7,650</td><td class="n">119,081</td><td class="n">151</td></tr>
-          <tr><td>Coauthor-CS</td><td>Co-authorship</td><td class="n">18,333</td><td class="n">81,894</td><td class="n">1,281</td></tr>
-          <tr><td>Cora</td><td>Citation</td><td class="n">2,708</td><td class="n">5,278</td><td class="n">389</td></tr>
-          <tr><td>ogbn-arxiv</td><td>Citation</td><td class="n">169,343</td><td class="n">1,157,799</td><td class="n">18,591</td></tr>
-          <tr><td>Power-Grid</td><td>Infrastructure</td><td class="n">4,941</td><td class="n">6,594</td><td class="n">1,229</td></tr>
+          <tr><td>STRING-Yeast</td><td>biology</td><td class="n">3,384</td><td class="n">43,030</td><td class="n">363</td></tr>
+          <tr><td>ChCh-Miner</td><td>pharmacology</td><td class="n">1,514</td><td class="n">48,514</td><td class="n">48</td></tr>
+          <tr><td>ego-Facebook</td><td>social</td><td class="n">4,039</td><td class="n">88,234</td><td class="n">11</td></tr>
+          <tr><td>email-Eu-core</td><td>social</td><td class="n">986</td><td class="n">16,064</td><td class="n">73</td></tr>
+          <tr><td>STRING-Human</td><td>biology</td><td class="n">10,746</td><td class="n">86,519</td><td class="n">1,299</td></tr>
+          <tr><td>HuRI</td><td>biology</td><td class="n">8,275</td><td class="n">52,088</td><td class="n">1,132</td></tr>
+          <tr><td>PP-Pathways</td><td>biology</td><td class="n">21,538</td><td class="n">338,636</td><td class="n">1,538</td></tr>
+          <tr><td>HuDiNe</td><td>medicine</td><td class="n">222</td><td class="n">831</td><td class="n">17</td></tr>
+          <tr><td>Amazon-Photo</td><td>e-commerce</td><td class="n">7,650</td><td class="n">119,081</td><td class="n">151</td></tr>
+          <tr><td>Wiki-Vote</td><td>social</td><td class="n">7,115</td><td class="n">100,762</td><td class="n">1,033</td></tr>
+          <tr><td>Cora</td><td>citation</td><td class="n">2,708</td><td class="n">5,278</td><td class="n">389</td></tr>
+          <tr><td>ogbn-arxiv</td><td>citation</td><td class="n">169,343</td><td class="n">1,157,799</td><td class="n">18,591</td></tr>
+          <tr><td>Coauthor-CS</td><td>co-authorship</td><td class="n">18,333</td><td class="n">81,894</td><td class="n">1,281</td></tr>
+          <tr><td>Power-Grid</td><td>infrastructure</td><td class="n">4,941</td><td class="n">6,594</td><td class="n">1,229</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="chart-cap">A representative slice; the study reports twenty networks in total, all
-    public. Cut-node counts are exact, computed on the whole network. Every compiled description,
-    question set with its exact answer, stored model reply and scored result table is released with
-    the analysis code.</p>
+    <p class="chart-cap">Fourteen of the twenty, all public; statistics are for the simple
+    undirected graph and the cut-node counts are exact. The protein-removal screen runs on a
+    further network, Reactome functional interactions: 10,022 proteins, 194,494 interactions, and
+    402 cut nodes in its 9,823-protein main component. Every compiled description, question set
+    with its exact answer, stored model reply and scored result table is released with the analysis
+    code.</p>
   </div>
 </section>
 
@@ -388,29 +406,33 @@ node degree norm_deg betweenness pagerank core community
         <div class="eyebrow">Abstract</div>
         <h2>Structure, said out loud.</h2>
         <div class="abstract-copy">
-          <p>Networks describe many systems in biology and beyond, from proteins that interact inside
-          a cell to power grids and citation records. Understanding a network requires reasoning
-          about its structure: which parts are most central, which connections link otherwise
-          separate regions, how the network divides into communities, and how the network changes
-          when a part is removed. Large language models read and reason over text fluently, yet they
-          often struggle with this kind of structural reasoning, even when the full network is
-          provided in text form.</p>
-          <p>Here we present BioGlyph, a compiler that states a network's structure in words.
-          BioGlyph runs classical graph algorithms and applies one fixed rule per role. Each role is
-          written as a short statement, such as a hub with many connections, a cut node whose removal
-          splits the region, or a connector between communities. BioGlyph also reports the
-          measurements that triggered the role and explains what would happen if that part were
-          removed. The compiler uses only network connections, and the language model remains
-          unchanged.</p>
-          <p>Across networks from several domains, small open models reading these named roles answer
-          questions about connectivity, importance and change far more reliably than from any other
-          rendering of the same region. They come close to a graph neural network trained on the
-          questions themselves, with no task-specific training. The gain comes from saying what a
-          role means for the network, not from naming it. In the budding-yeast protein interaction
-          network, cross-community connectors are enriched for essential genes while peripheral
-          proteins are less often essential, identified from network structure alone without seeing
-          gene-essentiality labels. The same readable description can therefore support both model
-          reasoning and scientific interpretation.</p>
+          <p>Networks describe diverse systems in biology and beyond, from protein interactions and
+          social relationships to power grids and citation records. Reasoning about such systems
+          requires understanding their structure: which elements are central, which connections
+          bridge otherwise separate communities, how the network is organized, and how its structure
+          changes when elements are removed. Although large language models (LLMs) excel at reasoning
+          over natural language, they often struggle with such structural questions when networks are
+          represented as edge lists, sentences or tables of numerical measurements, because the
+          structural meaning of these representations must be inferred.</p>
+          <p>Here we introduce BioGlyph, a method that compiles network topology into an interpretable
+          and transferable language of structural roles. BioGlyph combines graph-partitioning
+          algorithms and structural measurements to identify roles such as hubs, community cores and
+          cross-community connectors, and uses fixed rules to translate their algorithmic signatures
+          into a universal vocabulary. The resulting representation describes each network element
+          through its structural role, supporting evidence and semantic consequences, while leaving
+          both the original network and the LLM unchanged.</p>
+          <p>Across twenty networks spanning five different domains including biological, social and
+          information systems, BioGlyph substantially improves the ability of open LLMs to answer
+          structural reasoning questions, outperforming edge-based, numerical and learned
+          representations by up to 26 percentage points in system accuracy. Ablation experiments show
+          that the improvement comes from explicitly encoding structural roles in semantically
+          interpretable terms by BioGlyph. The performance improvement becomes even more prominent in
+          dense, community-structured networks and diminishes in sparse networks whose topology can
+          be more readily inferred from direct textual representations. Applied to a budding-yeast
+          protein-interaction network, BioGlyph also exposes biologically meaningful organization:
+          cross-community connectors are enriched for essential genes, whereas peripheral proteins
+          are depleted. BioGlyph thus provides a common, interpretable representation through which
+          both language models and scientists can reason about complex network structure.</p>
         </div>
       </div>
       <aside class="paper-links">
