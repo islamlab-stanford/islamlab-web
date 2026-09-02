@@ -1,0 +1,56 @@
+{
+  "title": "BioGlyph: a network, stated in words",
+  "reference": "Modelled on dynomap/assets/dynomap-demo-captions.vtt: 7 segments, 1:46 total, 12-18s each, two declarative sentences per segment, no filler.",
+  "voice_notes": "Numbers are written the way SAPI reads them correctly. 'k core' not 'k-core' (the hyphen is read aloud). Percentages spelled as 'percent'. Every figure below is Table S3 or the Results text of the final paper.",
+  "segments": [
+    {
+      "n": 1,
+      "seconds": 14,
+      "narration": "A network written out as a list of edges is complete, but it is not readable. A language model has to recover the structure before it can answer anything about it.",
+      "visual": "Left two thirds: a wall of small mono edge pairs in muted grey, scrolling slightly. Right third: the question 'Which node holds this region together?' in serif, with a blinking cursor. Lower-left wordmark BioGlyph and the subtitle 'a network, stated in words'.",
+      "numbers_used": []
+    },
+    {
+      "n": 2,
+      "seconds": 13,
+      "narration": "BioGlyph starts by retrieving the region around the nodes in the question. Everything after this is computed on that region, never on the whole network.",
+      "visual": "A 90-node spring-laid network in muted blue. A ring sweeps out from one accent-coloured node and the nodes inside it come up to full colour while the rest fade to 15 percent. Caption strip: 'retrieved region, 45 nodes, 71 edges'.",
+      "numbers_used": ["45 nodes", "71 edges"]
+    },
+    {
+      "n": 3,
+      "seconds": 14,
+      "narration": "Classical algorithms do the arithmetic. Degree, betweenness, k core, articulation points, bridges and communities, computed exactly, with nothing learned.",
+      "visual": "The region alone, centred. Six algorithm names appear in sequence in mono at the left margin, each with a tick. As each lands, the drawing updates: node sizes scale to degree, then colour to betweenness, then community hulls appear, then two articulation points get accent rings.",
+      "numbers_used": []
+    },
+    {
+      "n": 4,
+      "seconds": 15,
+      "narration": "One fixed rule then assigns each of eleven structural roles. A node whose removal splits its component is a cut node, and the algorithm decides that, not the model.",
+      "visual": "The region with role labels snapping onto nodes in mono accent type: HUB, CUT_NODE, CROSS_COMMUNITY_CONNECTOR, COMMUNITY_CORE, PERIPHERAL. The central node collects several at once. Right margin lists the eleven role names, each greying out as it is mentioned.",
+      "numbers_used": ["eleven roles"]
+    },
+    {
+      "n": 5,
+      "seconds": 16,
+      "narration": "Every role carries the measurements that triggered it and what would happen if that part were removed. That last clause is exactly what a table of numbers leaves out.",
+      "visual": "A white card types in, line by line, in mono: 'NODE 2553 = CUT_NODE  [components_before=1, components_after=6]  -> articulation point, the only kind of node whose removal splits its own connected component'. The implication clause is underlined in accent as it lands.",
+      "numbers_used": []
+    },
+    {
+      "n": 6,
+      "seconds": 16,
+      "narration": "A frozen open model reading these descriptions answers seventy point six percent of benchmark questions correctly. Reading the identical measurements as a table it manages thirty nine point five percent, which is worse than showing it no graph at all.",
+      "visual": "Two horizontal bars grow from a shared axis: BioGlyph to 70.6 in accent, measurement table to 39.5 in blue. A dashed vertical reference line at 50.7 labelled 'no graph at all'. The table bar stops visibly short of that line.",
+      "numbers_used": ["70.6", "39.5", "50.7"]
+    },
+    {
+      "n": 7,
+      "seconds": 16,
+      "narration": "The same roles carry biological meaning. In the budding yeast interactome, cross community connectors are essential fifty seven point six percent of the time against a background of thirty point nine, with the labels withheld from the compiler.",
+      "visual": "Four bars for essentiality by role: connectors 57.6, community cores 46.9, hubs 42.1, peripheral 12.9, with a dashed line at the 30.9 background. Connectors and peripheral in accent and blue, the rest muted. Closing card: 'islamlab.org/bioglyph'.",
+      "numbers_used": ["57.6", "46.9", "42.1", "12.9", "30.9"]
+    }
+  ]
+}

@@ -84,6 +84,27 @@ footer p{color:#aeb8c2;font-size:.82rem;margin:4px 0}
 .footer-links{display:flex;gap:22px;font-size:.83rem}
 .fine{grid-column:1/-1;border-top:1px solid #303a45;padding-top:16px;margin-top:10px;color:#8d98a4;font-size:.72rem}
 
+/* Explainer video. Frame, caption control and poster handling follow dynomap/style.css so the
+   two projects' video sections look like siblings. The CC button exists because browsers bury the
+   caption menu, and a narrated figure with no visible caption control is not accessible. */
+.watch-section .section-head{margin-bottom:30px}
+.video-figure{max-width:1160px}
+.paper-figure{margin:0}
+.media-frame{background:#111318;border:1px solid var(--line);padding:0;line-height:0;overflow:hidden}
+.media-frame video{display:block;width:100%;height:auto}
+.paper-figure figcaption{font-size:.78rem;line-height:1.55;color:var(--muted);margin-top:11px;max-width:1000px}
+.paper-figure figcaption b{color:var(--ink)}
+.video-frame{position:relative}
+.video-cc-toggle{position:absolute;right:14px;bottom:70px;z-index:3;display:inline-grid;place-items:center;width:38px;height:32px;padding:0;border:1px solid rgba(255,255,255,.45);border-radius:3px;background:rgba(16,23,33,.82);color:#fff;font:600 .72rem/1 var(--sans);cursor:pointer;backdrop-filter:blur(7px);opacity:0;pointer-events:none;transform:translateY(4px);transition:opacity .16s ease,transform .16s ease,background-color .16s ease}
+.video-frame:hover .video-cc-toggle,.video-frame:focus-within .video-cc-toggle{opacity:1;pointer-events:auto;transform:translateY(0)}
+.video-cc-toggle:hover,.video-cc-toggle:focus-visible{background:rgba(16,23,33,.96);border-color:#fff}
+.video-cc-toggle:focus-visible{outline:3px solid rgba(255,255,255,.72);outline-offset:2px}
+.video-cc-toggle[aria-pressed="true"]{background:var(--accent);border-color:var(--accent)}
+.video-cc-mark{display:inline-grid;place-items:center;min-width:24px;height:17px;border:1px solid currentColor;border-radius:2px;font:700 .62rem/1 var(--sans);letter-spacing:.02em}
+.video-cc-state{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(hover:none),(pointer:coarse){.video-cc-toggle{opacity:1;pointer-events:auto;transform:none}}
+@media(max-width:620px){.video-cc-toggle{right:9px;bottom:64px;width:36px;height:30px}}
+
 /* ---------------------------------------------------- BioGlyph-specific --- */
 
 /* The same region in two renderings, side by side. This is the paper's comparison, so it is the
