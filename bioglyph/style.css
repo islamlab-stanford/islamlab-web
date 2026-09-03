@@ -221,6 +221,76 @@ footer p{color:#aeb8c2;font-size:.82rem;margin:4px 0}
 @media(max-width:900px){.rx-grid{grid-template-columns:1fr}.arm-row{grid-template-columns:minmax(0,1fr) 70px 56px 66px}}
 @media(max-width:620px){.rx-answers{grid-template-columns:1fr}.arm-row{grid-template-columns:minmax(0,1fr) 52px 62px;row-gap:4px}.arm-row .arm-verdict{grid-column:2/4;text-align:left}}
 
+/* ---- conversation player ---------------------------------------------------
+   Shares the explorer's chrome (.rx-picker, .rx-figure, .rx-canvas, .rx-controls) so the two
+   widgets read as one family; only the turn machinery below is new. */
+.tp-picker{display:flex;gap:8px;flex-wrap:wrap;margin-top:34px}
+.rx-picker .rx-tab,.tp-picker .rx-tab{border:1px solid var(--line);background:#fff;color:var(--soft);padding:10px 14px;font:600 .84rem var(--sans);cursor:pointer;text-align:left;line-height:1.2}
+.rx-picker .rx-tab small,.tp-picker .rx-tab small{display:block;font-weight:400;font-size:.7rem;color:var(--muted);margin-top:3px}
+.rx-picker .rx-tab:hover,.tp-picker .rx-tab:hover{border-color:var(--accent);color:var(--accent)}
+.rx-picker .rx-tab.on,.tp-picker .rx-tab.on{border-color:var(--accent);background:#f8eeeb;color:var(--accent)}
+.rx-picker .rx-tab.on small,.tp-picker .rx-tab.on small{color:var(--accent)}
+.tp-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:24px;margin-top:18px;align-items:start}
+.tp-side{min-width:0;display:grid;gap:14px}
+.tp-models{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tp-model{border:1px solid var(--line);background:#fff;color:var(--soft);padding:10px 13px;font:600 .84rem var(--sans);cursor:pointer;text-align:left;line-height:1.2}
+.tp-model small{display:block;font-weight:400;font-size:.69rem;color:var(--muted);margin-top:3px}
+.tp-model:hover{border-color:var(--accent);color:var(--accent)}
+.tp-model.on{border-color:var(--accent);background:#f8eeeb;color:var(--accent)}
+.tp-model.on small{color:var(--accent)}
+.tp-budget{border:1px solid var(--line);border-left:3px solid var(--accent);background:#fff;padding:13px 16px;font-size:.82rem;line-height:1.55;color:var(--soft)}
+.tp-budget b{color:var(--ink)}
+.tp-rail{display:flex;gap:6px;flex-wrap:wrap}
+.tp-step{width:36px;height:36px;border:1px solid var(--line);background:#fff;color:var(--muted);font:600 .82rem var(--mono);cursor:pointer}
+.tp-step:hover{border-color:var(--accent);color:var(--accent)}
+.tp-step.yes{color:var(--green);border-color:#c6d2c4}
+.tp-step.no{color:var(--accent);border-color:#e2c6c2}
+.tp-step.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tp-turn{border:1px solid var(--line);background:#fff;padding:16px 18px}
+.tp-turn-head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:11px}
+.tp-turn-head small{font-size:.72rem;color:var(--muted)}
+.tp-cls{font:700 .63rem var(--sans);text-transform:uppercase;letter-spacing:.09em;padding:3px 8px;border:1px solid var(--line);color:var(--soft)}
+.tp-cls.graded{border-color:#c6d2c4;color:var(--green)}
+.tp-cls.pushback{border-color:#e2c6c2;color:var(--accent)}
+.tp-cls.lookup{border-color:#c9d3dc;color:var(--blue)}
+.tp-q{margin:0 0 12px;font:600 .98rem/1.5 var(--serif);color:var(--ink)}
+.tp-a{border-top:1px solid var(--line);padding-top:11px}
+.tp-a small,.tp-gold small{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.tp-a p{margin:6px 0 0;font-size:.85rem;line-height:1.6;color:var(--soft);max-height:190px;overflow:auto}
+.tp-gold{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:12px;padding-top:11px}
+.tp-gold small{flex:0 0 100%}
+.tp-gold b{font:600 1.05rem var(--mono);color:var(--ink)}
+.tp-v{font:500 .7rem var(--mono)}
+.tp-v.yes{color:var(--green)}
+.tp-v.no,.tp-v.never{color:var(--accent)}
+.tp-v.na{color:var(--muted)}
+.tp-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tp-nav .button{cursor:pointer}
+.tp-nav .button[disabled]{opacity:.4;cursor:default}
+.tp-nav span{font:500 .74rem var(--mono);color:var(--muted)}
+.tp-context{margin-top:20px;border:1px solid var(--line);background:#fff}
+.tp-context summary{padding:13px 18px;cursor:pointer;font:600 .84rem var(--sans);color:var(--soft);background:var(--warm)}
+.tp-context summary:hover{color:var(--accent)}
+.tp-context pre{margin:0;padding:16px 18px;font:400 .7rem/1.62 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--soft);max-height:420px;overflow:auto}
+#conversation .finds{grid-template-columns:repeat(3,1fr)}
+
+/* ---- the paired three-turn study, inside the evidence section -------------- */
+.pt{margin-top:38px}
+.pt-head{font:600 1.3rem/1.25 var(--serif);margin:0 0 4px}
+.pt-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.pt-col{border:1px solid var(--line);background:#fff;padding:16px 18px}
+.pt-col.dead{background:#fbf6f5;border-color:#e2c6c2}
+.pt-col-head{margin-bottom:12px}
+.pt-col-head b{display:block;font:600 .95rem var(--sans)}
+.pt-col-head small{font:400 .72rem var(--mono);color:var(--muted)}
+.pt-col.dead .pt-col-head small{color:var(--accent)}
+.pt-turn{border-top:1px solid var(--line);padding:10px 0 12px}
+.pt-turn-top{display:flex;justify-content:space-between;gap:10px;font:500 .74rem var(--mono);color:var(--soft);margin-bottom:7px}
+.pt-tok{font:500 .7rem var(--mono);color:var(--muted);margin-top:5px;font-variant-numeric:tabular-nums}
+.pt-note{margin:16px 0 0;font-size:.84rem;line-height:1.6;color:var(--soft)}
+
+@media(max-width:900px){.tp-grid,.pt-grid{grid-template-columns:1fr}#conversation .finds{grid-template-columns:1fr}}
+
 /* Plain findings, one number each. */
 .finds{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}
 .find{border:1px solid var(--line);background:#fff;padding:24px}

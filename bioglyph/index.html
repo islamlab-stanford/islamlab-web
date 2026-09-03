@@ -30,6 +30,7 @@
       <a href="#watch">Watch</a>
       <a href="#idea">The idea</a>
       <a href="#explore">Explore</a>
+      <a href="#conversation">Conversation</a>
       <a href="#vocabulary">Vocabulary</a>
       <a href="#evidence">Evidence</a>
       <a href="#biology">Biology</a>
@@ -47,10 +48,11 @@
     <h1>A network, stated in&nbsp;words.</h1>
     <p class="paper-title">Language-encoded network topology enables large language models to reason about complex networks</p>
     <p class="lead">BioGlyph is a deterministic compiler that states a network's structure in
-    words: named roles, the measurements behind each one, and what removing that part would do. A
-    frozen open model reading those descriptions answers 70.6% of benchmark questions correctly.
-    Handed the identical measurements as a table it manages 39.5% &mdash; worse than being shown no
-    network at all.</p>
+    words: named roles, the measurements behind each one, and what removing that part would do. Two
+    frozen open 8B models reading those descriptions answer 70.6% of 1,239 benchmark questions
+    correctly, against 50.7% when they are shown no network at all. Handed the identical
+    measurements as a table they manage 39.5% &mdash; below that blind floor, because 41.7% of the
+    table's prompts are too long to reach the model at all.</p>
     <p class="author-line">Ucchwas Talukder Utsha, Sakib Mostafa, James Zou, Md Tauhidul Islam</p>
     <div class="hero-actions">
       <a class="button primary" href="https://app.islamlab.org/bioglyph/">Ask a network a question</a>
@@ -63,9 +65,9 @@
 <main>
 <section class="numbers">
   <div class="wrap number-grid">
-    <div><strong>70.6% vs 39.5%</strong><span>named roles against the same numbers as a table, over 1,239 questions</span></div>
-    <div><strong>39.5% below 50.7%</strong><span>the table scores under what the model gets from no network at all</span></div>
-    <div><strong>74.1% vs 74.8%</strong><span>against a graph network trained on the questions, with no training at all</span></div>
+    <div><strong>70.6% vs 50.7%</strong><span>reading named roles, against the same two 8B models shown no network at all &middot; 1,239 questions, eight networks</span></div>
+    <div><strong>41.7% vs 0.3%</strong><span>share of prompts too long to reach the model &mdash; the measurement table against the compiled description. This is why the table scores 39.5%, below the blind floor</span></div>
+    <div><strong>66.8% vs 61.4%</strong><span>description against table on the questions both were short enough to answer &middot; 2,274 paired</span></div>
   </div>
 </section>
 
@@ -131,18 +133,33 @@
         <span>03</span>
         <h3>State the consequence</h3>
         <p>Every role carries the measurements that triggered it and what removing that part would
-        do. Ablations show both halves earn their place: adding the consequence clause raises yeast
-        accuracy from 68.8% to 82.7%, and swapping the role names for meaningless tokens drops it
-        from 66.8% to 51.1%.</p>
+        do. Ablations show both halves earn their place. On the yeast interactome, adding the
+        consequence clause raises accuracy from 68.8% to 82.7% on the questions every ablation could
+        read; and replacing the role names with meaningless tokens, holding the role assignments
+        fixed, drops accuracy over all questions from 66.8% to 51.1%.</p>
       </article>
     </div>
+
+    <figure class="paper-figure fig-still">
+      <div class="media-frame light">
+        <img src="assets/fig1_concept.png" width="1400" height="770"
+             alt="Panel a: a 31-node network in five communities with hub, cut node, bridge, community core, cross-community connector and bottleneck link marked. Panel b: the compiler runs classical algorithms, then one fixed rule per role. Panel c: the resulting readable description, and a frozen model answering from it.">
+      </div>
+      <figcaption><b class="fignum">Figure 1</b> <b>What the compiler does.</b> Figure 1 of the
+      manuscript. <b>a</b>, an illustrative network: node A is a hub, and removing node B splits the
+      region into three. The dashed outline is a fragile community held on by a single link.
+      <b>b</b>, classical algorithms run on the region, then one fixed rule assigns each of eleven
+      roles &mdash; deterministic for a given seed, and using topology alone, with no node labels or
+      biological annotations. <b>c</b>, the description that comes out, and a frozen model answering
+      from it. The answer is then checked against the exact algorithm.</figcaption>
+    </figure>
 
     <div class="render-pair">
       <div class="render win">
         <div class="render-head">
           <b>What BioGlyph writes</b>
           <span>Named roles, each with its evidence and its perturbation implication &middot;
-          <b>70.6% correct</b></span>
+          <b>five lines answer the question</b></span>
         </div>
 <pre>BioGlyph map (named structural roles); communities: 6
 Completeness: every articulation point of this region is
@@ -173,7 +190,7 @@ NODE 2553 = <span class="rolename">CROSS_COMMUNITY_CONNECTOR</span>
         <div class="render-head">
           <b>What a measurement table writes</b>
           <span>Identical numbers, no threshold applied and no consequence stated &middot;
-          <b>39.5% correct</b></span>
+          <b>45 rows before the answer</b></span>
         </div>
 <pre>Structural measurements for this region, every quantity
 the analysis computes, printed for every node, edge and
@@ -202,7 +219,10 @@ node degree norm_deg betweenness pagerank core community
     Excerpted and wrapped to fit this page; nothing is reworded. The table is not a weaker input in
     principle, because it holds every number the compiler read. It is a weaker input in practice:
     the model has to find the right column, apply the right threshold, and know what crossing it
-    implies, before it can answer.</p>
+    implies, before it can answer. This particular region is an illustration and not a score. The
+    power grid is sparse, its regions stay short, and it is one of the networks where the table
+    reads perfectly well &mdash; 69.4% against BioGlyph&rsquo;s 64.7%, with nothing overflowing. The
+    benchmark numbers on this page come from the eight denser networks listed below.</p>
   </div>
 </section>
 
@@ -221,11 +241,73 @@ node degree norm_deg betweenness pagerank core community
     <div id="regionExplorer" class="rx">
       <p class="rx-loading">Loading six regions&hellip;</p>
     </div>
-    <p class="chart-cap"><b class="fignum">Figure 1</b> <b>One region, four renderings.</b> Node
+    <p class="chart-cap"><b class="fignum">Figure 2</b> <b>One region, four renderings.</b> Node
     positions, edges and post-removal components come from the manuscript's own figure data. The
     meters show each rendering's prompt length against the 24,576-token limit the paper used; a
     rendering over that limit never reached the model and was scored wrong. Pick a rendering to read
     the text the model was given.</p>
+  </div>
+</section>
+
+<section id="conversation">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Conversation &middot; ten stored threads</div>
+        <h2>Compile the region once. Then keep asking.</h2>
+      </div>
+      <p>A description is sent with the first question and never again. Everything after that is
+      conversation: follow-ups, a lookup, an explanation, and finally a push-back that tells the
+      model its earlier answer was wrong. Across 719 threads and 11,504 turns, accuracy does not
+      decay along a thread &mdash; turns five to eight score 78.7% against 71.8% for turns one to
+      four. Pick a thread and walk it.</p>
+    </div>
+
+    <div id="threadPlayer" class="rx">
+      <p class="rx-loading">Loading ten conversations&hellip;</p>
+    </div>
+    <p class="chart-cap"><b class="fignum">Figure 3</b> <b>One description, eight turns.</b> Every
+    question, reply and verdict is the stored one from the runs the paper scores; nothing is
+    generated when you click. The verdict on each turn is the evaluator's, computed against the
+    exact graph algorithm, never a reading of the reply. Node identities and outside annotations
+    such as SGD essentiality sit outside the exchange &mdash; no model ever received them.</p>
+
+    <div class="finds">
+      <div class="find">
+        <strong>74.6%</strong><span>of graded turns across 719 threads and 11,504 turns</span>
+        <h3>The map holds for eight turns.</h3>
+        <p>Lookup turns, which ask for something the description states outright, are answered
+        68.6% of the time. No thread prompt went over budget, so nothing here is a length effect.</p>
+      </div>
+      <div class="find">
+        <strong>42.0%</strong><span>held a correct answer when told it was wrong</span>
+        <h3>Push-back is where models are weakest.</h3>
+        <p>Against 29.1% that abandoned a correct answer and 12.7% that corrected a wrong one.
+        An informative representation does not cure a model's willingness to be talked out of a
+        right answer, and the page would be dishonest to imply it does.</p>
+      </div>
+      <div class="find">
+        <strong>73.5% vs 58.7%</strong><span>answered as a follow-up, description against table</span>
+        <h3>The second turn is the load-bearing one.</h3>
+        <p>Because the region is not resent. Asked standalone, the two arms sit at 75.5% and 72.6%.
+        Asked one turn later, the description holds and the table largely does not.</p>
+      </div>
+    </div>
+
+    <figure class="paper-figure fig-still">
+      <div class="media-frame light">
+        <img src="assets/fig2_qa.png" width="1400" height="880"
+             alt="An eight-turn conversation about a 120-protein yeast region. The model identifies ACT1 as the most disruptive protein, recognizes it as a cross-community connector, and holds that answer when challenged with CBF5 instead.">
+      </div>
+      <figcaption><b class="fignum">Figure 4</b> <b>One description, eight turns.</b> Figure 2 of the
+      manuscript. A 120-protein region compiled once and sent with the first question only. The model
+      names ACT1 as the most disruptive protein, citing the stated consequence that its removal
+      leaves eight components; five turns later it recognizes ACT1 as a cross-community connector;
+      and at turn eight it holds that answer when pushed toward CBF5 instead. Every graded turn
+      agreed with the exact algorithm. ACT1 is annotated essential by SGD, which the model never
+      saw.</figcaption>
+    </figure>
+
   </div>
 </section>
 
@@ -280,7 +362,7 @@ node degree norm_deg betweenness pagerank core community
     <div class="section-head">
       <div>
         <div class="eyebrow">Evidence</div>
-        <h2>Change only the wording. 70.6% becomes 39.5%.</h2>
+        <h2>Same measurements, four renderings, four different scores.</h2>
       </div>
       <p>Every arm below is built from the identical measurements on the identical retrieved region.
       Only the rendering differs. Accuracy is pooled over seven question families on the eight main
@@ -289,13 +371,16 @@ node degree norm_deg betweenness pagerank core community
 
     <div class="chart">
       <div id="accChart" class="chart-svg"><p class="rx-loading">Loading results&hellip;</p></div>
-      <p class="chart-cap"><b class="fignum">Figure 2</b> <b>Accuracy by what the model was
-      shown</b>, percent correct over the eight main networks. Read the bottom row first: printing
-      every measurement scores 39.5%, <i>below</i> the 50.7% the same model gets from no network at
-      all, because the table crowds out the question. Graph neural network embeddings do no better
-      than that floor either. Keeping BioGlyph's structure while replacing its role names with
-      meaningless tokens takes 70.6% down to 54.1%, so the gain lives in the words rather than the
-      layout. <span id="accChartNote"></span></p>
+      <p class="chart-cap"><b class="fignum">Figure 5</b> <b>Accuracy by what the model was
+      shown</b>, percent correct over the eight main networks. The dashed line at 50.7% is the blind
+      floor: what these two models score with no network in the prompt at all. Read the bottom row
+      first. Printing every measurement scores 39.5%, <i>below</i> that floor &mdash; not because
+      numbers confuse the model, but because 41.7% of those prompts exceed the 24,576-token budget
+      and are never sent to it. A prompt that never arrives is scored wrong. Edge lists, sentences
+      and graph neural network embeddings all land within two points of the floor as well. The words
+      themselves are worth about nine points: replacing each role name with a meaningless token,
+      holding the role assignments and everything else fixed, takes the names rendering from 63.6%
+      to 54.1%. <span id="accChartNote"></span></p>
     </div>
 
     <figure class="paper-figure fig-still">
@@ -303,12 +388,21 @@ node degree norm_deg betweenness pagerank core community
         <img src="assets/tokens-accuracy.png" width="1380" height="810"
              alt="Accuracy against median prompt length for nine renderings. BioGlyph sits at 70.6 percent and about 6,200 tokens; the raw measurement table at 39.5 percent and about 19,700 tokens, below the no-network floor.">
       </div>
-      <figcaption><b class="fignum">Figure 3</b> <b>Shorter and better, not shorter instead of
+      <figcaption><b class="fignum">Figure 6</b> <b>Shorter and better, not shorter instead of
       better.</b> Median prompt length against accuracy, with 95% intervals. BioGlyph sits up and
       to the left of the measurement table: about a third of the length, and 70.6% of questions
-      right against the table&rsquo;s 39.5%. The dotted line is the no-network floor and the shaded band is past the
-      24,576-token limit, where a prompt never reaches the model at all.</figcaption>
+      right against the table&rsquo;s 39.5%. The dotted line is the no-network floor and the shaded
+      band is past the 24,576-token limit, where a prompt never reaches the model at all. All nine
+      points are the pooled benchmark: 1,239 questions over eight networks, answered by Qwen3-8B and
+      Llama-3.1-8B.</figcaption>
     </figure>
+
+    <div class="pt">
+      <h3 class="pt-head">What &ldquo;never reached the model&rdquo; looks like</h3>
+      <div id="pairedTurns" class="rx">
+        <p class="rx-loading">Loading the paired conversations&hellip;</p>
+      </div>
+    </div>
 
     <div class="finds">
       <div class="find">
@@ -394,7 +488,7 @@ node degree norm_deg betweenness pagerank core community
         <img src="assets/reactome-targets.png" width="1380" height="840"
              alt="The twelve Reactome proteins whose removal detaches the most others, coloured by DepMap dependency class. EP300 detaches 76, GPLD1 53, CTCF 51.">
       </div>
-      <figcaption><b class="fignum">Figure 4</b> <b>The knockout screen, ranked.</b> Every cut node
+      <figcaption><b class="fignum">Figure 7</b> <b>The knockout screen, ranked.</b> Every cut node
       in the Reactome main component was screened. Bars are the proteins that come away when that
       one is removed, computed exactly; colour is the independent DepMap dependency class, which the
       compiler never saw. The ranking is structural, so it does not simply recover essentiality
@@ -420,7 +514,7 @@ node degree norm_deg betweenness pagerank core community
     <h2>Twenty public networks, biological and not.</h2>
     <p class="lead">A structural vocabulary should not be tuned to one domain. The twenty networks
     span biology, pharmacology, medicine, social, citation, co-authorship, e-commerce and
-    infrastructure systems, from 222 nodes to 169,343. The benchmark itself asks 1,239 questions
+    infrastructure systems, from 213 nodes to 169,343. The benchmark itself asks 1,239 questions
     over the eight main networks, drawn from five domains.</p>
     <div class="datasets">
       <table>

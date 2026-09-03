@@ -10,6 +10,11 @@ Everything here is copied out of the manuscript's own figure data, never retyped
   results.json  <- figures/numbers.json, core.headline.pooled_8b
                    The pooled eight-network headline: accuracy with its interval, overflow share
                    and median prompt length for each representation.
+  threads.json  <- figures/qa_items.json, s1_threads and s1_multiturn
+                   Ten real eight-turn conversations (five regions, two models) and two paired
+                   three-turn conversations run through both the description and the raw table.
+                   Every question, every reply and every verdict is the stored one; the paper's
+                   Figure 2 and Figure 7e,f rest on these runs.
 
 The raw-measurement rendering is stored as a head plus its true row and token counts rather than
 in full. Two thirds of the payload would otherwise be table rows no visitor scrolls, and the
@@ -125,9 +130,124 @@ def build_results() -> dict:
     }
 
 
+SHORT_MODEL = {
+    "Qwen/Qwen3-8B": "Qwen3-8B",
+    "meta-llama/Llama-3.1-8B-Instruct": "Llama-3.1-8B",
+}
+
+
+def _dict(v) -> dict:
+    """`who` sub-fields are dicts in some records and repr strings in others."""
+    if isinstance(v, str):
+        try:
+            v = json.loads(v.replace("'", '"').replace("True", "true").replace("False", "false"))
+        except ValueError:
+            return {}
+    return v if isinstance(v, dict) else {}
+
+
+def build_threads() -> dict:
+    """The eight-turn threads, plus the two conversations that were run through both arms.
+
+    The region and the compiled description are stored once per thread, not once per model,
+    because that is the claim being shown: one description, sent at turn 1, carrying every later
+    turn. Turn 1's prompt length is the description's length; the growth after it is the
+    conversation itself.
+    """
+    qa = json.loads((FIGS / "qa_items.json").read_text(encoding="utf-8"))
+
+    threads = []
+    for key, rec in qa["s1_threads"].items():
+        region = rec["region"]
+        models = []
+        context = context_tokens = None
+        for full, short in SHORT_MODEL.items():
+            m = rec.get(full)
+            if not m:
+                continue
+            if context is None:
+                context, context_tokens = m["context"], m["turns"][0]["prompt_tokens"]
+            models.append({
+                "model": short,
+                "scored": m["n_scored"],
+                "correct": m["n_scored_correct"],
+                "pushback": m.get("pushback_outcome"),
+                "disputes": m.get("pushback_disputes_turn"),
+                "turns": [{
+                    "turn": t["turn"],
+                    "cls": t["turn_class"],
+                    "label": t["turn_label"],
+                    "q": t["question"],
+                    "a": (t.get("answer_visible") or "").strip(),
+                    "gold": t.get("gold_text") or "",
+                    "correct": t.get("correct"),
+                    "tokens": t.get("prompt_tokens"),
+                } for t in m["turns"]],
+            })
+        who = _dict(rec[list(SHORT_MODEL)[0]].get("who"))
+        meta = rec[list(SHORT_MODEL)[0]]
+        threads.append({
+            "id": key,
+            "dataset": meta["dataset"],
+            "kind": meta["thread_kind"],
+            "label": meta["label"],
+            "n_nodes": meta["n_nodes"],
+            "n_edges": meta["n_edges"],
+            "focus": region.get("focus") or [],
+            "removes": region.get("removes"),
+            "pieces": region.get("pieces"),
+            "gone": region.get("gone") or [],
+            "nodes": region["nodes"],
+            "edges": region["edges"],
+            "after": region.get("after") or {},
+            "genes": _dict(who.get("gene_names")),
+            "essential": _dict(who.get("sgd_essential")),
+            "context": context,
+            "context_tokens": context_tokens,
+            "models": models,
+        })
+    threads.sort(key=lambda t: (t["dataset"], t["kind"]))
+
+    # the paired study: the same conversation, once per rendering. This is what makes the
+    # headline legible -- the table does not merely score lower, it often never starts.
+    paired = []
+    for key, rec in qa["s1_multiturn"].items():
+        arms = []
+        for arm, a in rec["arms"].items():
+            turns = a["turns"]
+            order = sorted(turns, key=lambda k: k)  # t1, t2, t3
+            arms.append({
+                "arm": arm,
+                "label": ARM_LABEL.get(arm, arm),
+                "pushback": a.get("pushback_outcome"),
+                "turns": [{
+                    "turn": i + 1,
+                    "q": turns[k].get("question") or "",
+                    "a": (turns[k].get("answer_visible") or "").strip(),
+                    "gold": turns[k].get("gold_text") or "",
+                    "correct": turns[k].get("correct"),
+                    "tokens": turns[k].get("prompt_tokens"),
+                    "sent": turns[k].get("finish_reason") != "too_long",
+                } for i, k in enumerate(order)],
+            })
+        arms.sort(key=lambda a: a["arm"] != "R5_BioGlyph")
+        paired.append({
+            "id": key,
+            "dataset": rec["dataset"],
+            "model": SHORT_MODEL.get(rec["model"], rec["model"]),
+            "n_nodes": rec["n_nodes"],
+            "n_edges": rec["n_edges"],
+            "arms": arms,
+        })
+    paired.sort(key=lambda p: p["dataset"])
+
+    return {"budget": BUDGET, "threads": threads, "paired": paired}
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    for name, data in (("regions.json", build_regions()), ("results.json", build_results())):
+    for name, data in (("regions.json", build_regions()), ("results.json", build_results()),
+                       ("threads.json", build_threads())):
         p = OUT / name
         p.write_text(json.dumps(data, separators=(",", ":")), encoding="utf-8")
         print(f"{name:14s} {p.stat().st_size/1024:7.1f} KB")
@@ -139,6 +259,23 @@ def main() -> None:
         print(f"  {r['dataset']:14s} {r['family']:16s} {r['n_nodes']:3d}n/{r['n_edges']:5d}e  "
               f"pieces={r['pieces']:<3} r3={r['context_r3_lines']:5d} rows"
               + (f"  never sent: {', '.join(never)}" if never else ""))
+
+    th = build_threads()
+    print(f"\n{len(th['threads'])} threads x {len(th['threads'][0]['models'])} models:")
+    for t in th["threads"]:
+        who = " ".join(f"{k}={v}" for k, v in t["genes"].items()) or "-"
+        print(f"  {t['dataset']:14s} {t['kind']:9s} {t['n_nodes']:3d}n  "
+              f"desc {t['context_tokens']:5d} tok  {who}")
+        for m in t["models"]:
+            last = m["turns"][-1]["tokens"]
+            print(f"      {m['model']:14s} {m['correct']}/{m['scored']} scored correct  "
+                  f"turn 8 at {last} tok  push-back: {m['pushback']}")
+    print(f"\n{len(th['paired'])} paired conversations (same questions, both renderings):")
+    for p in th["paired"]:
+        for a in p["arms"]:
+            marks = " ".join(("sent" if t["sent"] else "NEVER SENT") for t in a["turns"])
+            print(f"  {p['dataset']:14s} {a['label']:22s} "
+                  f"{[t['tokens'] for t in a['turns']]}  {marks}")
 
 
 if __name__ == "__main__":

@@ -85,8 +85,13 @@
       host.innerHTML = svg(s, W, H);
       var cap = document.getElementById("accChartNote");
       if (cap) {
+        /* results.json has always carried who is pooled and what "accuracy" counts. The page
+         * never showed either, which is how a reader was left to guess the comparator. */
         cap.innerHTML = "Whiskers are 95% bootstrap intervals. Dashed line: the accuracy the " +
-          "same models reach with no network in the prompt. Two renderings fall below it.";
+          "same models reach with no network in the prompt. Four renderings fall below it. " +
+          "Readers pooled: " + esc(d.pool.split(";")[0]) + ". Every question counts, and a " +
+          "prompt longer than the " + num(d.budget) + "-token budget is scored wrong because " +
+          "the model never receives it.";
       }
     }).catch(function () {
       host.innerHTML = '<p class="widget-fail">Could not load the results file.</p>';
@@ -263,6 +268,292 @@
       render();
     }).catch(function () {
       host.innerHTML = '<p class="widget-fail">Could not load the region data.</p>';
+    });
+  })();
+
+  /* ------------------------------------------------------ conversation player
+   * Ten real eight-turn conversations, five regions, two models. Nothing here is generated at
+   * view time: every question, every reply and every verdict is the stored one from the runs the
+   * paper scores, and the verdicts are the evaluator's, not a reading of the reply.
+   *
+   * The claim the widget exists to show is that the description is sent ONCE, at turn 1, and
+   * still carries turn 8. So the prompt length is on screen at every turn: it starts at the
+   * description's length and grows only by the conversation itself.
+   */
+  (function () {
+    var host = document.getElementById("threadPlayer");
+    if (!host) return;
+
+    var DATA = null, ti = 0, mi = 0, turn = 0, removed = false;
+
+    var CLS = {
+      graded:   ["graded", "checked against the exact algorithm"],
+      lookup:   ["lookup", "the answer is stated in the description"],
+      unscored: ["opinion", "an explanation, not scored"],
+      pushback: ["push-back", "we told it its earlier answer was wrong"]
+    };
+    /* Two threads can share a region and a removal type, so the dataset alone does not name a
+     * thread. The kind is what actually distinguishes them. */
+    var KIND = {
+      knockout: "which node breaks it",
+      reach:    "can they still reach each other",
+      edge:     "which link holds it together",
+      roles:    "what roles does it hold",
+      compose:  "two facts combined"
+    };
+
+    function thread() { return DATA.threads[ti]; }
+    function model() { return thread().models[mi]; }
+
+    function mainComponent(t) {
+      var counts = {}, best = null;
+      Object.keys(t.after).forEach(function (k) {
+        counts[t.after[k]] = (counts[t.after[k]] || 0) + 1;
+      });
+      Object.keys(counts).forEach(function (c) {
+        if (best === null || counts[c] > counts[best]) best = c;
+      });
+      return best;
+    }
+
+    /* Same two-colour rule as the region explorer: eleven generated hues would be unreadable, and
+     * the distinction that answers the question is binary -- did this stay attached, or not. */
+    function draw(t) {
+      var W = 720, H = 520, pad = 30, main = mainComponent(t),
+          goneSet = {}, focusSet = {}, xy = {};
+      t.gone.forEach(function (n) { goneSet[n] = 1; });
+      t.focus.forEach(function (n) { focusSet[n] = 1; });
+      t.nodes.forEach(function (n) {
+        xy[n[0]] = [pad + n[1] * (W - 2 * pad), pad + n[2] * (H - 2 * pad)];
+      });
+
+      // an edge thread cuts the link between its two focus nodes; a knockout thread deletes a node
+      var cutA = t.removes === "edge" && t.focus.length === 2 ? t.focus[0] : null,
+          cutB = t.removes === "edge" && t.focus.length === 2 ? t.focus[1] : null;
+
+      function detached(id) {
+        return removed && !goneSet[id] && String(t.after[id]) !== String(main);
+      }
+
+      var s = "";
+      t.edges.forEach(function (e) {
+        var a = xy[e[0]], b = xy[e[1]];
+        if (!a || !b) return;
+        var isCut = removed && ((goneSet[e[0]] || goneSet[e[1]]) ||
+              (cutA !== null && ((e[0] === cutA && e[1] === cutB) || (e[0] === cutB && e[1] === cutA))));
+        var col = isCut ? "#efe9e7" : (detached(e[0]) && detached(e[1]) ? "#e0cdc9" : LINE);
+        s += '<line x1="' + a[0].toFixed(1) + '" y1="' + a[1].toFixed(1) + '" x2="' +
+             b[0].toFixed(1) + '" y2="' + b[1].toFixed(1) + '" stroke="' + col +
+             '" stroke-width="' + (isCut ? 0.8 : 1.1) + '"/>';
+      });
+      t.nodes.forEach(function (n) {
+        var id = n[0], p = xy[id], r = 5.5, col = BLUE, extra = "";
+        if (goneSet[id]) {
+          col = removed ? "#ffffff" : ACCENT;
+          r = 9;
+          extra = '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + (r + 4) +
+                  '" fill="none" stroke="' + ACCENT + '" stroke-width="2"' +
+                  (removed ? ' stroke-dasharray="3 3"' : "") + "/>";
+        } else if (detached(id)) {
+          col = ACCENT; r = 6.5;
+        } else if (focusSet[id]) {
+          col = ACCENT; r = 7.5;
+        }
+        s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + r +
+             '" fill="' + col + '"/>' + extra;
+      });
+      return svg(s, W, H);
+    }
+
+    function nameOf(t, id) {
+      var g = t.genes[String(id)];
+      return g ? esc(g) + " (node " + id + ")" : "node " + id;
+    }
+
+    function eventText(t) {
+      return t.removes === "edge" && t.focus.length === 2
+        ? "Cut the link between " + nameOf(t, t.focus[0]) + " and " + nameOf(t, t.focus[1])
+        : "Remove " + nameOf(t, t.gone[0] !== undefined ? t.gone[0] : t.focus[0]);
+    }
+
+    function verdict(tn) {
+      if (tn.correct === true) return '<span class="tp-v yes">agrees with the algorithm</span>';
+      if (tn.correct === false) return '<span class="tp-v no">disagrees</span>';
+      return '<span class="tp-v na">not scored</span>';
+    }
+
+    function render() {
+      var t = thread(), m = model(), tn = m.turns[turn],
+          cls = CLS[tn.cls] || [tn.cls, ""],
+          grew = tn.tokens - t.context_tokens;
+
+      host.innerHTML =
+        '<div class="tp-picker">' + DATA.threads.map(function (x, i) {
+          return '<button type="button" class="rx-tab' + (i === ti ? " on" : "") +
+            '" data-i="' + i + '">' + esc(x.dataset) + "<small>" +
+            esc(KIND[x.kind] || x.kind) + "</small></button>";
+        }).join("") + "</div>" +
+
+        '<div class="tp-grid">' +
+          '<div class="rx-figure">' +
+            '<div class="rx-canvas">' + draw(t) + "</div>" +
+            '<div class="rx-controls">' +
+              '<button type="button" id="tpRemove" class="button ' +
+                (removed ? "primary" : "ghost") + '">' +
+                (removed ? "Put it back" : esc(eventText(t))) + "</button>" +
+              '<span class="rx-legend">' +
+                '<span><i class="sw-blue"></i>still attached</span>' +
+                '<span><i class="sw-accent"></i>' +
+                (removed ? "came away" : "what the conversation is about") + "</span></span>" +
+            "</div>" +
+            '<p class="rx-state">' + (removed
+              ? "The region is left in <b>" + t.pieces + " piece" + (t.pieces === 1 ? "" : "s") +
+                "</b>, counted by the graph algorithm."
+              : "One retrieved region: <b>" + num(t.n_nodes) + " nodes, " + num(t.n_edges) +
+                " links</b>. The model saw it described once, then answered eight questions.") +
+            "</p>" +
+          "</div>" +
+
+          '<div class="tp-side">' +
+            '<div class="tp-models">' + t.models.map(function (x, i) {
+              return '<button type="button" class="tp-model' + (i === mi ? " on" : "") +
+                '" data-m="' + i + '">' + esc(x.model) + "<small>" + x.correct + " of " +
+                x.scored + " graded turns right</small></button>";
+            }).join("") + "</div>" +
+
+            '<div class="tp-budget">' +
+              "<b>One description, sent at turn 1 only.</b> " + num(t.context_tokens) +
+              " tokens. " + (grew <= 0
+                ? "That is the whole of this first prompt. It is never sent again."
+                : "By turn " + tn.turn + " the prompt is " + num(tn.tokens) + " &mdash; the " +
+                  num(grew) + " added since are the questions and replies themselves, not the " +
+                  "region being resent.") +
+            "</div>" +
+
+            '<div class="tp-rail">' + m.turns.map(function (x, i) {
+              var st = x.correct === true ? "yes" : x.correct === false ? "no" : "na";
+              return '<button type="button" class="tp-step ' + st + (i === turn ? " on" : "") +
+                '" data-t="' + i + '" title="Turn ' + x.turn + ' &middot; ' + esc(x.label) +
+                '">' + x.turn + "</button>";
+            }).join("") + "</div>" +
+
+            '<article class="tp-turn">' +
+              '<div class="tp-turn-head"><span class="tp-cls ' + esc(tn.cls) + '">' +
+                esc(cls[0]) + "</span><small>" + esc(cls[1]) + "</small></div>" +
+              '<p class="tp-q">' + esc(tn.q) + "</p>" +
+              '<div class="tp-a"><small>' + esc(m.model) + " replied</small><p>" +
+                esc(tn.a || "—") + "</p></div>" +
+              (tn.cls === "unscored" ? ""
+                : '<div class="tp-gold"><small>Exact algorithm</small><b>' +
+                  esc(tn.gold || "—") + "</b>" + verdict(tn) + "</div>") +
+            "</article>" +
+
+            '<div class="tp-nav">' +
+              '<button type="button" class="button ghost" id="tpPrev"' +
+                (turn === 0 ? " disabled" : "") + ">Previous turn</button>" +
+              '<button type="button" class="button ghost" id="tpNext"' +
+                (turn === m.turns.length - 1 ? " disabled" : "") + ">Next turn</button>" +
+              "<span>turn " + (turn + 1) + " of " + m.turns.length + "</span>" +
+            "</div>" +
+          "</div>" +
+        "</div>" +
+
+        '<details class="tp-context"><summary>Read the description the model was given, once, ' +
+          "at turn 1 &mdash; " + num(t.context_tokens) + " tokens</summary><pre>" +
+          esc(t.context) + "</pre></details>";
+
+      var rm = document.getElementById("tpRemove");
+      if (rm) rm.addEventListener("click", function () { removed = !removed; render(); });
+      var pv = document.getElementById("tpPrev");
+      if (pv) pv.addEventListener("click", function () { if (turn > 0) { turn--; render(); } });
+      var nx = document.getElementById("tpNext");
+      if (nx) nx.addEventListener("click", function () {
+        if (turn < model().turns.length - 1) { turn++; render(); }
+      });
+      host.querySelectorAll(".rx-tab").forEach(function (b) {
+        b.addEventListener("click", function () {
+          ti = Number(b.getAttribute("data-i"));
+          mi = 0; turn = 0; removed = false;
+          render();
+        });
+      });
+      host.querySelectorAll(".tp-model").forEach(function (b) {
+        b.addEventListener("click", function () {
+          mi = Number(b.getAttribute("data-m")); render();
+        });
+      });
+      host.querySelectorAll(".tp-step").forEach(function (b) {
+        b.addEventListener("click", function () {
+          turn = Number(b.getAttribute("data-t")); render();
+        });
+      });
+    }
+
+    fetch("assets/threads.json").then(function (r) { return r.json(); }).then(function (d) {
+      DATA = d;
+      render();
+    }).catch(function () {
+      host.innerHTML = '<p class="widget-fail">Could not load the conversation data.</p>';
+    });
+  })();
+
+  /* ------------------------------------------------------- the paired study
+   * The same three-turn conversation, once through the compiled description and once through the
+   * raw measurement table. On the yeast region the table is 39,784 tokens at turn 1, so it never
+   * reaches the model and the conversation never starts. That is what the pooled 39.5% is made of.
+   */
+  (function () {
+    var host = document.getElementById("pairedTurns");
+    if (!host) return;
+
+    var DATA = null, pi = 0;
+
+    function column(p, a) {
+      var over = a.turns.some(function (t) { return !t.sent; });
+      return '<div class="pt-col' + (over ? " dead" : "") + '">' +
+        '<div class="pt-col-head"><b>' + esc(a.label) + "</b><small>" +
+          (over ? "never reached the model" : "every turn delivered") + "</small></div>" +
+        a.turns.map(function (t) {
+          var pct = Math.min(100, (t.tokens / DATA.budget) * 100);
+          return '<div class="pt-turn">' +
+            '<div class="pt-turn-top"><span>Turn ' + t.turn + "</span>" +
+              '<span class="tp-v ' + (!t.sent ? "never" : t.correct ? "yes" : "no") + '">' +
+              (!t.sent ? "over the limit" : t.correct ? "correct" : "wrong") + "</span></div>" +
+            '<div class="arm-meter"><i style="width:' + pct.toFixed(1) + "%;background:" +
+              (t.sent ? ACCENT : "#c08b84") + '"></i></div>' +
+            '<div class="pt-tok">' + num(t.tokens) + " tokens</div>" +
+          "</div>";
+        }).join("") + "</div>";
+    }
+
+    function render() {
+      var p = DATA.paired[pi];
+      host.innerHTML =
+        '<div class="tp-picker">' + DATA.paired.map(function (x, i) {
+          return '<button type="button" class="rx-tab' + (i === pi ? " on" : "") +
+            '" data-i="' + i + '">' + esc(x.dataset) + "<small>" + esc(x.model) +
+            "</small></button>";
+        }).join("") + "</div>" +
+        '<div class="pt-grid">' + p.arms.map(function (a) { return column(p, a); }).join("") +
+        "</div>" +
+        '<p class="pt-note">Both columns are the same three questions about the same ' +
+          num(p.n_nodes) + "-node region, answered by " + esc(p.model) +
+          ". The bar is prompt length against the " + num(DATA.budget) +
+          "-token budget. A prompt over that budget is never sent, so it is scored wrong and " +
+          "there is no reply to follow up on.</p>";
+
+      host.querySelectorAll(".rx-tab").forEach(function (b) {
+        b.addEventListener("click", function () {
+          pi = Number(b.getAttribute("data-i")); render();
+        });
+      });
+    }
+
+    fetch("assets/threads.json").then(function (r) { return r.json(); }).then(function (d) {
+      DATA = d;
+      render();
+    }).catch(function () {
+      host.innerHTML = '<p class="widget-fail">Could not load the conversation data.</p>';
     });
   })();
 })();
