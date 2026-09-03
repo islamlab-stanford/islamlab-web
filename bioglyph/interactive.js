@@ -556,4 +556,137 @@
       host.innerHTML = '<p class="widget-fail">Could not load the conversation data.</p>';
     });
   })();
+
+  /* ------------------------------------------------------------- live query
+   * The workspace sits behind the lab's sign-in gate, so a reader of the paper with no account
+   * used to hit a login wall. This asks the open read-only route instead, the same shape scVision
+   * uses for /annotate.
+   *
+   * The block stays hidden until that route answers. If it is not deployed, or the GPU is down,
+   * the page simply keeps the link to the workspace rather than offering a button that fails --
+   * scvision/interactive.js hides its own live button the same way.
+   */
+  (function () {
+    var host = document.getElementById("liveAsk");
+    if (!host || !window.BIOGLYPH_API) return;
+
+    var API = String(window.BIOGLYPH_API).replace(/\/+$/, ""),
+        CFG = null, arm = "R5_BioGlyph", busy = false;
+
+    function shell(body) {
+      return '<div class="live-head"><span class="live-dot"></span>Live &middot; ' +
+        esc(CFG.model) + "</div>" + body;
+    }
+
+    function controls() {
+      return '<label class="live-label" for="liveGraph">Network</label>' +
+        '<select id="liveGraph">' + CFG.graphs.map(function (g) {
+          return '<option value="' + esc(g.name) + '">' + esc(g.name) + " &mdash; " +
+            num(g.nodes) + " nodes</option>";
+        }).join("") + "</select>" +
+        '<div class="live-arms">' + [["R5_BioGlyph", "Compiled description"],
+                                     ["R3_RawMetrics", "Raw measurements"]].map(function (a) {
+          return '<button type="button" class="live-arm' + (arm === a[0] ? " on" : "") +
+            '" data-arm="' + a[0] + '">' + a[1] + "</button>";
+        }).join("") + "</div>" +
+        '<div class="live-row"><input id="liveQ" type="text" autocomplete="off" ' +
+          'placeholder="Is node 17 an articulation point?"><button type="button" ' +
+          'class="button primary" id="liveGo">Ask</button></div>' +
+        '<div class="live-ex" id="liveEx"></div>' +
+        '<div id="liveOut"></div>';
+    }
+
+    function examples() {
+      var g = CFG.graphs.filter(function (x) {
+        return x.name === document.getElementById("liveGraph").value;
+      })[0];
+      document.getElementById("liveEx").innerHTML = (g.examples || []).slice(0, 3)
+        .map(function (e) { return '<button type="button" data-q="' + esc(e) + '">' +
+                                   esc(e) + "</button>"; }).join("");
+      wireEx();
+    }
+
+    function wireEx() {
+      host.querySelectorAll(".live-ex button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          document.getElementById("liveQ").value = b.getAttribute("data-q");
+          run();
+        });
+      });
+    }
+
+    function say(cls, html) {
+      document.getElementById("liveOut").innerHTML =
+        '<div class="live-out ' + cls + '">' + html + "</div>";
+    }
+
+    function run() {
+      if (busy) return;
+      var q = document.getElementById("liveQ").value.trim();
+      if (!q) return;
+      busy = true;
+      document.getElementById("liveGo").disabled = true;
+      say("busy", "Compiling the region and asking the model&hellip;");
+      fetch(API + "/ask", {
+        method: "POST", headers: {"content-type": "application/json"},
+        body: JSON.stringify({question: q, graph: document.getElementById("liveGraph").value,
+                              arm: arm})
+      }).then(function (r) {
+        return r.json().then(function (d) { return {ok: r.ok, d: d}; });
+      }).then(function (res) {
+        if (!res.ok) { say("bad", esc(res.d.detail || "That question could not be answered.")); return; }
+        var d = res.d;
+        if (d.overflowed) {
+          say("bad", "<b>Nothing reached the model.</b> Rendering this " + num(d.region_nodes) +
+            "-node region as raw measurements takes " + num(d.prompt_tokens) +
+            " tokens and the window holds " + num(d.window) + ", so there was no prompt to send. " +
+            "Ask the same question on the compiled description. The exact answer is still <code>" +
+            esc(d.oracle) + "</code>.");
+          return;
+        }
+        say("good",
+          '<div class="live-pair"><div><small>The model, reading ' +
+            (arm === "R5_BioGlyph" ? "the description" : "the table") + "</small><p>" +
+            esc(d.answer) + "</p></div>" +
+          "<div><small>Exact algorithm</small><b>" + esc(d.oracle) + "</b></div></div>" +
+          '<p class="live-meta">' + esc(d.family) + " &middot; region " + num(d.region_nodes) +
+          " nodes &middot; " + num(d.prompt_tokens) + " of " + num(d.window) + " tokens &middot; " +
+          d.seconds + "s</p>");
+      }).catch(function () {
+        say("bad", "Could not reach the model. It may be waking up &mdash; try again in a moment.");
+      }).then(function () {
+        busy = false;
+        document.getElementById("liveGo").disabled = false;
+      });
+    }
+
+    function render() {
+      host.innerHTML = shell(controls());
+      host.hidden = false;
+      examples();
+      document.getElementById("liveGraph").addEventListener("change", examples);
+      document.getElementById("liveGo").addEventListener("click", run);
+      document.getElementById("liveQ").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") run();
+      });
+      host.querySelectorAll(".live-arm").forEach(function (b) {
+        b.addEventListener("click", function () {
+          arm = b.getAttribute("data-arm");
+          host.querySelectorAll(".live-arm").forEach(function (x) { x.classList.remove("on"); });
+          b.classList.add("on");
+        });
+      });
+    }
+
+    fetch(API + "/graphs").then(function (r) {
+      if (!r.ok) throw new Error("no route");
+      return r.json();
+    }).then(function (d) {
+      if (!d.graphs || !d.graphs.length) throw new Error("no graphs");
+      CFG = d;
+      render();
+    }).catch(function () {
+      /* leave the block hidden: the workspace link beside it still works */
+    });
+  })();
 })();

@@ -630,7 +630,11 @@ node degree norm_deg betweenness pagerank core community
       graded by another model. The workspace shows the full text the model read, and says so when
       the measurement table is too long to send at all.</p>
       <a class="button light-button" href="https://app.islamlab.org/bioglyph/">Open the workspace&nbsp;&#8594;</a>
+      <p class="cta-fine">The workspace also runs BioGlyph on a network of your own. That needs a
+      lab account, so the GPU is not open to the whole internet &mdash; but the five networks here
+      are, with no sign-in.</p>
     </div>
+    <div id="liveAsk" class="live" hidden></div>
   </div>
 </section>
 
@@ -709,6 +713,7 @@ node degree norm_deg betweenness pagerank core community
   sync();
 })();
 </script>
+<script>window.BIOGLYPH_API = "https://api.islamlab.org/bioglyph";</script>
 <script src="interactive.js"></script>
 </body>
 </html>

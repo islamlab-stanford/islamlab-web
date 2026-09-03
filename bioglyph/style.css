@@ -59,6 +59,39 @@ h2{font-size:clamp(2.1rem,3.7vw,3.5rem);max-width:880px}
 .cta-grid{display:grid;grid-template-columns:minmax(0,860px);justify-content:center;text-align:center}
 .cta-section h2{font-size:clamp(2.3rem,4.2vw,4rem)}
 .cta-section p{color:#c2c9d0;max-width:650px;margin-left:auto;margin-right:auto}
+.cta-fine{font-size:.82rem;color:#8f9aa6!important;margin-top:16px}
+
+/* ---- live query, on the open read-only route -------------------------------
+   Hidden until that route answers, so the page keeps working as a static page when the GPU is
+   down or the route is not deployed -- the same guard scvision uses for its live button. */
+.live{margin-top:34px;border:1px solid #2c3646;border-radius:2px;background:#1d2634;padding:22px 24px;text-align:left;max-width:860px;margin-left:auto;margin-right:auto}
+.live-head{display:flex;align-items:center;gap:9px;font:500 .74rem var(--mono);color:#8f9aa6;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#7fb069;box-shadow:0 0 0 3px rgba(127,176,105,.2)}
+.live-label{display:block;font:600 .74rem var(--sans);text-transform:uppercase;letter-spacing:.07em;color:#8f9aa6;margin-bottom:6px}
+.live select{width:100%;font:inherit;font-size:.92rem;padding:9px 11px;border:1px solid #2c3646;background:#141c28;color:#e8ecf1;border-radius:2px}
+.live-arms{display:flex;margin-top:12px;border:1px solid #2c3646;border-radius:2px;overflow:hidden}
+.live-arm{flex:1;font:inherit;font-size:.85rem;padding:9px 8px;border:0;border-right:1px solid #2c3646;background:#141c28;color:#8f9aa6;cursor:pointer}
+.live-arm:last-child{border-right:0}
+.live-arm.on{background:#2a3446;color:#fff;font-weight:600;box-shadow:inset 0 -2px 0 var(--accent)}
+.live-row{display:flex;gap:10px;margin-top:12px}
+.live-row input{flex:1;font:inherit;font-size:.95rem;padding:9px 12px;border:1px solid #2c3646;background:#141c28;color:#e8ecf1;border-radius:2px}
+.live-row input::placeholder{color:#6b7684}
+.live-row .button{cursor:pointer;margin-top:0}
+.live-row .button[disabled]{opacity:.5;cursor:progress}
+.live-ex{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.live-ex button{font:inherit;font-size:.74rem;padding:5px 11px;border:1px solid #2c3646;border-radius:999px;background:transparent;color:#8f9aa6;cursor:pointer;text-align:left}
+.live-ex button:hover{border-color:var(--accent);color:#e8b4ac}
+.live-out{margin-top:16px;padding:14px 16px;border-left:3px solid #2c3646;background:#141c28;font-size:.88rem;line-height:1.6;color:#c2c9d0!important}
+.live-out.busy{color:#8f9aa6!important}
+.live-out.good{border-left-color:#7fb069}
+.live-out.bad{border-left-color:var(--accent)}
+.live-out code{font:.85em var(--mono);background:#0f151e;padding:1px 5px}
+.live-pair{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
+.live-pair small{display:block;font:600 .64rem var(--sans);text-transform:uppercase;letter-spacing:.07em;color:#6b7684;margin-bottom:5px}
+.live-pair p{margin:0;color:#dbe2e9!important;max-width:none}
+.live-pair b{font:600 1.15rem var(--mono);color:#9fd18a}
+.live-meta{margin:12px 0 0!important;font:400 .72rem var(--mono);color:#6b7684!important;max-width:none}
+@media(max-width:620px){.live-pair{grid-template-columns:1fr}}
 
 .paper-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.5fr);gap:70px;align-items:start}
 .abstract-copy{color:var(--soft);font:1rem/1.7 var(--serif)}
