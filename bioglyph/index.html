@@ -9,7 +9,11 @@
 <meta property="og:title" content="BioGlyph &middot; Islam Lab">
 <meta property="og:description" content="A compiler that states network structure in words, so language models can reason about topology and counterfactuals. Explore the method, the evidence, and a live workspace.">
 <meta property="og:url" content="https://islamlab.org/bioglyph/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://islamlab.org/bioglyph/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://islamlab.org/bioglyph/assets/og.png">
 <link rel="canonical" href="https://islamlab.org/bioglyph/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c2436'/><circle cx='10' cy='11' r='2.4' fill='%23f2c94c'/><circle cx='21' cy='14' r='2.4' fill='%23e07a5f'/><circle cx='14' cy='21.5' r='2' fill='%234f7290'/><circle cx='23' cy='23' r='1.8' fill='%237f9d6a'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -294,6 +298,18 @@ node degree norm_deg betweenness pagerank core community
       layout. <span id="accChartNote"></span></p>
     </div>
 
+    <figure class="paper-figure fig-still">
+      <div class="media-frame light">
+        <img src="assets/tokens-accuracy.png" width="1380" height="810"
+             alt="Accuracy against median prompt length for nine renderings. BioGlyph sits at 70.6 percent and about 6,200 tokens; the raw measurement table at 39.5 percent and about 19,700 tokens, below the no-network floor.">
+      </div>
+      <figcaption><b class="fignum">Figure 3</b> <b>Shorter and better, not shorter instead of
+      better.</b> Median prompt length against accuracy, with 95% intervals. BioGlyph sits up and
+      to the left of the measurement table: about a third of the length, and 70.6% of questions
+      right against the table&rsquo;s 39.5%. The dotted line is the no-network floor and the shaded band is past the
+      24,576-token limit, where a prompt never reaches the model at all.</figcaption>
+    </figure>
+
     <div class="finds">
       <div class="find">
         <strong>0.3%</strong><span>of BioGlyph prompts overflow, against 41.7% of tables</span>
@@ -372,6 +388,19 @@ node degree norm_deg betweenness pagerank core community
       drawn in gray for that reason. The roles were compiled from connections alone, with the
       essentiality labels withheld from both the compiler and the models.</p>
     </div>
+
+    <figure class="paper-figure fig-still">
+      <div class="media-frame light">
+        <img src="assets/reactome-targets.png" width="1380" height="840"
+             alt="The twelve Reactome proteins whose removal detaches the most others, coloured by DepMap dependency class. EP300 detaches 76, GPLD1 53, CTCF 51.">
+      </div>
+      <figcaption><b class="fignum">Figure 4</b> <b>The knockout screen, ranked.</b> Every cut node
+      in the Reactome main component was screened. Bars are the proteins that come away when that
+      one is removed, computed exactly; colour is the independent DepMap dependency class, which the
+      compiler never saw. The ranking is structural, so it does not simply recover essentiality
+      &mdash; EP300 detaches the most while being only selectively essential, and TP53 detaches 26
+      while rarely scoring as a dependency.</figcaption>
+    </figure>
 
     <div class="pill-row">
       <span>STRING yeast, human and E. coli</span>
