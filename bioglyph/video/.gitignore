@@ -6,3 +6,5 @@
 wav/
 voice_samples/
 preview/
+__pycache__/
+*.pyc
