@@ -1,0 +1,13 @@
+# This repository is public and serves the site. The build scripts that generate the page's data,
+# figures and explainer video are kept out of it, so no implementation source is published before
+# the paper is. They still live on the author's machine and are still how the artifacts are made --
+# they are simply not tracked here.
+#
+# What IS tracked, and must stay: everything the browser fetches -- index.html, interactive.js,
+# style.css, and every generated artifact under assets/ (results.json, regions.json, threads.json,
+# the PNGs, the MP4 and its captions). Removing those breaks the live page.
+*.py
+*.ps1
+*.sh
+__pycache__/
+*.pyc
