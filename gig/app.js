@@ -125,7 +125,7 @@
     const genes = ["TP53", "AKT1", "MAPK1", "EGFR", "KRAS", "PIK3R1", "MYC", "CTNNB1"];
     const values = [.22, .85, .68, .74, .18, .63, .78, .54];
     const graphNodes = [
-      [642, 210], [720, 151], [806, 211], [766, 302], [652, 327], [574, 275], [877, 293], [858, 127]
+      [666, 210], [735, 151], [815, 211], [775, 302], [674, 327], [650, 275], [888, 293], [866, 127]
     ];
     const graphEdges = [[0,1],[0,3],[0,5],[0,4],[1,2],[1,7],[2,3],[2,7],[2,6],[3,4],[3,6],[4,5],[4,6],[5,0],[6,7]];
     let step = 0;
@@ -217,6 +217,9 @@
       panel(623, 78, 304, 430, "patient graph", step === 2 || step === 3 || step === 5);
       const appear = step < 2 ? 0 : clamp(step === 2 ? progress * 1.7 : 1, 0, 1);
       ctx.save();
+      ctx.beginPath();
+      ctx.rect(632, 108, 286, 386);
+      ctx.clip();
       ctx.globalAlpha = .08 + .92 * appear;
       graphEdges.forEach(([a,b], edgeIndex) => {
         const p1 = graphNodes[a], p2 = graphNodes[b];
@@ -244,23 +247,23 @@
     function drawLearner(progress) {
       panel(960, 78, 278, 430, "graph learner", step === 4);
       const layers = [128, 96, 64];
+      if (step === 4) {
+        const signalX = 934 + progress * 216;
+        ctx.beginPath(); ctx.arc(signalX, 280, 4, 0, Math.PI * 2); ctx.fillStyle = colors.coralSoft; ctx.fill();
+      }
       layers.forEach((width, i) => {
-        const x = 986 + i * 72;
+        const x = 984 + i * 54;
         const y = 155 + i * 22;
         ctx.fillStyle = step === 4 ? `rgba(78,118,152,${.35 + .15 * Math.sin(progress * 10 + i)})` : "rgba(78,118,152,.18)";
-        ctx.fillRect(x, y, 44, 180 - i * 44);
-        text(ctx, i < 2 ? "GNN" : "POOL", x + 22, y - 13, 8, "#9daec1", "center", "IBM Plex Mono");
+        ctx.fillRect(x, y, 36, 180 - i * 44);
+        text(ctx, i < 2 ? "GNN" : "POOL", x + 18, y - 13, 8, "#9daec1", "center", "IBM Plex Mono");
       });
       ctx.beginPath();
-      ctx.arc(1177, 280, 35, 0, Math.PI * 2);
+      ctx.arc(1184, 280, 34, 0, Math.PI * 2);
       ctx.fillStyle = step >= 4 ? "rgba(201,65,48,.24)" : "rgba(255,255,255,.05)";
       ctx.fill(); ctx.strokeStyle = step >= 4 ? colors.coral : "#526a83"; ctx.stroke();
-      text(ctx, "CLASS", 1177, 272, 8, "#98aabd", "center", "IBM Plex Mono");
-      text(ctx, "0.91", 1177, 292, 15, colors.white, "center", "IBM Plex Mono");
-      if (step === 4) {
-        const x = 930 + progress * 235;
-        ctx.beginPath(); ctx.arc(x, 280, 4, 0, Math.PI * 2); ctx.fillStyle = colors.coralSoft; ctx.fill();
-      }
+      text(ctx, "CLASS", 1184, 230, 8, "#98aabd", "center", "IBM Plex Mono");
+      text(ctx, "0.91", 1184, 280, 15, colors.white, "center", "IBM Plex Mono");
     }
 
     function draw(now) {
