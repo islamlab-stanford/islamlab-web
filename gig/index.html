@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Graph-in-Graph · Islam Lab</title>
+  <meta name="description" content="Graph-in-Graph gives each patient a pathway-structured molecular graph for knowledge-guided clinical prediction from transcriptomic data.">
+  <meta name="theme-color" content="#f7f4ed">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Graph-in-Graph · Islam Lab">
+  <meta property="og:description" content="Give each patient a graph of their own. Explore knowledge-graph modulated learning, validation evidence, and an analysis workspace.">
+  <meta property="og:url" content="https://islamlab.org/gig/">
+  <meta property="og:image" content="https://islamlab.org/gig/assets/gig-cover.png">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://islamlab.org/gig/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <a class="brand" href="https://islamlab.org/" aria-label="Islam Lab home"><span class="glyph" aria-hidden="true"></span>Islam<b>Lab</b></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span><b class="sr-only">Menu</b></button>
+      <nav id="primary-nav" aria-label="Primary navigation">
+        <a href="#watch">Watch</a>
+        <a href="#method">Method</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#biology">Biology</a>
+        <a href="#examples">Examples</a>
+        <a href="#paper">Paper</a>
+        <a class="nav-cta" href="https://app.islamlab.org/gig/">Analyze your data</a>
+        <a class="lab-link" href="https://islamlab.org/">Lab home <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell">
+        <figure class="project-cover reveal">
+          <img src="assets/gig-cover.png" width="1600" height="900" alt="Graph-in-Graph cover: one patient transcriptome selects curated pathways that merge into a patient-specific molecular graph.">
+        </figure>
+        <div class="hero-callout reveal" data-delay="1">
+          <div>
+            <p class="eyebrow"><span></span> Graph-in-Graph · knowledge-guided clinical AI</p>
+            <h1 id="hero-title">Biology supplies the connections. Each patient supplies the signal.</h1>
+          </div>
+          <div>
+            <p class="lede">GiG turns every transcriptomic profile into its own pathway-structured graph. A graph neural network then learns across a cohort without flattening away the gene–gene organization accumulated in curated biological knowledge.</p>
+            <div class="button-row">
+              <a class="button button-primary" href="#watch">Watch the explanation <span aria-hidden="true">↓</span></a>
+              <a class="button button-quiet" href="#examples">Run an example <span aria-hidden="true">→</span></a>
+              <a class="button button-accent" href="https://app.islamlab.org/gig/">Analyze your data <span aria-hidden="true">→</span></a>
+            </div>
+            <p class="boundary-note"><span class="open-dot" aria-hidden="true"></span> This research page and its saved results are public. Uploading data opens a separate Google-authenticated workspace.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="evidence-band" id="evidence" aria-labelledby="evidence-title">
+      <div class="shell">
+        <div class="section-intro inverse reveal">
+          <p class="eyebrow"><span></span> Evidence, with context</p>
+          <h2 id="evidence-title">The largest gains appear when the biological signal is hardest to decode.</h2>
+          <p>All headline performance values below come from held-out evaluation. Error bars and the exact model backbone remain attached in the interactive evidence explorer.</p>
+        </div>
+        <div class="metric-grid">
+          <article class="metric-card reveal">
+            <p class="metric-label">TCGA Pan-Cancer · 32 classes</p>
+            <p class="metric-value">92.0<span>%</span></p>
+            <p class="metric-uncertainty">held-out accuracy</p>
+            <p class="metric-context">87.9% macro-F1 · 49.3 points above the strongest matched node-GNN baseline</p>
+          </article>
+          <article class="metric-card reveal" data-delay="1">
+            <p class="metric-label">RARE-Seq · plasma cfRNA</p>
+            <p class="metric-value blue-text">87.4<span>%</span></p>
+            <p class="metric-uncertainty">macro-F1</p>
+            <p class="metric-context">Cancer versus healthy · approximately 13 points above the strongest matched baseline for the displayed GiG configuration</p>
+          </article>
+          <article class="metric-card reveal" data-delay="2">
+            <p class="metric-label">Study breadth</p>
+            <p class="metric-value sand-text">≈11k</p>
+            <p class="metric-uncertainty">patient expression profiles</p>
+            <p class="metric-context">Seven cohorts · tissue RNA, plasma cell-free RNA, and tumor-educated platelet RNA</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="watch section-rule" id="watch" aria-labelledby="watch-title">
+      <div class="shell">
+        <div class="section-intro reveal">
+          <p class="eyebrow"><span></span> Narrated explainer</p>
+          <h2 id="watch-title">See a patient graph come together.</h2>
+          <p>The animation follows one profile from dysregulated genes to curated pathways, a patient-specific graph, cohort-level learning, and gene attribution.</p>
+        </div>
+        <figure class="video-figure reveal">
+          <div class="video-frame">
+            <video id="gig-video" controls preload="metadata" playsinline poster="assets/video/gig-poster.jpg" width="1280" height="720">
+              <source src="assets/video/gig-explainer.mp4" type="video/mp4">
+              <track kind="captions" srclang="en" label="English" src="assets/video/gig-explainer.vtt">
+              Your browser cannot play this video. <a href="assets/video/gig-explainer.mp4">Download the MP4 instead.</a>
+            </video>
+            <button class="video-cc-toggle" id="video-cc-toggle" type="button" aria-pressed="false" aria-label="Turn captions on" title="Turn captions on"><span>CC</span><b>Off</b></button>
+          </div>
+          <figcaption><b>Video 1 | How Graph-in-Graph works.</b> A programmatic animation—not a slideshow of manuscript figures—shows patient-specific gene selection, pathway retrieval, graph composition, message passing, graph pooling, prediction, and attribution. Captions are optional.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="method section-rule" id="method" aria-labelledby="method-title">
+      <div class="shell">
+        <div class="method-heading reveal">
+          <div class="section-intro compact">
+            <p class="eyebrow"><span></span> Method, in motion</p>
+            <h2 id="method-title">Graphs inside a graph-learning problem.</h2>
+            <p>Each sample is a graph. The cohort is a collection of graphs. Learning happens within every patient’s molecular network before a patient-level representation is pooled for prediction.</p>
+          </div>
+          <div class="motion-controls" aria-label="Method animation controls">
+            <button id="method-toggle" type="button" aria-pressed="false">Pause</button>
+            <button id="method-restart" type="button">Restart</button>
+          </div>
+        </div>
+        <div class="method-stage reveal">
+          <canvas id="method-canvas" width="1280" height="620" role="img" aria-label="Animated Graph-in-Graph pipeline from transcriptomic measurements to a patient graph and prediction"></canvas>
+          <div class="method-status"><span id="method-index">01 / 06</span><strong id="method-label">Find patient-specific signal</strong><i><b id="method-progress"></b></i></div>
+          <ol class="method-steps" id="method-steps">
+            <li class="active"><button type="button" data-method-step="0"><span>01</span><b>Select</b><small>find strongly deviating genes</small></button></li>
+            <li><button type="button" data-method-step="1"><span>02</span><b>Retrieve</b><small>look up curated pathways</small></button></li>
+            <li><button type="button" data-method-step="2"><span>03</span><b>Compose</b><small>merge pathways per patient</small></button></li>
+            <li><button type="button" data-method-step="3"><span>04</span><b>Encode</b><small>attach expression and identity</small></button></li>
+            <li><button type="button" data-method-step="4"><span>05</span><b>Learn</b><small>message-pass and pool</small></button></li>
+            <li><button type="button" data-method-step="5"><span>06</span><b>Explain</b><small>return importance to genes</small></button></li>
+          </ol>
+        </div>
+        <details class="technical-note reveal">
+          <summary>What exactly enters each graph?</summary>
+          <div class="technical-grid">
+            <p><b>Nodes</b><span>Measured genes retained after identifier harmonization and patient-specific pathway assembly.</span></p>
+            <p><b>Edges</b><span>Undirected curated interactions recovered from human WikiPathways and filtered to measured genes.</span></p>
+            <p><b>Node channels</b><span>Within-patient expression z-score and cohort-level mean absolute correlation to the top 50 partners.</span></p>
+            <p><b>Identity</b><span>A trainable gene embedding anchors the same gene across graphs with different node sets.</span></p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="topology section-rule" id="topology" aria-labelledby="topology-title">
+      <div class="shell">
+        <div class="topology-grid">
+          <div class="section-intro compact reveal">
+            <p class="eyebrow"><span></span> Controlled structural test</p>
+            <h2 id="topology-title">Does biological topology actually matter?</h2>
+            <p>GiG was retrained after replacing every curated pathway graph with either an edge-count-matched random graph or a degree-preserving rewired graph. Node features and labels stayed fixed.</p>
+            <div class="dataset-tabs" id="topology-tabs" role="group" aria-label="Topology-control dataset">
+              <button class="active" type="button" data-topology="rareseq_binary">Plasma cfRNA</button>
+              <button type="button" data-topology="pancancer">Pan-Cancer</button>
+              <button type="button" data-topology="prostate">Prostate</button>
+            </div>
+            <p class="topology-reading" id="topology-reading"></p>
+          </div>
+          <div class="topology-demo reveal">
+            <div class="topology-head"><span id="topology-context">Low-abundance plasma cfRNA</span><b id="topology-condition">Curated pathway graph</b></div>
+            <canvas id="topology-canvas" width="780" height="410" role="img" aria-label="Animated comparison of curated and randomized molecular graph topology"></canvas>
+            <div class="topology-conditions" role="group" aria-label="Graph condition">
+              <button class="active" type="button" data-condition="real"><i></i>Curated</button>
+              <button type="button" data-condition="erdos_renyi"><i></i>Edge-count matched</button>
+              <button type="button" data-condition="degree_preserved"><i></i>Degree preserved</button>
+            </div>
+            <div class="topology-bars" id="topology-bars"></div>
+          </div>
+        </div>
+        <div class="insight-strip reveal">
+          <p><span>Low-signal / heterogeneous</span><b>Topology contributes strongly</b><small>RARE-Seq and Pan-Cancer lose 15–32 macro-F1 points after structural randomization.</small></p>
+          <i aria-hidden="true"></i>
+          <p><span>Highly separable tissue signal</span><b>Node measurements can dominate</b><small>Prostate performance changes by less than two points under the same controls.</small></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="results section-rule" id="results" aria-labelledby="results-title">
+      <div class="shell">
+        <div class="results-heading reveal">
+          <div class="section-intro compact">
+            <p class="eyebrow"><span></span> Interactive evidence explorer</p>
+            <h2 id="results-title">Every number stays attached to its task.</h2>
+            <p>Select an analysis and metric. Bars show mean held-out performance; whiskers show the saved fold standard deviation when available.</p>
+          </div>
+          <div class="results-controls">
+            <label for="analysis-select">Analysis</label>
+            <select id="analysis-select"></select>
+            <div class="segmented" id="metric-toggle" role="group" aria-label="Performance metric">
+              <button class="active" type="button" data-metric="accuracy">Accuracy</button>
+              <button type="button" data-metric="macro_f1">Macro-F1</button>
+              <button type="button" data-metric="sensitivity">Sensitivity</button>
+              <button type="button" data-metric="specificity">Specificity</button>
+            </div>
+          </div>
+        </div>
+        <div class="result-context reveal" id="result-context"></div>
+        <div class="performance-chart reveal" id="performance-chart" aria-live="polite"></div>
+        <p class="result-footnote" id="result-footnote"></p>
+      </div>
+    </section>
+
+    <section class="biology section-rule" id="biology" aria-labelledby="biology-title">
+      <div class="shell">
+        <div class="section-intro reveal">
+          <p class="eyebrow"><span></span> Biological interpretation</p>
+          <h2 id="biology-title">Trace a prediction through a real patient graph.</h2>
+          <p>The network below is a de-identified excerpt from one prostate graph. It retains actual pathway edges and overlays cohort-level Integrated Gradients from the saved model.</p>
+        </div>
+        <div class="graph-explorer reveal">
+          <div class="patient-graph-wrap">
+            <canvas id="patient-graph" width="900" height="650" role="img" aria-label="Interactive de-identified prostate patient graph with model attribution"></canvas>
+            <div class="graph-tooltip" id="graph-tooltip" hidden></div>
+            <div class="graph-legend"><span><i class="node high"></i>higher attribution</span><span><i class="node low"></i>pathway neighbor</span><span><i class="edge"></i>curated interaction</span></div>
+          </div>
+          <aside class="graph-copy">
+            <p class="eyebrow"><span></span> Prostate disease state</p>
+            <h3>Canonical signaling components rise together.</h3>
+            <p><i>AKT1</i>, <i>MAPK1</i>, <i>MAPK3</i>, <i>PIK3R1</i>, <i>GSK3B</i>, <i>EGFR</i>, and <i>CTNNB1</i> are among the highest-ranked model attributions. Their placement in connected pathway neighborhoods offers a structured hypothesis—not proof of mechanism.</p>
+            <div class="gene-ranking" id="gene-ranking"></div>
+            <p class="method-boundary">Node size encodes normalized absolute Integrated Gradients. The displayed subgraph includes high-attribution genes and shared neighbors for readability; it is not the complete patient graph.</p>
+          </aside>
+        </div>
+        <div class="biology-stories">
+          <article class="story reveal">
+            <p class="story-index">01 · Plasma cell-free RNA</p>
+            <h3>Weak circulating signals become pathway neighborhoods.</h3>
+            <p>The model emphasizes epithelial and tumor-associated genes including <i>FOLR1</i>, <i>ELF3</i>, <i>KRT19</i>, and <i>MUC1</i>. Randomizing topology sharply reduces held-out performance, supporting a role for pathway organization in this low-signal setting.</p>
+          </article>
+          <article class="story reveal" data-delay="1">
+            <p class="story-index">02 · Tumor-educated platelets</p>
+            <h3>A second liquid-biopsy carrier recovers a different program.</h3>
+            <p>Platelet RNA attributions include <i>SYK</i> and <i>TYROBP</i>, consistent with platelet activation and inflammatory signaling. The result extends the framework across a distinct source of circulating transcriptomic information.</p>
+          </article>
+          <article class="story reveal" data-delay="2">
+            <p class="story-index">03 · Pan-Cancer</p>
+            <h3>The same framework separates 32 tumor classes.</h3>
+            <p>Class-dependent attributions include <i>APCS</i> in liver cancer, <i>ZBTB16</i> in kidney cancer, and <i>TYR</i> in uveal melanoma. These associations require independent biological validation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="examples section-rule" id="examples" aria-labelledby="examples-title">
+      <div class="shell">
+        <div class="examples-heading reveal">
+          <div class="section-intro compact">
+            <p class="eyebrow"><span></span> Saved analyses</p>
+            <h2 id="examples-title">Explore the existing cohorts before uploading data.</h2>
+            <p>Capsule-backed examples open with the existing predictions and metrics already loaded. Supplementary examples open their saved aggregate result.</p>
+          </div>
+          <div class="carousel-actions">
+            <button id="example-prev" type="button" aria-label="Previous examples">←</button>
+            <button id="example-next" type="button" aria-label="Next examples">→</button>
+          </div>
+        </div>
+        <div class="example-track reveal" id="example-track" tabindex="0" aria-label="Graph-in-Graph saved analyses"><p class="loading">Loading saved analyses…</p></div>
+        <p class="carousel-position" id="example-position" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="paper section-rule" id="paper" aria-labelledby="paper-title">
+      <div class="shell">
+        <div class="paper-grid">
+          <div class="reveal">
+            <p class="eyebrow"><span></span> Paper</p>
+            <h2 id="paper-title">Knowledge Graph Modulated Deep Learning for Limited-Sample Clinical Data Analysis</h2>
+            <p class="paper-summary">Graph-in-Graph integrates curated biological pathways directly into patient-level predictive modeling. Each transcriptomic profile becomes a standalone molecular graph whose nodes carry patient expression and whose edges preserve pathway interactions. The same graph-level learner can then operate across patients while retaining gene identity and molecular organization. Evaluation spans tissue and liquid-biopsy cohorts, from binary cancer detection to 32-class tumor classification, with controlled topology randomization used to separate the contribution of expression from the contribution of biological structure.</p>
+            <p class="paper-summary">The results support a specific conclusion: pathway topology is most useful when the disease signal is weak, distributed, or heterogeneous. Model attribution can return predictions to genes and their local graph neighborhoods, providing hypotheses for subsequent biological study rather than causal or clinical claims.</p>
+          </div>
+          <aside class="paper-links reveal" data-delay="1">
+            <h3>Read and reproduce</h3>
+            <div class="paper-documents">
+              <a href="assets/Graph-in-Graph_Main.pdf"><span class="pdf-icon" aria-hidden="true"></span><span><b>Main PDF</b><small>Current manuscript</small></span></a>
+              <a href="assets/Graph-in-Graph_Supplementary.pdf"><span class="pdf-icon" aria-hidden="true"></span><span><b>Supplementary PDF</b><small>Current supplement</small></span></a>
+            </div>
+            <a href="https://arxiv.org/abs/2605.24162" target="_blank" rel="noopener">ArXiv <span>2605.24162 ↗</span></a>
+            <a href="https://arxiv.org/pdf/2605.24162" target="_blank" rel="noopener">ArXiv PDF <span>↗</span></a>
+            <span class="pending-link" title="A public capsule URL has not yet been supplied">Code Ocean <em>link pending</em></span>
+          </aside>
+        </div>
+
+        <div class="reproduce-grid reveal" id="reproduce">
+          <div><p class="eyebrow"><span></span> Reproducibility</p><h3>One click for reviewers. Explicit opt-in for new training.</h3></div>
+          <div>
+            <p>The prepared Code Ocean run loads saved patient graphs and model weights, recomputes held-out predictions, validates them against frozen references, and regenerates main Figures 2–6. It does not silently train a model or rebuild a manuscript cohort.</p>
+            <p>New users follow a separate tutorial: validate expression and labels, construct pathway graphs from the frozen WikiPathways library, then explicitly start five-fold GiG training.</p>
+          </div>
+        </div>
+
+        <div class="citation-grid reveal" id="cite">
+          <div><p class="eyebrow"><span></span> BibTeX</p><h3>Cite the preprint.</h3><button class="button button-quiet" id="copy-bibtex" type="button">Copy BibTeX</button></div>
+          <pre id="bibtex">@article{xue2026graphingraph,
+  title   = {Knowledge Graph Modulated Deep Learning for Limited-Sample Clinical Data Analysis},
+  author  = {Xue, Yuwei and Mostafa, Sakib and Zou, James and Liao, Joseph and Diehn, Maximilian and Alizadeh, Ash A. and Xing, Lei and Islam, Md. Tauhidul},
+  year    = {2026},
+  journal = {arXiv preprint arXiv:2605.24162},
+  doi     = {10.48550/arXiv.2605.24162},
+  url     = {https://arxiv.org/abs/2605.24162}
+}</pre>
+        </div>
+
+        <div class="authors reveal">
+          <p class="eyebrow"><span></span> Authors · current main manuscript order</p>
+          <div class="author-grid">
+            <span><b>Yuwei Xue †</b>Stanford Radiation Oncology</span>
+            <span><b>Sakib Mostafa †</b>Stanford Radiation Oncology</span>
+            <span><b>James Zou</b>Stanford Biomedical Data Science</span>
+            <span><b>Joseph Liao</b>Stanford Urology</span>
+            <span><b>Maximilian Diehn</b>Stanford Radiation Oncology</span>
+            <span><b>Ash A. Alizadeh</b>Stanford Medicine</span>
+            <span><b>Lei Xing</b>Stanford Radiation Oncology</span>
+            <span><b>Md Tauhidul Islam *</b>Corresponding author · Islam Lab</span>
+          </div>
+          <p class="author-note">† Equal contribution.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="analyze">
+      <div class="shell cta-grid">
+        <div>
+          <p class="eyebrow light"><span></span> Analyze your data</p>
+          <h2>Bring expression and labels. Receive patient graphs and a held-out report.</h2>
+          <p>The authenticated workspace accepts a samples-by-genes expression CSV, a separate labels CSV, and—when needed—an explicit gene-to-HGNC mapping file. Validate and preview graphs before committing to a queued five-fold training job.</p>
+          <a class="button button-light" href="https://app.islamlab.org/gig/">Open the analysis workspace <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="input-contract">
+          <p><span>01</span><b>Expression</b><small><code>sample_id, TP53, KRAS, …</code></small></p>
+          <p><span>02</span><b>Labels</b><small><code>sample_id, label</code></small></p>
+          <p><span>03</span><b>Optional mapping</b><small><code>input_gene, hgnc_symbol</code></small></p>
+          <p><span>04</span><b>Minimum</b><small>Five samples in every class</small></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="limits section-rule">
+      <div class="shell limits-grid">
+        <div><p class="eyebrow"><span></span> Use responsibly</p><h2>A research analysis—not a clinical test.</h2></div>
+        <div><p>Cross-validation estimates performance within the submitted cohort. It does not establish transportability to another assay, institution, population, or clinical workflow.</p><p>Model attributions describe the fitted model and do not establish causality or validate a biomarker. Do not upload protected health information or direct identifiers.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-grid">
+      <div><div class="footer-brand">Islam <b>Lab</b></div><p>Department of Radiation Oncology, Stanford University School of Medicine.</p></div>
+      <div class="footer-links"><a href="https://islamlab.org/">Lab home</a><a href="assets/Graph-in-Graph_Main.pdf">Paper PDF</a><a href="#cite">BibTeX</a><a href="mailto:tauhid@stanford.edu">Contact</a></div>
+      <div class="fine">© 2026 Islam Lab, Stanford University.</div>
+    </div>
+  </footer>
+</body>
+</html>
+

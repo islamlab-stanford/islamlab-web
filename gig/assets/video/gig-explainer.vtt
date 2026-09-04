@@ -1,0 +1,63 @@
+WEBVTT
+
+Graph-in-Graph explainer captions
+
+1
+00:00:00.000 --> 00:00:07.710
+Biomedical data usually arrive as a table. The values are informative, but the table does not say which genes work together.
+
+2
+00:00:07.710 --> 00:00:13.810
+Graph-in-Graph, or GiG, restores that missing organization while keeping every patient distinct.
+
+3
+00:00:13.810 --> 00:00:23.370
+For each profile, GiG standardizes expression and identifies genes that deviate from that patient's background. Different patients can begin with different signals.
+
+4
+00:00:23.370 --> 00:00:32.720
+Selected genes retrieve curated human pathways from WikiPathways. Measured genes become nodes, and documented pathway interactions provide edges.
+
+5
+00:00:32.720 --> 00:00:39.150
+This graph is biological prior knowledge. It is not an interaction network inferred from the held-out labels.
+
+6
+00:00:39.150 --> 00:00:49.010
+Overlapping pathways merge into one molecular graph per patient. Shared genes connect local pathway neighborhoods, producing a patient-specific node set and topology.
+
+7
+00:00:49.010 --> 00:00:58.120
+Each node carries the patient's expression z-score, a cohort-level correlation summary, and a trainable identity embedding that anchors the same gene across graphs.
+
+8
+00:00:58.120 --> 00:01:07.390
+A graph neural network passes messages along pathway edges. Global pooling turns each variable-sized graph into a fixed patient representation for prediction.
+
+9
+00:01:07.390 --> 00:01:15.140
+Evaluation uses donor-disjoint folds. Validation selects the checkpoint, and the held-out fold is evaluated once.
+
+10
+00:01:15.140 --> 00:01:21.680
+To test whether the edges matter, GiG is retrained with randomized graphs while node measurements and labels remain fixed.
+
+11
+00:01:21.680 --> 00:01:34.230
+For plasma cell-free RNA and thirty-two-class pan-cancer prediction, randomization costs fifteen to thirty-two macro F1 points. In the highly separable prostate task, the change is less than two points.
+
+12
+00:01:34.230 --> 00:01:41.770
+The result suggests that biological topology contributes most when the predictive signal is weak, distributed, or heterogeneous.
+
+13
+00:01:41.770 --> 00:01:55.740
+Integrated Gradients returns predictions to genes on the patient graph. Prostate attributions highlight connected signaling components including AKT1, MAP kinases, PIK3R1, EGFR, and beta-catenin.
+
+14
+00:01:55.740 --> 00:02:04.180
+Attribution describes what the fitted model used. It creates testable hypotheses, but it does not establish mechanism or causality.
+
+15
+00:02:04.180 --> 00:02:13.050
+Explore the evidence and interactive patient graph at islamlab dot org slash gig, or validate your own expression and label files in the authenticated workspace.

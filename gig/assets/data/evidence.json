@@ -1,0 +1,1936 @@
+{
+  "schema_version": 1,
+  "project": "Graph-in-Graph",
+  "route": "/gig/",
+  "cohort_count": 7,
+  "profile_count": 10872,
+  "evaluation_note": "Mean and sample standard deviation across five stratified folds unless the source panel states otherwise.",
+  "analyses": [
+    {
+      "id": "rareseq_binary",
+      "cohort": "RARE-Seq cfRNA",
+      "outcome": "Cancer versus healthy",
+      "assay": "Plasma cell-free RNA",
+      "samples": 366,
+      "classes": 2,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "gcn",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 88.53,
+            "sd": 2.03
+          },
+          "macro_f1": {
+            "mean": 87.36,
+            "sd": 2.33
+          },
+          "sensitivity": {
+            "mean": 87.13,
+            "sd": 2.68
+          },
+          "specificity": {
+            "mean": 87.13,
+            "sd": 2.68
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 72.94,
+            "sd": 14.63
+          },
+          "macro_f1": {
+            "mean": 70.41,
+            "sd": 14.34
+          },
+          "sensitivity": {
+            "mean": 72.07,
+            "sd": 10.9
+          },
+          "specificity": {
+            "mean": 72.07,
+            "sd": 10.9
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 74.59,
+            "sd": 3.85
+          },
+          "macro_f1": {
+            "mean": 74.4,
+            "sd": 3.74
+          },
+          "sensitivity": {
+            "mean": 78.9,
+            "sd": 3.22
+          },
+          "specificity": {
+            "mean": 78.9,
+            "sd": 3.22
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 71.3,
+            "sd": 5.1
+          },
+          "macro_f1": {
+            "mean": 62.79,
+            "sd": 14.04
+          },
+          "sensitivity": {
+            "mean": 64.82,
+            "sd": 9.67
+          },
+          "specificity": {
+            "mean": 64.82,
+            "sd": 9.67
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 74.57,
+            "sd": 5.61
+          },
+          "macro_f1": {
+            "mean": 73.58,
+            "sd": 5.53
+          },
+          "sensitivity": {
+            "mean": 75.27,
+            "sd": 5.45
+          },
+          "specificity": {
+            "mean": 75.27,
+            "sd": 5.45
+          }
+        }
+      ],
+      "availability": "capsule",
+      "source": "Main Figure 2 and Supplementary Figure S2"
+    },
+    {
+      "id": "rareseq_stage",
+      "cohort": "RARE-Seq cfRNA",
+      "outcome": "Cancer stage",
+      "assay": "Plasma cell-free RNA",
+      "samples": 236,
+      "classes": 4,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "gcn",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 75.03,
+            "sd": 4.86
+          },
+          "macro_f1": {
+            "mean": 26.49,
+            "sd": 7.26
+          },
+          "sensitivity": {
+            "mean": 28.64,
+            "sd": 7.72
+          },
+          "specificity": {
+            "mean": 77.22,
+            "sd": 2.72
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 46.17,
+            "sd": 23.9
+          },
+          "macro_f1": {
+            "mean": 17.87,
+            "sd": 7.03
+          },
+          "sensitivity": {
+            "mean": 27.58,
+            "sd": 11.91
+          },
+          "specificity": {
+            "mean": 75.68,
+            "sd": 4.38
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 37.79,
+            "sd": 17.81
+          },
+          "macro_f1": {
+            "mean": 22.32,
+            "sd": 8.4
+          },
+          "sensitivity": {
+            "mean": 29.49,
+            "sd": 10.48
+          },
+          "specificity": {
+            "mean": 80.9,
+            "sd": 3.92
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 53.11,
+            "sd": 22.72
+          },
+          "macro_f1": {
+            "mean": 20.71,
+            "sd": 5.64
+          },
+          "sensitivity": {
+            "mean": 27.04,
+            "sd": 5.71
+          },
+          "specificity": {
+            "mean": 76.03,
+            "sd": 4.11
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 55.95,
+            "sd": 12.08
+          },
+          "macro_f1": {
+            "mean": 21.71,
+            "sd": 1.55
+          },
+          "sensitivity": {
+            "mean": 25.03,
+            "sd": 3.68
+          },
+          "specificity": {
+            "mean": 78.08,
+            "sd": 2.48
+          }
+        }
+      ],
+      "availability": "capsule",
+      "source": "Main Figure 2 and Supplementary Figure S2"
+    },
+    {
+      "id": "rareseq_subtype",
+      "cohort": "RARE-Seq cfRNA",
+      "outcome": "Cancer type",
+      "assay": "Plasma cell-free RNA",
+      "samples": 236,
+      "classes": 4,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "sage",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 86.86,
+            "sd": 0.99
+          },
+          "macro_f1": {
+            "mean": 31.26,
+            "sd": 11.93
+          },
+          "sensitivity": {
+            "mean": 36.77,
+            "sd": 16.61
+          },
+          "specificity": {
+            "mean": 81.06,
+            "sd": 8.46
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 64.79,
+            "sd": 22.61
+          },
+          "macro_f1": {
+            "mean": 34.12,
+            "sd": 10.07
+          },
+          "sensitivity": {
+            "mean": 49.36,
+            "sd": 9.6
+          },
+          "specificity": {
+            "mean": 89.03,
+            "sd": 4.44
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 73.72,
+            "sd": 6.33
+          },
+          "macro_f1": {
+            "mean": 43.84,
+            "sd": 11.81
+          },
+          "sensitivity": {
+            "mean": 61.45,
+            "sd": 14.46
+          },
+          "specificity": {
+            "mean": 89.54,
+            "sd": 5.14
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 76.71,
+            "sd": 6.64
+          },
+          "macro_f1": {
+            "mean": 29.33,
+            "sd": 6.63
+          },
+          "sensitivity": {
+            "mean": 38.52,
+            "sd": 12.1
+          },
+          "specificity": {
+            "mean": 84.19,
+            "sd": 6.29
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 82.6,
+            "sd": 6.34
+          },
+          "macro_f1": {
+            "mean": 50.97,
+            "sd": 10.14
+          },
+          "sensitivity": {
+            "mean": 61.6,
+            "sd": 15.64
+          },
+          "specificity": {
+            "mean": 87.17,
+            "sd": 5.81
+          }
+        }
+      ],
+      "availability": "capsule",
+      "source": "Main Figure 2 and Supplementary Figure S2"
+    },
+    {
+      "id": "prostate",
+      "cohort": "Prostate cancer",
+      "outcome": "Localized versus metastatic",
+      "assay": "Tumor tissue RNA",
+      "samples": 645,
+      "classes": 2,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "gatv2",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 98.14,
+            "sd": 0.52
+          },
+          "macro_f1": {
+            "mean": 97.78,
+            "sd": 0.62
+          },
+          "sensitivity": {
+            "mean": 98.42,
+            "sd": 1.77
+          },
+          "specificity": {
+            "mean": 98.02,
+            "sd": 0.9
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 76.74,
+            "sd": 4.07
+          },
+          "macro_f1": {
+            "mean": 65.04,
+            "sd": 10.13
+          },
+          "sensitivity": {
+            "mean": 54.21,
+            "sd": 23.66
+          },
+          "specificity": {
+            "mean": 86.15,
+            "sd": 8.04
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 66.05,
+            "sd": 6.04
+          },
+          "macro_f1": {
+            "mean": 52.79,
+            "sd": 7.73
+          },
+          "sensitivity": {
+            "mean": 31.05,
+            "sd": 17.14
+          },
+          "specificity": {
+            "mean": 80.66,
+            "sd": 8.95
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 75.81,
+            "sd": 2.65
+          },
+          "macro_f1": {
+            "mean": 60.64,
+            "sd": 7.34
+          },
+          "sensitivity": {
+            "mean": 28.95,
+            "sd": 11.58
+          },
+          "specificity": {
+            "mean": 95.38,
+            "sd": 3.44
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 97.05,
+            "sd": 0.57
+          },
+          "macro_f1": {
+            "mean": 96.48,
+            "sd": 0.71
+          },
+          "sensitivity": {
+            "mean": 96.84,
+            "sd": 2.35
+          },
+          "specificity": {
+            "mean": 97.14,
+            "sd": 0.74
+          }
+        }
+      ],
+      "availability": "capsule",
+      "source": "Main Figure 3"
+    },
+    {
+      "id": "pancancer",
+      "cohort": "TCGA Pan-Cancer",
+      "outcome": "Cancer type",
+      "assay": "Tumor tissue RNA",
+      "samples": 8314,
+      "classes": 32,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "sage",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 92.04,
+            "sd": 0.44
+          },
+          "macro_f1": {
+            "mean": 87.86,
+            "sd": 0.93
+          },
+          "sensitivity": {
+            "mean": 87.98,
+            "sd": 1.05
+          },
+          "specificity": {
+            "mean": 99.74,
+            "sd": 0.01
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 62.64,
+            "sd": 2.12
+          },
+          "macro_f1": {
+            "mean": 38.55,
+            "sd": 2.34
+          },
+          "sensitivity": {
+            "mean": 41.44,
+            "sd": 1.86
+          },
+          "specificity": {
+            "mean": 98.78,
+            "sd": 0.07
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 42.63,
+            "sd": 4.34
+          },
+          "macro_f1": {
+            "mean": 25.93,
+            "sd": 3.27
+          },
+          "sensitivity": {
+            "mean": 28.58,
+            "sd": 3.27
+          },
+          "specificity": {
+            "mean": 98.14,
+            "sd": 0.14
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 6.28,
+            "sd": 1.79
+          },
+          "macro_f1": {
+            "mean": 2.77,
+            "sd": 0.87
+          },
+          "sensitivity": {
+            "mean": 4.43,
+            "sd": 1.11
+          },
+          "specificity": {
+            "mean": 96.94,
+            "sd": 0.07
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 56.04,
+            "sd": 2.09
+          },
+          "macro_f1": {
+            "mean": 32.83,
+            "sd": 1.78
+          },
+          "sensitivity": {
+            "mean": 36.19,
+            "sd": 1.73
+          },
+          "specificity": {
+            "mean": 98.56,
+            "sd": 0.07
+          }
+        }
+      ],
+      "availability": "capsule",
+      "source": "Main Figure 4"
+    },
+    {
+      "id": "gse32894",
+      "cohort": "GSE32894 bladder cancer",
+      "outcome": "Tumor stage",
+      "assay": "Tumor tissue microarray",
+      "samples": 298,
+      "classes": 3,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "gcn",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 65.4,
+            "sd": 6.91
+          },
+          "macro_f1": {
+            "mean": 63.68,
+            "sd": 8.25
+          },
+          "sensitivity": {
+            "mean": 64.41,
+            "sd": 7.87
+          },
+          "specificity": {
+            "mean": 82.5,
+            "sd": 3.51
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 46.0,
+            "sd": 5.76
+          },
+          "macro_f1": {
+            "mean": 39.0,
+            "sd": 8.7
+          },
+          "sensitivity": {
+            "mean": 43.74,
+            "sd": 6.37
+          },
+          "specificity": {
+            "mean": 72.31,
+            "sd": 3.44
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 54.35,
+            "sd": 2.96
+          },
+          "macro_f1": {
+            "mean": 50.08,
+            "sd": 2.78
+          },
+          "sensitivity": {
+            "mean": 52.32,
+            "sd": 3.1
+          },
+          "specificity": {
+            "mean": 76.6,
+            "sd": 1.07
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 38.9,
+            "sd": 7.08
+          },
+          "macro_f1": {
+            "mean": 23.95,
+            "sd": 9.43
+          },
+          "sensitivity": {
+            "mean": 36.53,
+            "sd": 6.22
+          },
+          "specificity": {
+            "mean": 68.19,
+            "sd": 2.91
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 63.06,
+            "sd": 5.68
+          },
+          "macro_f1": {
+            "mean": 61.78,
+            "sd": 6.42
+          },
+          "sensitivity": {
+            "mean": 62.01,
+            "sd": 6.09
+          },
+          "specificity": {
+            "mean": 81.3,
+            "sd": 3.13
+          }
+        }
+      ],
+      "availability": "capsule",
+      "source": "Main Figure 5"
+    },
+    {
+      "id": "gse68086",
+      "cohort": "GSE68086 platelets",
+      "outcome": "Cancer versus healthy",
+      "assay": "Tumor-educated platelet RNA",
+      "samples": 278,
+      "classes": 2,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "sage",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 91.36,
+            "sd": 2.02
+          },
+          "macro_f1": {
+            "mean": 86.4,
+            "sd": 3.51
+          },
+          "sensitivity": {
+            "mean": 87.61,
+            "sd": 5.97
+          },
+          "specificity": {
+            "mean": 87.61,
+            "sd": 5.97
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 83.45,
+            "sd": 1.94
+          },
+          "macro_f1": {
+            "mean": 65.93,
+            "sd": 13.61
+          },
+          "sensitivity": {
+            "mean": 67.43,
+            "sd": 14.24
+          },
+          "specificity": {
+            "mean": 67.43,
+            "sd": 14.24
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 86.69,
+            "sd": 4.32
+          },
+          "macro_f1": {
+            "mean": 79.82,
+            "sd": 5.54
+          },
+          "sensitivity": {
+            "mean": 81.67,
+            "sd": 6.73
+          },
+          "specificity": {
+            "mean": 81.67,
+            "sd": 6.73
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 44.06,
+            "sd": 33.96
+          },
+          "macro_f1": {
+            "mean": 31.31,
+            "sd": 21.82
+          },
+          "sensitivity": {
+            "mean": 52.28,
+            "sd": 5.1
+          },
+          "specificity": {
+            "mean": 52.28,
+            "sd": 5.1
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 90.66,
+            "sd": 3.4
+          },
+          "macro_f1": {
+            "mean": 86.33,
+            "sd": 5.13
+          },
+          "sensitivity": {
+            "mean": 90.08,
+            "sd": 6.58
+          },
+          "specificity": {
+            "mean": 90.08,
+            "sd": 6.58
+          }
+        }
+      ],
+      "availability": "capsule",
+      "source": "Main Figure 6"
+    },
+    {
+      "id": "gse32894_tumor_grade",
+      "cohort": "GSE32894 bladder cancer",
+      "outcome": "Tumor grade",
+      "assay": "Tumor tissue microarray",
+      "samples": 305,
+      "classes": 3,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "sage",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 72.46,
+            "sd": 5.84
+          },
+          "macro_f1": {
+            "mean": 68.97,
+            "sd": 8.0
+          },
+          "sensitivity": {
+            "mean": null,
+            "sd": null
+          },
+          "specificity": {
+            "mean": null,
+            "sd": null
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 50.49,
+            "sd": 9.23
+          },
+          "macro_f1": {
+            "mean": 40.18,
+            "sd": 5.0
+          },
+          "sensitivity": {
+            "mean": null,
+            "sd": null
+          },
+          "specificity": {
+            "mean": null,
+            "sd": null
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 66.23,
+            "sd": 2.98
+          },
+          "macro_f1": {
+            "mean": 61.73,
+            "sd": 2.79
+          },
+          "sensitivity": {
+            "mean": null,
+            "sd": null
+          },
+          "specificity": {
+            "mean": null,
+            "sd": null
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 37.38,
+            "sd": 17.71
+          },
+          "macro_f1": {
+            "mean": 18.72,
+            "sd": 5.65
+          },
+          "sensitivity": {
+            "mean": null,
+            "sd": null
+          },
+          "specificity": {
+            "mean": null,
+            "sd": null
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 64.59,
+            "sd": 6.31
+          },
+          "macro_f1": {
+            "mean": 56.78,
+            "sd": 5.33
+          },
+          "sensitivity": {
+            "mean": null,
+            "sd": null
+          },
+          "specificity": {
+            "mean": null,
+            "sd": null
+          }
+        }
+      ],
+      "availability": "saved",
+      "source": "Supplementary Figure S17"
+    },
+    {
+      "id": "gse39582_braf_mutation",
+      "cohort": "GSE39582 colorectal cancer",
+      "outcome": "BRAF mutation status",
+      "assay": "Tumor tissue microarray",
+      "samples": 512,
+      "classes": 2,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "gcn",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 90.63,
+            "sd": 3.24
+          },
+          "macro_f1": {
+            "mean": 77.34,
+            "sd": 3.53
+          },
+          "sensitivity": {
+            "mean": 92.63,
+            "sd": 5.92
+          },
+          "specificity": {
+            "mean": 72.18,
+            "sd": 26.05
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 88.47,
+            "sd": 2.36
+          },
+          "macro_f1": {
+            "mean": 59.86,
+            "sd": 13.42
+          },
+          "sensitivity": {
+            "mean": 95.22,
+            "sd": 3.57
+          },
+          "specificity": {
+            "mean": 27.64,
+            "sd": 30.46
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 88.09,
+            "sd": 3.68
+          },
+          "macro_f1": {
+            "mean": 73.73,
+            "sd": 6.39
+          },
+          "sensitivity": {
+            "mean": 90.02,
+            "sd": 4.77
+          },
+          "specificity": {
+            "mean": 70.73,
+            "sd": 19.61
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 73.96,
+            "sd": 35.87
+          },
+          "macro_f1": {
+            "mean": 39.68,
+            "sd": 17.19
+          },
+          "sensitivity": {
+            "mean": 80.0,
+            "sd": 44.72
+          },
+          "specificity": {
+            "mean": 20.0,
+            "sd": 44.72
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 90.82,
+            "sd": 2.64
+          },
+          "macro_f1": {
+            "mean": 75.22,
+            "sd": 8.64
+          },
+          "sensitivity": {
+            "mean": 93.92,
+            "sd": 4.39
+          },
+          "specificity": {
+            "mean": 62.36,
+            "sd": 27.15
+          }
+        }
+      ],
+      "availability": "saved",
+      "source": "Supplementary Figure S19"
+    },
+    {
+      "id": "gse39582_tumor_location",
+      "cohort": "GSE39582 colorectal cancer",
+      "outcome": "Tumor location",
+      "assay": "Tumor tissue microarray",
+      "samples": 583,
+      "classes": 2,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "gatv2",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 75.98,
+            "sd": 3.77
+          },
+          "macro_f1": {
+            "mean": 74.93,
+            "sd": 4.37
+          },
+          "sensitivity": {
+            "mean": 71.62,
+            "sd": 12.27
+          },
+          "specificity": {
+            "mean": 78.92,
+            "sd": 3.55
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 65.03,
+            "sd": 7.05
+          },
+          "macro_f1": {
+            "mean": 57.5,
+            "sd": 9.77
+          },
+          "sensitivity": {
+            "mean": 31.15,
+            "sd": 15.94
+          },
+          "specificity": {
+            "mean": 87.49,
+            "sd": 8.81
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 68.62,
+            "sd": 3.04
+          },
+          "macro_f1": {
+            "mean": 65.5,
+            "sd": 4.36
+          },
+          "sensitivity": {
+            "mean": 50.43,
+            "sd": 12.36
+          },
+          "specificity": {
+            "mean": 80.6,
+            "sd": 6.17
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 47.66,
+            "sd": 11.11
+          },
+          "macro_f1": {
+            "mean": 31.98,
+            "sd": 4.98
+          },
+          "sensitivity": {
+            "mean": 60.0,
+            "sd": 54.77
+          },
+          "specificity": {
+            "mean": 40.0,
+            "sd": 54.77
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 76.5,
+            "sd": 1.78
+          },
+          "macro_f1": {
+            "mean": 74.59,
+            "sd": 2.2
+          },
+          "sensitivity": {
+            "mean": 62.87,
+            "sd": 8.46
+          },
+          "specificity": {
+            "mean": 85.47,
+            "sd": 5.93
+          }
+        }
+      ],
+      "availability": "saved",
+      "source": "Supplementary Figure S20"
+    },
+    {
+      "id": "gse62254_emp_subgroup",
+      "cohort": "GSE62254 gastric cancer",
+      "outcome": "Epithelial–mesenchymal phenotype",
+      "assay": "Tumor tissue microarray",
+      "samples": 300,
+      "classes": 2,
+      "models": [
+        {
+          "name": "GiG",
+          "backbone": "gcn",
+          "family": "GiG",
+          "accuracy": {
+            "mean": 95.33,
+            "sd": 2.98
+          },
+          "macro_f1": {
+            "mean": 94.22,
+            "sd": 3.6
+          },
+          "sensitivity": {
+            "mean": 91.62,
+            "sd": 6.81
+          },
+          "specificity": {
+            "mean": 96.77,
+            "sd": 3.88
+          }
+        },
+        {
+          "name": "GAT",
+          "backbone": "gatv2",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 87.67,
+            "sd": 2.79
+          },
+          "macro_f1": {
+            "mean": 83.38,
+            "sd": 3.24
+          },
+          "sensitivity": {
+            "mean": 65.44,
+            "sd": 3.03
+          },
+          "specificity": {
+            "mean": 96.3,
+            "sd": 3.89
+          }
+        },
+        {
+          "name": "GCN",
+          "backbone": "gcn",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 92.33,
+            "sd": 6.08
+          },
+          "macro_f1": {
+            "mean": 90.61,
+            "sd": 7.29
+          },
+          "sensitivity": {
+            "mean": 86.99,
+            "sd": 9.6
+          },
+          "specificity": {
+            "mean": 94.45,
+            "sd": 5.34
+          }
+        },
+        {
+          "name": "GIN",
+          "backbone": "gin",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 50.67,
+            "sd": 24.46
+          },
+          "macro_f1": {
+            "mean": 41.81,
+            "sd": 23.19
+          },
+          "sensitivity": {
+            "mean": 77.65,
+            "sd": 43.7
+          },
+          "specificity": {
+            "mean": 40.47,
+            "sd": 45.71
+          }
+        },
+        {
+          "name": "GraphSAGE",
+          "backbone": "sage",
+          "family": "NodeGNN",
+          "accuracy": {
+            "mean": 93.67,
+            "sd": 3.42
+          },
+          "macro_f1": {
+            "mean": 92.08,
+            "sd": 4.17
+          },
+          "sensitivity": {
+            "mean": 86.91,
+            "sd": 6.42
+          },
+          "specificity": {
+            "mean": 96.29,
+            "sd": 3.53
+          }
+        }
+      ],
+      "availability": "saved",
+      "source": "Supplementary Figure S21"
+    }
+  ],
+  "topology_controls": [
+    {
+      "id": "rareseq_binary",
+      "label": "RARE-Seq cancer detection",
+      "context": "Low-abundance plasma cfRNA",
+      "real": {
+        "accuracy": 89.2,
+        "macro_f1": 87.7
+      },
+      "erdos_renyi": {
+        "accuracy": 73.0,
+        "macro_f1": 72.5
+      },
+      "degree_preserved": {
+        "accuracy": 67.6,
+        "macro_f1": 56.0
+      },
+      "source": "Current manuscript, Discussion"
+    },
+    {
+      "id": "pancancer",
+      "label": "TCGA Pan-Cancer",
+      "context": "32 cancer classes",
+      "real": {
+        "accuracy": 92.4,
+        "macro_f1": 88.9
+      },
+      "erdos_renyi": {
+        "accuracy": 68.2,
+        "macro_f1": 57.1
+      },
+      "degree_preserved": {
+        "accuracy": 77.0,
+        "macro_f1": 70.1
+      },
+      "source": "Current manuscript, Discussion"
+    },
+    {
+      "id": "prostate",
+      "label": "Prostate disease state",
+      "context": "High-signal tumor tissue",
+      "real": {
+        "accuracy": 100.0,
+        "macro_f1": 100.0
+      },
+      "erdos_renyi": {
+        "accuracy": 98.45,
+        "macro_f1": 98.13
+      },
+      "degree_preserved": {
+        "accuracy": 99.22,
+        "macro_f1": 99.06
+      },
+      "source": "Current manuscript, Discussion; single held-out ablation split"
+    }
+  ],
+  "attributions": {
+    "rareseq": [
+      {
+        "gene": "FOLR1",
+        "cancer": 0.242711,
+        "healthy": 0.060478
+      },
+      {
+        "gene": "ELF3",
+        "cancer": 0.249873,
+        "healthy": 0.079177
+      },
+      {
+        "gene": "KRT19",
+        "cancer": 0.220994,
+        "healthy": 0.066939
+      },
+      {
+        "gene": "SLC34A2",
+        "cancer": 0.189162,
+        "healthy": 0.051171
+      },
+      {
+        "gene": "MUC1",
+        "cancer": 0.223931,
+        "healthy": 0.102998
+      },
+      {
+        "gene": "DKK1",
+        "cancer": 0.148675,
+        "healthy": 0.037836
+      },
+      {
+        "gene": "CP",
+        "cancer": 0.197374,
+        "healthy": 0.086991
+      },
+      {
+        "gene": "CGN",
+        "cancer": 0.154399,
+        "healthy": 0.04507
+      },
+      {
+        "gene": "TGFB3",
+        "cancer": 0.1595,
+        "healthy": 0.050923
+      },
+      {
+        "gene": "TUBB3",
+        "cancer": 0.176594,
+        "healthy": 0.070169
+      },
+      {
+        "gene": "MET",
+        "cancer": 0.183209,
+        "healthy": 0.077746
+      },
+      {
+        "gene": "H3C14",
+        "cancer": 0.232465,
+        "healthy": 0.13022
+      },
+      {
+        "gene": "CFB",
+        "cancer": 0.202812,
+        "healthy": 0.115377
+      },
+      {
+        "gene": "CMA1",
+        "cancer": 0.126374,
+        "healthy": 0.042099
+      },
+      {
+        "gene": "AGR2",
+        "cancer": 0.13703,
+        "healthy": 0.057031
+      },
+      {
+        "gene": "H3C15",
+        "cancer": 0.169355,
+        "healthy": 0.091852
+      },
+      {
+        "gene": "TRIM29",
+        "cancer": 0.11954,
+        "healthy": 0.050765
+      },
+      {
+        "gene": "THY1",
+        "cancer": 0.127602,
+        "healthy": 0.059968
+      }
+    ],
+    "prostate": [
+      {
+        "gene": "AKT1",
+        "importance": 2.623740217604227e-05,
+        "localized": 2.4633830305122372e-05,
+        "metastatic": 3.0077534814297808e-05
+      },
+      {
+        "gene": "MAPK3",
+        "importance": 1.929161489121986e-05,
+        "localized": 2.2558607939812407e-05,
+        "metastatic": 1.1468026274853496e-05
+      },
+      {
+        "gene": "MAPK14",
+        "importance": 1.8126259870881794e-05,
+        "localized": 1.2002612823050516e-05,
+        "metastatic": 3.2790783064372496e-05
+      },
+      {
+        "gene": "UNC5B",
+        "importance": 1.772213446279485e-05,
+        "localized": 1.7598299894086598e-05,
+        "metastatic": 1.801868566680672e-05
+      },
+      {
+        "gene": "MAPK1",
+        "importance": 1.7454994425255183e-05,
+        "localized": 1.1747176068928349e-05,
+        "metastatic": 3.1123717331195766e-05
+      },
+      {
+        "gene": "PIK3R1",
+        "importance": 1.7216611168389713e-05,
+        "localized": 1.915677167634495e-05,
+        "metastatic": 1.2570437320391648e-05
+      },
+      {
+        "gene": "GSK3B",
+        "importance": 1.6285593916080864e-05,
+        "localized": 1.4179121695473601e-05,
+        "metastatic": 2.133004054964036e-05
+      },
+      {
+        "gene": "EGFR",
+        "importance": 1.5853122242559095e-05,
+        "localized": 1.941295546542848e-05,
+        "metastatic": 7.328258472003463e-06
+      },
+      {
+        "gene": "MYC",
+        "importance": 1.4834325889934508e-05,
+        "localized": 1.0174907202071863e-05,
+        "metastatic": 2.5992407484552944e-05
+      },
+      {
+        "gene": "PTK2",
+        "importance": 1.4764320221447564e-05,
+        "localized": 1.4107659088759837e-05,
+        "metastatic": 1.6336850828673433e-05
+      },
+      {
+        "gene": "MAP3K5",
+        "importance": 1.4411184072163761e-05,
+        "localized": 9.758779105051052e-06,
+        "metastatic": 2.555246965130209e-05
+      },
+      {
+        "gene": "NFKB1",
+        "importance": 1.3857770505821055e-05,
+        "localized": 1.588629150389282e-05,
+        "metastatic": 8.999996536754464e-06
+      },
+      {
+        "gene": "CTNNB1",
+        "importance": 1.373135160946724e-05,
+        "localized": 1.3136505043763503e-05,
+        "metastatic": 1.5155852595757766e-05
+      },
+      {
+        "gene": "HDAC6",
+        "importance": 1.3176243224423992e-05,
+        "localized": 1.5913728440444593e-05,
+        "metastatic": 6.620686522900972e-06
+      },
+      {
+        "gene": "STAT3",
+        "importance": 1.3056991301427773e-05,
+        "localized": 1.3910029677960096e-05,
+        "metastatic": 1.1014188873416156e-05
+      },
+      {
+        "gene": "JUN",
+        "importance": 1.2401239995272963e-05,
+        "localized": 1.1093929470507146e-05,
+        "metastatic": 1.553190467300163e-05
+      },
+      {
+        "gene": "CDC42",
+        "importance": 1.2399246996266824e-05,
+        "localized": 1.0349982643434726e-05,
+        "metastatic": 1.730669584120685e-05
+      },
+      {
+        "gene": "RAC1",
+        "importance": 1.1842052794405432e-05,
+        "localized": 1.2310741332619948e-05,
+        "metastatic": 1.0719667084470674e-05
+      },
+      {
+        "gene": "PTEN",
+        "importance": 1.179033913717302e-05,
+        "localized": 8.116457748046441e-06,
+        "metastatic": 2.0588318253239297e-05
+      },
+      {
+        "gene": "CREB1",
+        "importance": 1.1135148030402077e-05,
+        "localized": 1.1442299152834464e-05,
+        "metastatic": 1.0399601921419258e-05
+      }
+    ],
+    "platelet": [
+      {
+        "gene": "DBI",
+        "importance": 0.789327,
+        "cancer": 0.673132,
+        "healthy": 1.503095
+      },
+      {
+        "gene": "TYROBP",
+        "importance": 0.74645,
+        "cancer": 0.688056,
+        "healthy": 1.525032
+      },
+      {
+        "gene": "ATM",
+        "importance": 0.646667,
+        "cancer": 0.496733,
+        "healthy": 1.268613
+      },
+      {
+        "gene": "SYK",
+        "importance": 0.631793,
+        "cancer": 0.591466,
+        "healthy": 1.169477
+      },
+      {
+        "gene": "PCM1",
+        "importance": 0.619788,
+        "cancer": 0.610481,
+        "healthy": 0.658396
+      },
+      {
+        "gene": "BID",
+        "importance": 0.444788,
+        "cancer": 0.420935,
+        "healthy": 0.543733
+      },
+      {
+        "gene": "PPP4C",
+        "importance": 0.371209,
+        "cancer": 0.364282,
+        "healthy": 0.399942
+      },
+      {
+        "gene": "GRB2",
+        "importance": 0.370472,
+        "cancer": 0.351735,
+        "healthy": 0.448195
+      },
+      {
+        "gene": "SUMO2",
+        "importance": 0.329218,
+        "cancer": 0.317262,
+        "healthy": 0.378815
+      },
+      {
+        "gene": "TTN",
+        "importance": 0.302247,
+        "cancer": 0.177441,
+        "healthy": 0.81996
+      },
+      {
+        "gene": "CEP290",
+        "importance": 0.26744,
+        "cancer": 0.247633,
+        "healthy": 0.349604
+      },
+      {
+        "gene": "USP8",
+        "importance": 0.256555,
+        "cancer": 0.171543,
+        "healthy": 1.475064
+      },
+      {
+        "gene": "HDAC6",
+        "importance": 0.246538,
+        "cancer": 0.225986,
+        "healthy": 0.331791
+      },
+      {
+        "gene": "NIPBL",
+        "importance": 0.245757,
+        "cancer": 0.237299,
+        "healthy": 0.278965
+      },
+      {
+        "gene": "EPOR",
+        "importance": 0.243662,
+        "cancer": 0.243662,
+        "healthy": 0.0
+      },
+      {
+        "gene": "RAB1A",
+        "importance": 0.214949,
+        "cancer": 0.191355,
+        "healthy": 0.312822
+      },
+      {
+        "gene": "CASP2",
+        "importance": 0.207205,
+        "cancer": 0.18,
+        "healthy": 0.295622
+      },
+      {
+        "gene": "HDAC5",
+        "importance": 0.185872,
+        "cancer": 0.178511,
+        "healthy": 0.216403
+      }
+    ],
+    "pancancer": [
+      {
+        "gene": "APCS",
+        "class_scores": {
+          "BRCA": 4.10543,
+          "COAD": -0.46247,
+          "ESCA": -0.10715,
+          "HNSC": -0.01459,
+          "KIRC": 0.32613,
+          "KIRP": 0.15624,
+          "MESO": -0.49502,
+          "OV": 0.34029,
+          "PAAD": 0.84792,
+          "READ": -0.4068,
+          "THCA": 0.21558,
+          "UVM": -0.11168
+        }
+      },
+      {
+        "gene": "GATA4",
+        "class_scores": {
+          "BRCA": 2.57906,
+          "COAD": 0.14303,
+          "ESCA": -0.66799,
+          "HNSC": -0.89237,
+          "KIRC": 0.04445,
+          "KIRP": 0.2261,
+          "MESO": 0.02383,
+          "OV": 0.29723,
+          "PAAD": 1.91846,
+          "READ": 0.43561,
+          "THCA": 1.85094,
+          "UVM": 0.06146
+        }
+      },
+      {
+        "gene": "MBL2",
+        "class_scores": {
+          "BRCA": 2.06585,
+          "COAD": -0.32318,
+          "ESCA": -0.38618,
+          "HNSC": -0.26862,
+          "KIRC": 1.93807,
+          "KIRP": -0.29319,
+          "MESO": -0.30195,
+          "OV": -0.48623,
+          "PAAD": -0.27333,
+          "READ": -0.40581,
+          "THCA": 0.24333,
+          "UVM": -0.02356
+        }
+      },
+      {
+        "gene": "SLC17A2",
+        "class_scores": {
+          "BRCA": 2.05317,
+          "COAD": -0.62267,
+          "ESCA": -0.03896,
+          "HNSC": 1.48307,
+          "KIRC": 0.62811,
+          "KIRP": 0.37557,
+          "MESO": -0.5212,
+          "OV": 0.44246,
+          "PAAD": 0.45521,
+          "READ": -0.43618,
+          "THCA": 0.67551,
+          "UVM": -0.09668
+        }
+      },
+      {
+        "gene": "FCN1",
+        "class_scores": {
+          "BRCA": 0.31366,
+          "COAD": 0.01632,
+          "ESCA": -0.479,
+          "HNSC": -0.48406,
+          "KIRC": 4.57922,
+          "KIRP": 0.33417,
+          "MESO": 0.64265,
+          "OV": 0.02323,
+          "PAAD": 0.94579,
+          "READ": -0.46016,
+          "THCA": 0.63768,
+          "UVM": 0.09348
+        }
+      },
+      {
+        "gene": "ZBTB16",
+        "class_scores": {
+          "BRCA": 0.17389,
+          "COAD": -0.61632,
+          "ESCA": 0.65351,
+          "HNSC": -0.09591,
+          "KIRC": 4.29529,
+          "KIRP": 0.64087,
+          "MESO": -0.45496,
+          "OV": -0.07807,
+          "PAAD": 0.7968,
+          "READ": 0.77023,
+          "THCA": 0.15021,
+          "UVM": 0.23941
+        }
+      },
+      {
+        "gene": "MLANA",
+        "class_scores": {
+          "BRCA": -0.35453,
+          "COAD": 0.93786,
+          "ESCA": -0.27491,
+          "HNSC": -0.39783,
+          "KIRC": 3.51403,
+          "KIRP": -0.47509,
+          "MESO": -0.35866,
+          "OV": -0.21122,
+          "PAAD": -0.38685,
+          "READ": -0.43774,
+          "THCA": -0.44918,
+          "UVM": 2.27243
+        }
+      },
+      {
+        "gene": "OMG",
+        "class_scores": {
+          "BRCA": -0.35874,
+          "COAD": -0.51671,
+          "ESCA": -0.07699,
+          "HNSC": -0.06377,
+          "KIRC": 2.10699,
+          "KIRP": 4.03981,
+          "MESO": -0.31186,
+          "OV": 0.09228,
+          "PAAD": 1.24806,
+          "READ": 0.94569,
+          "THCA": -0.37983,
+          "UVM": -0.10648
+        }
+      },
+      {
+        "gene": "SLC22A6",
+        "class_scores": {
+          "BRCA": 0.17928,
+          "COAD": -0.49303,
+          "ESCA": 0.93548,
+          "HNSC": 2.01316,
+          "KIRC": 2.9429,
+          "KIRP": 2.9694,
+          "MESO": -0.62428,
+          "OV": -0.08183,
+          "PAAD": -0.1999,
+          "READ": 0.05089,
+          "THCA": -0.06946,
+          "UVM": -0.0601
+        }
+      },
+      {
+        "gene": "TBX5",
+        "class_scores": {
+          "BRCA": 1.06005,
+          "COAD": 1.52807,
+          "ESCA": -1.00624,
+          "HNSC": -0.48082,
+          "KIRC": 1.5528,
+          "KIRP": -0.04416,
+          "MESO": 3.39597,
+          "OV": -0.69723,
+          "PAAD": -0.21061,
+          "READ": -0.74343,
+          "THCA": 1.11733,
+          "UVM": -0.43039
+        }
+      },
+      {
+        "gene": "HAND2",
+        "class_scores": {
+          "BRCA": 0.58975,
+          "COAD": 1.04357,
+          "ESCA": -0.60407,
+          "HNSC": -0.15914,
+          "KIRC": -0.1476,
+          "KIRP": -0.48923,
+          "MESO": -0.2344,
+          "OV": -0.27277,
+          "PAAD": -0.13218,
+          "READ": -0.4502,
+          "THCA": 3.31886,
+          "UVM": 0.65941
+        }
+      },
+      {
+        "gene": "TCF21",
+        "class_scores": {
+          "BRCA": 0.12706,
+          "COAD": -0.62381,
+          "ESCA": -0.08506,
+          "HNSC": 0.30309,
+          "KIRC": 0.65315,
+          "KIRP": 1.84299,
+          "MESO": -0.77758,
+          "OV": 1.10055,
+          "PAAD": 0.41469,
+          "READ": -0.62976,
+          "THCA": 3.04116,
+          "UVM": 1.31988
+        }
+      },
+      {
+        "gene": "HOXA11",
+        "class_scores": {
+          "BRCA": 0.84728,
+          "COAD": 0.16126,
+          "ESCA": 0.69394,
+          "HNSC": -0.98351,
+          "KIRC": 0.71414,
+          "KIRP": -0.86951,
+          "MESO": 0.97976,
+          "OV": 1.27258,
+          "PAAD": 0.25796,
+          "READ": 2.52275,
+          "THCA": 2.95242,
+          "UVM": -0.49509
+        }
+      },
+      {
+        "gene": "XIST",
+        "class_scores": {
+          "BRCA": 1.84101,
+          "COAD": 0.90796,
+          "ESCA": -0.9692,
+          "HNSC": -0.97538,
+          "KIRC": 2.20856,
+          "KIRP": -0.1837,
+          "MESO": 0.5491,
+          "OV": -0.27015,
+          "PAAD": 0.47982,
+          "READ": -0.55871,
+          "THCA": 2.58278,
+          "UVM": 0.6329
+        }
+      },
+      {
+        "gene": "TYR",
+        "class_scores": {
+          "BRCA": -0.24959,
+          "COAD": -0.25516,
+          "ESCA": -0.26811,
+          "HNSC": -0.26539,
+          "KIRC": -0.24535,
+          "KIRP": -0.24956,
+          "MESO": -0.16905,
+          "OV": -0.25884,
+          "PAAD": -0.20701,
+          "READ": -0.25761,
+          "THCA": -0.24713,
+          "UVM": 3.28197
+        }
+      }
+    ]
+  }
+}

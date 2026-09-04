@@ -1,0 +1,910 @@
+{
+  "kind": "de-identified excerpt",
+  "source": "One prostate patient graph; high-attribution genes plus shared pathway neighbors",
+  "nodes": [
+    {
+      "id": "SRC",
+      "x": 0.69586,
+      "y": 0.37494,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Growth signaling",
+      "degree_full": 47
+    },
+    {
+      "id": "MAPK3",
+      "x": 0.16917,
+      "y": 0.66292,
+      "importance": 0.73527,
+      "attributed": true,
+      "group": "MAPK",
+      "degree_full": 33
+    },
+    {
+      "id": "RAC1",
+      "x": 0.55478,
+      "y": 0.3165,
+      "importance": 0.45134,
+      "attributed": true,
+      "group": "Pathway neighbor",
+      "degree_full": 43
+    },
+    {
+      "id": "PIK3R1",
+      "x": 0.76011,
+      "y": 0.45073,
+      "importance": 0.65619,
+      "attributed": true,
+      "group": "PI3K / AKT",
+      "degree_full": 35
+    },
+    {
+      "id": "STAT3",
+      "x": 0.66784,
+      "y": 0.64387,
+      "importance": 0.49765,
+      "attributed": true,
+      "group": "Growth signaling",
+      "degree_full": 46
+    },
+    {
+      "id": "PAK1",
+      "x": 0.49002,
+      "y": 0.18069,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 20
+    },
+    {
+      "id": "TP53",
+      "x": 0.43739,
+      "y": 0.30573,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 81
+    },
+    {
+      "id": "RPS6KA5",
+      "x": 0.08,
+      "y": 0.81786,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 9
+    },
+    {
+      "id": "UNC5B",
+      "x": 0.80976,
+      "y": 0.28797,
+      "importance": 0.67545,
+      "attributed": true,
+      "group": "Pathway neighbor",
+      "degree_full": 20
+    },
+    {
+      "id": "EGFR",
+      "x": 0.47583,
+      "y": 0.4213,
+      "importance": 0.60422,
+      "attributed": true,
+      "group": "Growth signaling",
+      "degree_full": 31
+    },
+    {
+      "id": "ELK1",
+      "x": 0.14226,
+      "y": 0.92,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 11
+    },
+    {
+      "id": "AKT1",
+      "x": 0.60309,
+      "y": 0.44048,
+      "importance": 1.0,
+      "attributed": true,
+      "group": "PI3K / AKT",
+      "degree_full": 77
+    },
+    {
+      "id": "MAP3K5",
+      "x": 0.4078,
+      "y": 0.08,
+      "importance": 0.54926,
+      "attributed": true,
+      "group": "MAPK",
+      "degree_full": 14
+    },
+    {
+      "id": "NFKB1",
+      "x": 0.49645,
+      "y": 0.74038,
+      "importance": 0.52817,
+      "attributed": true,
+      "group": "Pathway neighbor",
+      "degree_full": 42
+    },
+    {
+      "id": "CTNNB1",
+      "x": 0.46458,
+      "y": 0.50209,
+      "importance": 0.52335,
+      "attributed": true,
+      "group": "WNT / adhesion",
+      "degree_full": 70
+    },
+    {
+      "id": "HDAC6",
+      "x": 0.27047,
+      "y": 0.29691,
+      "importance": 0.50219,
+      "attributed": true,
+      "group": "Pathway neighbor",
+      "degree_full": 70
+    },
+    {
+      "id": "KDR",
+      "x": 0.73619,
+      "y": 0.11583,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 45
+    },
+    {
+      "id": "MAPK1",
+      "x": 0.28846,
+      "y": 0.6242,
+      "importance": 0.66527,
+      "attributed": true,
+      "group": "MAPK",
+      "degree_full": 46
+    },
+    {
+      "id": "JUN",
+      "x": 0.13818,
+      "y": 0.58366,
+      "importance": 0.47266,
+      "attributed": true,
+      "group": "MAPK",
+      "degree_full": 23
+    },
+    {
+      "id": "MAPK8",
+      "x": 0.33657,
+      "y": 0.35497,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 30
+    },
+    {
+      "id": "PTK2",
+      "x": 0.71097,
+      "y": 0.57967,
+      "importance": 0.56272,
+      "attributed": true,
+      "group": "WNT / adhesion",
+      "degree_full": 37
+    },
+    {
+      "id": "PTPN11",
+      "x": 0.92,
+      "y": 0.45505,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 28
+    },
+    {
+      "id": "CREB1",
+      "x": 0.38569,
+      "y": 0.79398,
+      "importance": 0.4244,
+      "attributed": true,
+      "group": "Pathway neighbor",
+      "degree_full": 41
+    },
+    {
+      "id": "PRKCA",
+      "x": 0.55463,
+      "y": 0.53313,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 27
+    },
+    {
+      "id": "PIK3CA",
+      "x": 0.90163,
+      "y": 0.34263,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 24
+    },
+    {
+      "id": "RELA",
+      "x": 0.54394,
+      "y": 0.81993,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 21
+    },
+    {
+      "id": "PTGS2",
+      "x": 0.11339,
+      "y": 0.37357,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 8
+    },
+    {
+      "id": "JAK1",
+      "x": 0.67662,
+      "y": 0.29168,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 35
+    },
+    {
+      "id": "FYN",
+      "x": 0.90403,
+      "y": 0.59037,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 16
+    },
+    {
+      "id": "MYC",
+      "x": 0.32823,
+      "y": 0.70086,
+      "importance": 0.56539,
+      "attributed": true,
+      "group": "Growth signaling",
+      "degree_full": 45
+    },
+    {
+      "id": "GSK3B",
+      "x": 0.27724,
+      "y": 0.48139,
+      "importance": 0.6207,
+      "attributed": true,
+      "group": "PI3K / AKT",
+      "degree_full": 30
+    },
+    {
+      "id": "TACSTD2",
+      "x": 0.5502,
+      "y": 0.65584,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 23
+    },
+    {
+      "id": "FOS",
+      "x": 0.25211,
+      "y": 0.78769,
+      "importance": 0.0,
+      "attributed": false,
+      "group": "Pathway neighbor",
+      "degree_full": 16
+    },
+    {
+      "id": "MAPK14",
+      "x": 0.35999,
+      "y": 0.53754,
+      "importance": 0.69086,
+      "attributed": true,
+      "group": "MAPK",
+      "degree_full": 45
+    }
+  ],
+  "edges": [
+    {
+      "source": "SRC",
+      "target": "AKT1"
+    },
+    {
+      "source": "SRC",
+      "target": "PIK3R1"
+    },
+    {
+      "source": "SRC",
+      "target": "PTPN11"
+    },
+    {
+      "source": "SRC",
+      "target": "STAT3"
+    },
+    {
+      "source": "SRC",
+      "target": "RAC1"
+    },
+    {
+      "source": "SRC",
+      "target": "EGFR"
+    },
+    {
+      "source": "SRC",
+      "target": "PTK2"
+    },
+    {
+      "source": "SRC",
+      "target": "MAPK14"
+    },
+    {
+      "source": "SRC",
+      "target": "PAK1"
+    },
+    {
+      "source": "SRC",
+      "target": "KDR"
+    },
+    {
+      "source": "SRC",
+      "target": "PRKCA"
+    },
+    {
+      "source": "SRC",
+      "target": "PIK3CA"
+    },
+    {
+      "source": "SRC",
+      "target": "UNC5B"
+    },
+    {
+      "source": "SRC",
+      "target": "CTNNB1"
+    },
+    {
+      "source": "MAPK3",
+      "target": "JUN"
+    },
+    {
+      "source": "MAPK3",
+      "target": "ELK1"
+    },
+    {
+      "source": "MAPK3",
+      "target": "MYC"
+    },
+    {
+      "source": "MAPK3",
+      "target": "MAPK1"
+    },
+    {
+      "source": "MAPK3",
+      "target": "FOS"
+    },
+    {
+      "source": "MAPK3",
+      "target": "RPS6KA5"
+    },
+    {
+      "source": "MAPK3",
+      "target": "EGFR"
+    },
+    {
+      "source": "MAPK3",
+      "target": "PRKCA"
+    },
+    {
+      "source": "MAPK3",
+      "target": "HDAC6"
+    },
+    {
+      "source": "RAC1",
+      "target": "MAPK8"
+    },
+    {
+      "source": "RAC1",
+      "target": "PIK3R1"
+    },
+    {
+      "source": "RAC1",
+      "target": "MAPK1"
+    },
+    {
+      "source": "RAC1",
+      "target": "PAK1"
+    },
+    {
+      "source": "RAC1",
+      "target": "UNC5B"
+    },
+    {
+      "source": "RAC1",
+      "target": "TACSTD2"
+    },
+    {
+      "source": "RAC1",
+      "target": "HDAC6"
+    },
+    {
+      "source": "RAC1",
+      "target": "PTK2"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "AKT1"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "PTK2"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "TP53"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "PTPN11"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "PIK3CA"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "EGFR"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "PRKCA"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "FYN"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "JAK1"
+    },
+    {
+      "source": "PIK3R1",
+      "target": "TACSTD2"
+    },
+    {
+      "source": "STAT3",
+      "target": "AKT1"
+    },
+    {
+      "source": "STAT3",
+      "target": "JAK1"
+    },
+    {
+      "source": "STAT3",
+      "target": "PTPN11"
+    },
+    {
+      "source": "STAT3",
+      "target": "FOS"
+    },
+    {
+      "source": "STAT3",
+      "target": "RELA"
+    },
+    {
+      "source": "STAT3",
+      "target": "MYC"
+    },
+    {
+      "source": "STAT3",
+      "target": "PIK3CA"
+    },
+    {
+      "source": "STAT3",
+      "target": "EGFR"
+    },
+    {
+      "source": "PAK1",
+      "target": "MAPK8"
+    },
+    {
+      "source": "PAK1",
+      "target": "AKT1"
+    },
+    {
+      "source": "PAK1",
+      "target": "EGFR"
+    },
+    {
+      "source": "PAK1",
+      "target": "CTNNB1"
+    },
+    {
+      "source": "PAK1",
+      "target": "MAPK14"
+    },
+    {
+      "source": "TP53",
+      "target": "MAPK8"
+    },
+    {
+      "source": "TP53",
+      "target": "AKT1"
+    },
+    {
+      "source": "TP53",
+      "target": "GSK3B"
+    },
+    {
+      "source": "TP53",
+      "target": "MYC"
+    },
+    {
+      "source": "TP53",
+      "target": "EGFR"
+    },
+    {
+      "source": "TP53",
+      "target": "CTNNB1"
+    },
+    {
+      "source": "TP53",
+      "target": "UNC5B"
+    },
+    {
+      "source": "TP53",
+      "target": "PTGS2"
+    },
+    {
+      "source": "RPS6KA5",
+      "target": "MAPK1"
+    },
+    {
+      "source": "RPS6KA5",
+      "target": "MYC"
+    },
+    {
+      "source": "RPS6KA5",
+      "target": "CREB1"
+    },
+    {
+      "source": "RPS6KA5",
+      "target": "MAPK14"
+    },
+    {
+      "source": "UNC5B",
+      "target": "PTPN11"
+    },
+    {
+      "source": "UNC5B",
+      "target": "PTK2"
+    },
+    {
+      "source": "UNC5B",
+      "target": "PRKCA"
+    },
+    {
+      "source": "UNC5B",
+      "target": "KDR"
+    },
+    {
+      "source": "UNC5B",
+      "target": "FYN"
+    },
+    {
+      "source": "EGFR",
+      "target": "JAK1"
+    },
+    {
+      "source": "EGFR",
+      "target": "MYC"
+    },
+    {
+      "source": "EGFR",
+      "target": "CTNNB1"
+    },
+    {
+      "source": "EGFR",
+      "target": "TACSTD2"
+    },
+    {
+      "source": "EGFR",
+      "target": "HDAC6"
+    },
+    {
+      "source": "ELK1",
+      "target": "MAPK1"
+    },
+    {
+      "source": "ELK1",
+      "target": "MYC"
+    },
+    {
+      "source": "ELK1",
+      "target": "MAPK14"
+    },
+    {
+      "source": "ELK1",
+      "target": "FOS"
+    },
+    {
+      "source": "AKT1",
+      "target": "GSK3B"
+    },
+    {
+      "source": "AKT1",
+      "target": "PIK3CA"
+    },
+    {
+      "source": "AKT1",
+      "target": "MAP3K5"
+    },
+    {
+      "source": "AKT1",
+      "target": "CREB1"
+    },
+    {
+      "source": "AKT1",
+      "target": "RELA"
+    },
+    {
+      "source": "AKT1",
+      "target": "NFKB1"
+    },
+    {
+      "source": "AKT1",
+      "target": "PTK2"
+    },
+    {
+      "source": "AKT1",
+      "target": "PTPN11"
+    },
+    {
+      "source": "AKT1",
+      "target": "JAK1"
+    },
+    {
+      "source": "AKT1",
+      "target": "KDR"
+    },
+    {
+      "source": "AKT1",
+      "target": "MAPK14"
+    },
+    {
+      "source": "AKT1",
+      "target": "FYN"
+    },
+    {
+      "source": "AKT1",
+      "target": "HDAC6"
+    },
+    {
+      "source": "MAP3K5",
+      "target": "MAPK8"
+    },
+    {
+      "source": "MAP3K5",
+      "target": "MAPK14"
+    },
+    {
+      "source": "MAP3K5",
+      "target": "KDR"
+    },
+    {
+      "source": "MAP3K5",
+      "target": "HDAC6"
+    },
+    {
+      "source": "NFKB1",
+      "target": "MAPK8"
+    },
+    {
+      "source": "NFKB1",
+      "target": "MAPK1"
+    },
+    {
+      "source": "NFKB1",
+      "target": "MYC"
+    },
+    {
+      "source": "NFKB1",
+      "target": "RELA"
+    },
+    {
+      "source": "NFKB1",
+      "target": "PTK2"
+    },
+    {
+      "source": "NFKB1",
+      "target": "PRKCA"
+    },
+    {
+      "source": "NFKB1",
+      "target": "TACSTD2"
+    },
+    {
+      "source": "CTNNB1",
+      "target": "GSK3B"
+    },
+    {
+      "source": "CTNNB1",
+      "target": "MYC"
+    },
+    {
+      "source": "CTNNB1",
+      "target": "RELA"
+    },
+    {
+      "source": "CTNNB1",
+      "target": "FYN"
+    },
+    {
+      "source": "CTNNB1",
+      "target": "HDAC6"
+    },
+    {
+      "source": "CTNNB1",
+      "target": "PRKCA"
+    },
+    {
+      "source": "CTNNB1",
+      "target": "PTGS2"
+    },
+    {
+      "source": "CTNNB1",
+      "target": "TACSTD2"
+    },
+    {
+      "source": "HDAC6",
+      "target": "GSK3B"
+    },
+    {
+      "source": "HDAC6",
+      "target": "MAPK1"
+    },
+    {
+      "source": "KDR",
+      "target": "PIK3CA"
+    },
+    {
+      "source": "KDR",
+      "target": "PRKCA"
+    },
+    {
+      "source": "MAPK1",
+      "target": "JUN"
+    },
+    {
+      "source": "MAPK1",
+      "target": "FOS"
+    },
+    {
+      "source": "MAPK1",
+      "target": "CREB1"
+    },
+    {
+      "source": "MAPK1",
+      "target": "PRKCA"
+    },
+    {
+      "source": "MAPK1",
+      "target": "PTGS2"
+    },
+    {
+      "source": "MAPK1",
+      "target": "PTK2"
+    },
+    {
+      "source": "MAPK1",
+      "target": "MYC"
+    },
+    {
+      "source": "JUN",
+      "target": "MAPK8"
+    },
+    {
+      "source": "JUN",
+      "target": "FOS"
+    },
+    {
+      "source": "JUN",
+      "target": "MAPK14"
+    },
+    {
+      "source": "JUN",
+      "target": "CREB1"
+    },
+    {
+      "source": "JUN",
+      "target": "PTGS2"
+    },
+    {
+      "source": "JUN",
+      "target": "TACSTD2"
+    },
+    {
+      "source": "MAPK8",
+      "target": "JAK1"
+    },
+    {
+      "source": "MAPK8",
+      "target": "FOS"
+    },
+    {
+      "source": "PTK2",
+      "target": "PTPN11"
+    },
+    {
+      "source": "PTK2",
+      "target": "CREB1"
+    },
+    {
+      "source": "PTK2",
+      "target": "PIK3CA"
+    },
+    {
+      "source": "PTK2",
+      "target": "TACSTD2"
+    },
+    {
+      "source": "PTPN11",
+      "target": "JAK1"
+    },
+    {
+      "source": "PTPN11",
+      "target": "PIK3CA"
+    },
+    {
+      "source": "CREB1",
+      "target": "FOS"
+    },
+    {
+      "source": "CREB1",
+      "target": "MAPK14"
+    },
+    {
+      "source": "CREB1",
+      "target": "PRKCA"
+    },
+    {
+      "source": "PRKCA",
+      "target": "MAPK14"
+    },
+    {
+      "source": "PIK3CA",
+      "target": "JAK1"
+    },
+    {
+      "source": "RELA",
+      "target": "GSK3B"
+    },
+    {
+      "source": "RELA",
+      "target": "MAPK14"
+    },
+    {
+      "source": "PTGS2",
+      "target": "MAPK14"
+    },
+    {
+      "source": "JAK1",
+      "target": "MAPK14"
+    },
+    {
+      "source": "MYC",
+      "target": "GSK3B"
+    },
+    {
+      "source": "MYC",
+      "target": "MAPK14"
+    },
+    {
+      "source": "FOS",
+      "target": "MAPK14"
+    }
+  ]
+}
