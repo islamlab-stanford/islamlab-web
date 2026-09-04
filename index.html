@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Islam Lab · Stanford University School of Medicine</title>
-<meta name="description" content="The Islam Lab at Stanford University School of Medicine develops artificial intelligence and statistical methods for biomedical research. Explore Graph-in-Graph, Dynomap, Graph2Image, Graph Foundation Model, and scVision.">
+<meta name="description" content="The Islam Lab at Stanford University School of Medicine develops artificial intelligence and statistical methods for biomedical research. Explore Graph Foundation Model, scVision, BioGlyph, Graph-in-Graph, Graph2Image, and Dynomap.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Islam Lab · Stanford University School of Medicine">
-<meta property="og:description" content="AI, statistics, and biomedical research at Stanford. Explore Graph-in-Graph, Dynomap, Graph2Image, Graph Foundation Model, and scVision.">
+<meta property="og:description" content="AI, statistics, and biomedical research at Stanford. Explore foundation models, graph and network learning, and tabular representation learning.">
 <meta property="og:image" content="https://islamlab.org/assets/lab-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -19,8 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="lab.css">
-<script src="lab.js" defer></script>
+<link rel="stylesheet" href="lab.css?v=20260904-4">
+<script src="lab.js?v=20260904-4" defer></script>
 </head>
 <body>
 
@@ -52,77 +52,129 @@
     <h2>Open research from the lab</h2>
     <p class="sub">Models, tools, and methods we develop and share across biomedical tables, networks, and single-cell biology.</p>
 
-    <div class="project-grid">
-    <article class="project">
-      <div class="thumb"><a href="/gig/"><img src="gig/assets/gig-cover.png" alt="Graph-in-Graph cover: one patient transcriptome selects curated pathways that merge into a patient-specific molecular graph."></a></div>
-      <div class="body">
-        <span class="ptag">Knowledge-guided graph learning &middot; Transcriptomics</span>
-        <h3>Graph-in-Graph</h3>
-        <p>A knowledge-guided framework that turns each patient transcriptome into a pathway-structured molecular graph. Graph neural networks learn from patient-specific expression while preserving curated gene&ndash;gene organization for prediction and interpretation.</p>
-        <a class="plink" href="/gig/">Explore Graph-in-Graph <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2605.24162" target="_blank" rel="noopener">arXiv:2605.24162</a></span><span>Patient-specific graphs &middot; Pathway topology</span></div>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="thumb gfm-thumb">
-        <a href="/graph-foundation-model/" aria-label="Explore Graph Foundation Model">
-          <div class="gfm-story" data-gfm-stage="2" aria-hidden="true">
-            <div class="gfm-canvas">
-              <div class="gfm-grid"></div>
-              <div class="gfm-prompts">
-                <span class="gfm-prompt prompt-one">degree &middot; 12</span>
-                <span class="gfm-prompt prompt-two">core &middot; 4</span>
-                <span class="gfm-prompt prompt-three">community &middot; 5</span>
+    <div class="project-browser">
+      <section class="project-category" aria-labelledby="foundation-projects">
+        <div class="project-category-heading">
+          <div><h3 id="foundation-projects">Foundation Models</h3><p>Pretrained representations designed to transfer across cells, networks, and biomedical tasks.</p></div>
+        </div>
+        <div class="project-carousel" data-project-carousel>
+          <button class="project-arrow project-arrow-prev" type="button" data-carousel-prev aria-label="Previous foundation model">&#8592;</button>
+          <div class="project-stage" tabindex="0" aria-label="Foundation model projects">
+        <article class="project project-slide is-active" data-project-category="foundation" data-project-order="1" data-project-name="Graph Foundation Model">
+          <div class="thumb gfm-thumb">
+            <a href="/graph-foundation-model/" aria-label="Explore Graph Foundation Model">
+              <div class="gfm-story" data-gfm-stage="2" aria-hidden="true">
+                <div class="gfm-canvas">
+                  <div class="gfm-grid"></div>
+                  <div class="gfm-prompts">
+                    <span class="gfm-prompt prompt-one">degree &middot; 12</span>
+                    <span class="gfm-prompt prompt-two">core &middot; 4</span>
+                    <span class="gfm-prompt prompt-three">community &middot; 5</span>
+                  </div>
+                  <div class="gfm-core"><strong>GFM</strong><small>shared representation</small></div>
+                  <div class="gfm-transfer">unseen biological graph</div>
+                </div>
+                <div class="gfm-caption"><span>03</span><strong>Align across graphs</strong><small>shared representation</small></div>
               </div>
-              <div class="gfm-core"><strong>GFM</strong><small>shared representation</small></div>
-              <div class="gfm-transfer">unseen biological graph</div>
-            </div>
-            <div class="gfm-caption"><span>03</span><strong>Align across graphs</strong><small>shared representation</small></div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="body">
-        <span class="ptag">Foundation model &middot; Cross-graph transfer</span>
-        <h3>Graph Foundation Model</h3>
-        <p>A topology-first foundation model that describes each node by its structural role, aligns that description with a graph representation, and transfers the resulting knowledge to unseen biological and non-biological networks.</p>
-        <a class="plink" href="/graph-foundation-model/">Explore Graph Foundation Model <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2604.06391" target="_blank" rel="noopener">arXiv:2604.06391</a></span><span>Structural language &middot; Transfer learning</span></div>
-      </div>
-    </article>
+          <div class="body">
+            <span class="ptag">Foundation model &middot; Cross-graph transfer</span>
+            <h3>Graph Foundation Model</h3>
+            <p>A topology-first foundation model that describes each node by its structural role, aligns that description with a graph representation, and transfers the resulting knowledge to unseen biological and non-biological networks.</p>
+            <a class="plink" href="/graph-foundation-model/">Explore Graph Foundation Model <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2604.06391" target="_blank" rel="noopener">arXiv:2604.06391</a></span><span>Structural language &middot; Transfer learning</span></div>
+          </div>
+        </article>
 
-    <article class="project">
-      <div class="thumb"><a href="/dynomap/"><img src="dynomap/assets/og.png" alt="Dynomap cover: biomedical tables flowing into a learned spatial feature map."></a></div>
-      <div class="body">
-        <span class="ptag">Representation learning &middot; Biomedical tabular data</span>
-        <h3>Dynomap</h3>
-        <p>A differentiable framework that learns where tabular features belong in a two-dimensional map while it learns the prediction task. Retrain Dynomap on a labelled dataset, evaluate pooled out-of-fold performance, and inspect its learned topology and feature attribution.</p>
-        <a class="plink" href="/dynomap/">Explore Dynomap <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2603.22675" target="_blank" rel="noopener">arXiv:2603.22675</a></span><span>Differentiable rendering &middot; Feature topology</span></div>
-      </div>
-    </article>
+        <article class="project project-slide" data-project-category="foundation" data-project-order="2" data-project-name="scVision" hidden>
+          <div class="thumb"><a href="/scvision/"><img src="scvision/assets/fig1.png" alt="scVision overview: cells rendered as continuous images, a masked-autoencoder vision transformer, and the downstream tasks its frozen encoder supports."></a></div>
+          <div class="body">
+            <span class="ptag">Foundation model &middot; Single-cell biology</span>
+            <h3>scVision</h3>
+            <p>A vision foundation model for single-cell biology. It renders each cell as a continuous image via optimal-transport gene cartography and learns one frozen encoder by masked-image pretraining on 72 million human cells &mdash; the most accurate zero-shot cell-type annotator on every held-out atlas we tested.</p>
+            <a class="plink" href="/scvision/">Explore scVision <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2607.14163" target="_blank" rel="noopener">arXiv:2607.14163</a></span><span>Vision transformer &middot; Masked autoencoder</span></div>
+          </div>
+        </article>
 
-    <article class="project">
-      <div class="thumb"><a href="/graph2image/"><img src="assets/graph2image-cover.png" alt="Graph2Image cover: a biological network transformed into separate, size-matched feature and structure image channels."></a></div>
-      <div class="body">
-        <span class="ptag">Graph representation learning &middot; Biological networks</span>
-        <h3>Graph2Image</h3>
-        <p>A semantic-cartography framework that independently lays out network structure and node attributes, then stacks the size-matched channels into a fixed-size representation for vision models. The analysis preserves a path from feature-channel attribution back to the original node attributes.</p>
-        <a class="plink" href="/graph2image/">Explore Graph2Image <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <div class="meta"><span>2025 &middot; <a href="https://arxiv.org/abs/2512.07040" target="_blank" rel="noopener">arXiv:2512.07040</a></span><span>Semantic cartography &middot; Separate image layouts</span></div>
-      </div>
-    </article>
+          </div>
+          <button class="project-arrow project-arrow-next" type="button" data-carousel-next aria-label="Next foundation model">&#8594;</button>
+          <div class="project-carousel-footer"><div class="project-dots" data-carousel-dots aria-label="Choose a foundation model"></div><span data-carousel-status aria-live="polite">1 / 2</span></div>
+        </div>
+      </section>
 
-    <article class="project">
-      <div class="thumb"><a href="/scvision/"><img src="scvision/assets/fig1.png" alt="scVision overview: cells rendered as continuous images, a masked-autoencoder vision transformer, and the downstream tasks its frozen encoder supports."></a></div>
-      <div class="body">
-        <span class="ptag">Foundation model &middot; Single-cell biology</span>
-        <h3>scVision</h3>
-        <p>A vision foundation model for single-cell biology. It renders each cell as a continuous image via optimal-transport gene cartography and learns one frozen encoder by masked-image pretraining on 72 million human cells &mdash; the most accurate zero-shot cell-type annotator on every held-out atlas we tested.</p>
-        <a class="plink" href="/scvision/">Explore scVision <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2607.14163" target="_blank" rel="noopener">arXiv:2607.14163</a></span><span>Vision transformer &middot; Masked autoencoder</span></div>
-      </div>
-    </article>
+      <section class="project-category" aria-labelledby="graph-projects">
+        <div class="project-category-heading">
+          <div><h3 id="graph-projects">Graph &amp; Network Models</h3><p>Methods that describe, construct, and learn from relational structure in biological systems.</p></div>
+        </div>
+        <div class="project-carousel" data-project-carousel>
+          <button class="project-arrow project-arrow-prev" type="button" data-carousel-prev aria-label="Previous graph model">&#8592;</button>
+          <div class="project-stage" tabindex="0" aria-label="Graph and network model projects">
+
+        <article class="project project-slide" data-project-category="graph" data-project-order="3" data-project-name="BioGlyph" hidden>
+          <div class="thumb"><a href="/bioglyph/"><img src="assets/bioglyph-cover.svg" alt="BioGlyph cover: one node in a network compiles to three named structural roles, each with the measurements that triggered it."></a></div>
+          <div class="body">
+            <span class="ptag">Structural language &middot; Graph reasoning</span>
+            <h3>BioGlyph</h3>
+            <p>A deterministic compiler that states a network's structure in words. It runs classical graph algorithms, applies one fixed rule per structural role, and writes each role with the measurements that triggered it and what removing that part would do &mdash; so a frozen language model can reason about topology and counterfactuals with no task-specific training.</p>
+            <a class="plink" href="/bioglyph/">Explore BioGlyph <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <div class="meta"><span>2026 &middot; manuscript in preparation</span><span>Named structural roles &middot; Interpretable topology</span></div>
+          </div>
+        </article>
+
+        <article class="project project-slide" data-project-category="graph" data-project-order="2" data-project-name="Graph-in-Graph" hidden>
+          <div class="thumb"><a href="/gig/"><img src="gig/assets/gig-cover.png" alt="Graph-in-Graph cover: one patient transcriptome selects curated pathways that merge into a patient-specific molecular graph."></a></div>
+          <div class="body">
+            <span class="ptag">Knowledge-guided graph learning &middot; Transcriptomics</span>
+            <h3>Graph-in-Graph</h3>
+            <p>A knowledge-guided framework that turns each patient transcriptome into a pathway-structured molecular graph. Graph neural networks learn from patient-specific expression while preserving curated gene&ndash;gene organization for prediction and interpretation.</p>
+            <a class="plink" href="/gig/">Explore Graph-in-Graph <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2605.24162" target="_blank" rel="noopener">arXiv:2605.24162</a></span><span>Patient-specific graphs &middot; Pathway topology</span></div>
+          </div>
+        </article>
+
+        <article class="project project-slide is-active" data-project-category="graph" data-project-order="1" data-project-name="Graph2Image">
+          <div class="thumb"><a href="/graph2image/"><img src="assets/graph2image-cover.png" alt="Graph2Image cover: a biological network transformed into separate, size-matched feature and structure image channels."></a></div>
+          <div class="body">
+            <span class="ptag">Graph representation learning &middot; Biological networks</span>
+            <h3>Graph2Image</h3>
+            <p>A semantic-cartography framework that independently lays out network structure and node attributes, then stacks the size-matched channels into a fixed-size representation for vision models. The analysis preserves a path from feature-channel attribution back to the original node attributes.</p>
+            <a class="plink" href="/graph2image/">Explore Graph2Image <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <div class="meta"><span>2025 &middot; <a href="https://arxiv.org/abs/2512.07040" target="_blank" rel="noopener">arXiv:2512.07040</a></span><span>Semantic cartography &middot; Separate image layouts</span></div>
+          </div>
+        </article>
+
+          </div>
+          <button class="project-arrow project-arrow-next" type="button" data-carousel-next aria-label="Next graph model">&#8594;</button>
+          <div class="project-carousel-footer"><div class="project-dots" data-carousel-dots aria-label="Choose a graph model"></div><span data-carousel-status aria-live="polite">1 / 3</span></div>
+        </div>
+      </section>
+
+      <section class="project-category" aria-labelledby="tabular-projects">
+        <div class="project-category-heading">
+          <div><h3 id="tabular-projects">Tabular Models</h3><p>Models that discover task-relevant organization directly from high-dimensional biomedical tables.</p></div>
+        </div>
+        <div class="project-carousel" data-project-carousel>
+          <button class="project-arrow project-arrow-prev" type="button" data-carousel-prev aria-label="Previous tabular model">&#8592;</button>
+          <div class="project-stage" tabindex="0" aria-label="Tabular model projects">
+
+        <article class="project project-slide is-active" data-project-category="tabular" data-project-order="1" data-project-name="Dynomap">
+          <div class="thumb"><a href="/dynomap/"><img src="dynomap/assets/og.png" alt="Dynomap cover: biomedical tables flowing into a learned spatial feature map."></a></div>
+          <div class="body">
+            <span class="ptag">Representation learning &middot; Biomedical tabular data</span>
+            <h3>Dynomap</h3>
+            <p>A differentiable framework that learns where tabular features belong in a two-dimensional map while it learns the prediction task. Retrain Dynomap on a labelled dataset, evaluate pooled out-of-fold performance, and inspect its learned topology and feature attribution.</p>
+            <a class="plink" href="/dynomap/">Explore Dynomap <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2603.22675" target="_blank" rel="noopener">arXiv:2603.22675</a></span><span>Differentiable rendering &middot; Feature topology</span></div>
+          </div>
+        </article>
+
+          </div>
+          <button class="project-arrow project-arrow-next" type="button" data-carousel-next aria-label="Next tabular model">&#8594;</button>
+          <div class="project-carousel-footer"><div class="project-dots" data-carousel-dots aria-label="Choose a tabular model"></div><span data-carousel-status aria-live="polite">1 / 1</span></div>
+        </div>
+      </section>
     </div>
 
     <div class="soon"><span class="dot"></span>More projects from the lab are on the way.</div>
@@ -194,6 +246,7 @@
       <a href="#research">Research</a>
       <a href="/team/">Team</a>
       <a href="/publications/">Publications</a>
+      <a href="/bioglyph/">BioGlyph</a>
       <a href="/gig/">Graph-in-Graph</a>
       <a href="/dynomap/">Dynomap</a>
       <a href="/graph2image/">Graph2Image</a>

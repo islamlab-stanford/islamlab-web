@@ -1,0 +1,29 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:14.000
+A network written out as a list of edges is complete, but it is not readable. A language model has to recover the structure before it can answer anything about it.
+
+2
+00:00:14.000 --> 00:00:27.000
+BioGlyph starts by retrieving the region around the nodes in the question. Everything after this is computed on that region, never on the whole network.
+
+3
+00:00:27.000 --> 00:00:41.648
+Classical algorithms do the arithmetic. Degree, betweenness, k core, articulation points, bridges and communities, computed exactly, with nothing learned.
+
+4
+00:00:41.648 --> 00:00:56.648
+One fixed rule then assigns each of eleven structural roles. A node whose removal splits its component is a cut node, and the algorithm decides that, not the model.
+
+5
+00:00:56.648 --> 00:01:12.648
+Every role carries the measurements that triggered it and what would happen if that part were removed. That last clause is exactly what a table of numbers leaves out.
+
+6
+00:01:12.648 --> 00:01:30.176
+A frozen open model reading these descriptions answers seventy point six percent of benchmark questions correctly. Reading the identical measurements as a table it manages thirty nine point five percent, which is worse than showing it no graph at all.
+
+7
+00:01:30.176 --> 00:01:47.128
+The same roles carry biological meaning. In the budding yeast interactome, cross community connectors are essential fifty seven point six percent of the time against a background of thirty point nine, with the labels withheld from the compiler.

@@ -51,13 +51,13 @@ For plasma cell-free RNA and thirty-two-class pan-cancer prediction, randomizati
 The result suggests that biological topology contributes most when the predictive signal is weak, distributed, or heterogeneous.
 
 13
-00:02:13.240 --> 00:02:30.740
+00:02:13.240 --> 00:02:30.120
 Integrated Gradients returns predictions to genes on the patient graph. Prostate attributions highlight connected signaling components including AKT1, MAP kinases, PIK3R1, EGFR, and beta-catenin.
 
 14
-00:02:30.740 --> 00:02:41.190
+00:02:30.120 --> 00:02:40.570
 Attribution describes what the fitted model used. It creates testable hypotheses, but it does not establish mechanism or causality.
 
 15
-00:02:41.190 --> 00:02:53.320
+00:02:40.570 --> 00:02:52.700
 Explore the evidence and interactive patient graph at islamlab dot org slash gig, or validate your own expression and label files in the authenticated workspace.

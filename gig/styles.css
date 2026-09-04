@@ -543,9 +543,10 @@ h3 { font-size: clamp(25px, 2.4vw, 34px); line-height: 1.15; }
 .citation-grid pre { min-width: 0; margin: 0; padding: 24px; overflow: auto; border: 1px solid var(--line); background: var(--white); color: var(--ink-soft); font-family: var(--mono); font-size: 10px; line-height: 1.7; white-space: pre; }
 .authors { margin-top: 70px; padding-top: 34px; border-top: 1px solid var(--line-dark); }
 .author-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; }
-.author-grid span { min-width: 0; color: var(--muted); font-size: 12px; }
+.author-grid > span { min-width: 0; color: var(--muted); font-size: 12px; }
 .author-grid b { display: block; margin-bottom: 5px; color: var(--ink); font-family: var(--serif); font-size: 18px; font-weight: 500; overflow-wrap: anywhere; }
 .author-note { color: var(--muted); font-size: 11px; }
+.cofirst-authors .author-note { display: block; margin-top: 6px; font-size: 9px; }
 
 .cta { padding: 100px 0; background: var(--coral); color: white; }
 .cta-grid { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(350px,.65fr); gap: clamp(50px,9vw,120px); align-items: center; }
