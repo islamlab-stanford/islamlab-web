@@ -216,3 +216,7 @@ footer .col h4{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;co
 footer .col a{display:block;color:#cdd1d4;font-size:.92rem;padding:4px 0}
 footer .col a:hover{color:#fff;text-decoration:none}
 footer .fine{width:100%;border-top:1px solid rgba(255,255,255,.1);margin-top:30px;padding-top:20px;font-size:.82rem;color:#7b8187;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+
+/* Keep foundation-model controls clear of artwork and copy on narrow screens. */
+#molcrew{scroll-margin-top:100px}
+@media(max-width:860px){[aria-labelledby="foundation-projects"] .project-arrow{top:auto;bottom:0;transform:none;width:36px;height:32px}[aria-labelledby="foundation-projects"] .project-carousel-footer{min-height:32px}}

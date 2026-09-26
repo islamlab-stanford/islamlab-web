@@ -12,12 +12,14 @@
     if (!slides.length || !previous || !next || !status || !dots) return;
 
     let index = Math.max(0, slides.findIndex((slide) => slide.classList.contains("is-active")));
+    const anchoredSlide = slides.findIndex((slide) => slide.id && `#${slide.id}` === window.location.hash);
+    if (anchoredSlide >= 0) index = anchoredSlide;
     let timer;
 
     const stop = () => window.clearInterval(timer);
     const start = () => {
       stop();
-      if (slides.length < 2 || reducedMotion.matches || document.hidden) return;
+      if (slides.length < 2 || reducedMotion.matches || document.hidden || anchoredSlide >= 0) return;
       timer = window.setInterval(() => {
         index = (index + 1) % slides.length;
         render();
