@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-labelledby="t d">
+  <title id="t">Jeus cover</title>
+  <desc id="d">A folder of biomedical data and a question go into Jeus, which works step by step with a language model and returns an answer.</desc>
+  <defs>
+    <style>
+      .serif{font-family:"Source Serif 4",Georgia,serif}
+      .sans{font-family:"Source Sans 3",Arial,sans-serif}
+      .mono{font-family:"IBM Plex Mono",Consolas,monospace}
+    </style>
+  </defs>
+  <rect width="1200" height="675" fill="#f7f5f0"/>
+
+  <!-- the data folder and the question -->
+  <g transform="translate(70,150)">
+    <path d="M0 40 h110 l26 -26 h150 a16 16 0 0 1 16 16 v240 a16 16 0 0 1 -16 16 h-270 a16 16 0 0 1 -16 -16 v-214 a16 16 0 0 1 16 -16z" fill="#fff" stroke="#17202c" stroke-width="3"/>
+    <rect x="36" y="88" width="120" height="14" rx="3" fill="#476d89" opacity=".75"/>
+    <rect x="36" y="118" width="190" height="14" rx="3" fill="#628060" opacity=".75"/>
+    <rect x="36" y="148" width="150" height="14" rx="3" fill="#b38536" opacity=".75"/>
+    <rect x="36" y="178" width="210" height="14" rx="3" fill="#476d89" opacity=".45"/>
+    <rect x="36" y="208" width="90" height="14" rx="3" fill="#628060" opacity=".45"/>
+    <text x="0" y="330" class="sans" font-size="26" font-weight="600" fill="#17202c">data</text>
+    <text x="0" y="364" class="sans" font-size="20" fill="#465262">expression tables, single-cell files, records</text>
+  </g>
+  <g transform="translate(70,470)">
+    <rect x="0" y="0" width="330" height="92" rx="10" fill="#fff" stroke="#17202c" stroke-width="3"/>
+    <text x="22" y="40" class="serif" font-size="22" fill="#17202c">Which genes separate the</text>
+    <text x="22" y="70" class="serif" font-size="22" fill="#17202c">two patient groups?</text>
+    <text x="0" y="128" class="sans" font-size="26" font-weight="600" fill="#17202c">a question</text>
+  </g>
+
+  <!-- the arrows -->
+  <g stroke="#17202c" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M430 330 h100"/>
+    <path d="M510 316 l20 14 l-20 14"/>
+    <path d="M790 330 h100"/>
+    <path d="M870 316 l20 14 l-20 14"/>
+  </g>
+
+  <!-- Jeus -->
+  <g transform="translate(560,230)">
+    <rect x="0" y="0" width="210" height="200" rx="18" fill="#17202c"/>
+    <text x="105" y="92" text-anchor="middle" class="serif" font-size="58" font-weight="700" fill="#fff">Jeus</text>
+    <circle cx="62" cy="140" r="9" fill="#f2c94c"/>
+    <circle cx="97" cy="152" r="9" fill="#e07a5f"/>
+    <circle cx="130" cy="138" r="8" fill="#4f7290"/>
+    <circle cx="156" cy="156" r="7" fill="#7f9d6a"/>
+    <text x="105" y="184" text-anchor="middle" class="mono" font-size="13" fill="#bbc3cc">step by step</text>
+  </g>
+  <text x="665" y="470" text-anchor="middle" class="sans" font-size="22" fill="#465262">open-weight or proprietary model</text>
+  <text x="665" y="500" text-anchor="middle" class="sans" font-size="22" fill="#465262">every step recorded</text>
+
+  <!-- the answer -->
+  <g transform="translate(920,235)">
+    <rect x="0" y="0" width="220" height="190" rx="14" fill="#fff" stroke="#a83f35" stroke-width="3"/>
+    <path d="M28 44 l16 16 l34 -34" fill="none" stroke="#a83f35" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="28" y="84" width="150" height="12" rx="3" fill="#17202c" opacity=".8"/>
+    <rect x="28" y="110" width="120" height="12" rx="3" fill="#17202c" opacity=".55"/>
+    <rect x="28" y="136" width="164" height="12" rx="3" fill="#17202c" opacity=".35"/>
+    <text x="110" y="230" text-anchor="middle" class="sans" font-size="26" font-weight="600" fill="#17202c">an answer</text>
+    <text x="110" y="262" text-anchor="middle" class="sans" font-size="20" fill="#465262">with its evidence</text>
+  </g>
+
+  <text x="70" y="78" class="sans" font-size="20" fill="#a83f35" font-weight="700" letter-spacing="3">BIOMEDICAL AI AGENT</text>
+</svg>
