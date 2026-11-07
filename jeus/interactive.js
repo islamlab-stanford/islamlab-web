@@ -225,6 +225,30 @@
       "Biomni A1 was evaluated on BixBench and Verified-50. Paired differences and their 95% confidence intervals are in the manuscript; several of the gaps between Jeus, Codex CLI and Claude Code are within the interval that includes zero."]));
   }
 
+  /* ------------------------------------------------------------- captions */
+  function initCaptions() {
+    var video = document.getElementById("jeusExplainerVideo"), button = document.getElementById("videoCcToggle");
+    if (!video || !button) return;
+    function track() { var t = video.textTracks; return t && t.length ? t[0] : null; }
+    function render(on) {
+      button.setAttribute("aria-pressed", String(on));
+      button.setAttribute("aria-label", on ? "Turn captions off" : "Turn captions on");
+      button.title = on ? "Turn captions off" : "Turn captions on";
+      button.querySelector(".video-cc-state").textContent = on ? "On" : "Off";
+    }
+    var t = track();
+    if (t) t.mode = "hidden";
+    render(false);
+    button.addEventListener("click", function () {
+      var tr = track();
+      if (!tr) return;
+      var on = tr.mode !== "showing";
+      tr.mode = on ? "showing" : "hidden";
+      render(on);
+    });
+  }
+
   initExamples();
   initChart();
+  initCaptions();
 })();

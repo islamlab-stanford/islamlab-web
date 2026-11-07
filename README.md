@@ -7,7 +7,7 @@ Source for the **Islam Lab** website — a projects hub for the lab's open resea
 ## Live
 
 - **Home** — https://islamlab.org
-- **Jeus** — https://islamlab.org/jeus · an AI agent for biomedical data analysis: the manuscript's worked examples and headline results
+- **Jeus** — https://islamlab.org/jeus · an AI agent for biomedical data analysis: a two-minute explainer, the manuscript's worked examples and headline results
 - **Graph-in-Graph** — https://islamlab.org/gig · patient-specific pathway graphs for transcriptomic prediction
 - **Dynomap** — https://islamlab.org/dynomap · task-adaptive spatial representations for biomedical tabular data
 - **Graph2Image** — https://islamlab.org/graph2image · semantic cartography for biological networks
@@ -22,7 +22,9 @@ jeus/               # Jeus project page: the manuscript's worked examples and he
   index.html
   style.css
   interactive.js
-  assets/           # examples.js, results.js (built from the manuscript's records), og.png
+  assets/           # examples.js, results.js (built from the manuscript's records), og.png,
+                    # the explainer video (jeus_explainer.mp4, its poster and captions)
+  video/            # how the explainer is made: script.json, narrate.py, scenes.py, build.py
 scvision/           # scVision project page
   index.html
   style.css

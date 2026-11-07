@@ -1,0 +1,10 @@
+# Build intermediates, all regenerable and none of them served by the site.
+#   wav/           narrate.py rewrites these from script.json in seconds
+#   voice_samples/ one line per candidate voice, for choosing between them locally
+#   preview/       single-frame renders used while iterating on scenes.py
+# The shipped artifacts live in ../assets/ and are tracked there.
+wav/
+voice_samples/
+preview/
+__pycache__/
+*.pyc

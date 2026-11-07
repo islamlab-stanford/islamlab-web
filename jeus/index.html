@@ -27,6 +27,7 @@
   <div class="wrap nav-inner">
     <a class="brand" href="/"><span class="glyph"></span>Islam<b>Lab</b></a>
     <div class="nav-links">
+      <a href="#watch">Watch</a>
       <a href="#examples">Examples</a>
       <a href="#results">Results</a>
       <a href="#paper">Manuscript</a>
@@ -44,7 +45,8 @@
     returns an answer. This page shows the worked examples from our manuscript and a few of its headline
     results.</p>
     <div class="hero-actions">
-      <a class="button primary" href="#examples">See the examples</a>
+      <a class="button primary" href="#watch">Watch the explainer</a>
+      <a class="button ghost" href="#examples">See the examples</a>
       <a class="button ghost" href="#results">Headline results</a>
     </div>
   </div>
@@ -56,6 +58,38 @@
     <div><strong>Highest five-model mean</strong><span>on BixBench, Verified-50 and BAISBench against Codex CLI and Claude Code, and above Biomni A1 on BixBench and Verified-50 &middot; five open-weight models, one evaluation per agent, model and question</span></div>
     <div><strong>4.1&ndash;24.4&times;</strong><span>peak process memory of Codex CLI, Claude Code and Biomni A1 relative to Jeus, across the biomedical benchmark summaries</span></div>
     <div><strong>24&ndash;81% lower</strong><span>recorded model-access costs with proprietary models, in 14 of 16 benchmark comparisons</span></div>
+  </div>
+</section>
+
+<section id="watch" class="watch-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Watch &middot; narrated explainer</div>
+        <h2>See a question become an answer.</h2>
+      </div>
+      <p>Two minutes: a folder of data and a question, the steps Jeus takes, one published question with
+      every agent's recorded outcome, and the headline results of the manuscript.</p>
+    </div>
+    <figure class="paper-figure video-figure">
+      <div class="media-frame video-frame">
+        <video id="jeusExplainerVideo" controls preload="metadata" playsinline
+               poster="assets/jeus-explainer-poster.jpg" width="1280" height="720">
+          <source src="assets/jeus_explainer.mp4" type="video/mp4">
+          <track kind="captions" srclang="en" label="English" src="assets/jeus-explainer-captions.vtt">
+          Your browser cannot play this video.
+          <a href="assets/jeus_explainer.mp4">Download it instead.</a>
+        </video>
+        <button class="video-cc-toggle" id="videoCcToggle" type="button" aria-pressed="false"
+                aria-label="Turn captions on" title="Turn captions on">
+          <span class="video-cc-mark">CC</span><span class="video-cc-state">Off</span>
+        </button>
+      </div>
+      <figcaption><b class="fignum">Video 1</b> <b>How Jeus answers a question.</b> A narrated, captioned
+      animation follows a question from the data folder to the answer, then shows the BAISBench worked
+      example with every agent's recorded outcome and the manuscript's headline numbers. Every number is
+      from the manuscript's released records. The narration is synthesized speech.</figcaption>
+    </figure>
   </div>
 </section>
 

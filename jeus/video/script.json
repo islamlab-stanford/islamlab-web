@@ -1,0 +1,91 @@
+{
+  "title": "Jeus: ask your data a question",
+  "reference": "Modelled on bioglyph/video/script.json: 7 segments, under two minutes, 13-16 s each, two or three declarative sentences per segment, no filler. Every number is from the manuscript's released records (jeus/assets/results.js and examples.js); scenes.py reads them from those files so the picture and the voice cannot drift apart.",
+  "voice_notes": "Numbers are written the way the neural voice reads them correctly. Percentages spelled as 'percent'. 'FOXL1 positive' rather than 'FOXL1+'. Model names as spoken: 'GLM five point three'. Each segment's `caption` is the written form of the same sentences (digits, symbols, the URL) and goes into the WebVTT track; `narration` is what is spoken.",
+  "segments": [
+    {
+      "n": 1,
+      "seconds": 14,
+      "narration": "A folder of biomedical data, and a question. Which genes separate the two patient groups? Answering it means loading the files, choosing a method, writing the code, running it, and reading what comes back.",
+      "visual": "Left: a folder card whose file list types in, in mono. Right: the question in serif with a blinking cursor. Lower: the five verbs appear one by one.",
+      "numbers_used": [],
+      "caption": "A folder of biomedical data, and a question. Which genes separate the two patient groups? Answering it means loading the files, choosing a method, writing the code, running it, and reading what comes back."
+    },
+    {
+      "n": 2,
+      "seconds": 14,
+      "narration": "Jeus is an AI agent that does this with a language model, open-weight or proprietary. It writes and runs analysis code one step at a time, and every step is recorded.",
+      "visual": "A vertical timeline of steps with ticks landing one after another: list the files, write the analysis, run it, read the result, go on to the next step, write the answer. Right: a log card that fills line by line.",
+      "numbers_used": [],
+      "caption": "Jeus is an AI agent that does this with a language model, open-weight or proprietary. It writes and runs analysis code one step at a time, and every step is recorded."
+    },
+    {
+      "n": 3,
+      "seconds": 15,
+      "narration": "Take a question from BAISBench, a benchmark built on published single-cell studies. What role did FOXL1 positive fibroblasts play in intestinal development? Four options, and the answer key says A.",
+      "visual": "The published question as a card: the stem in serif, the four options A to D in sans with mono letters, then 'answer key: A' in accent.",
+      "numbers_used": [],
+      "caption": "Take a question from BAISBench, a benchmark built on published single-cell studies. What role did FOXL1+ fibroblasts play in intestinal development? Four options, and the answer key says A."
+    },
+    {
+      "n": 4,
+      "seconds": 16,
+      "narration": "With GLM five point three, Jeus read the single-cell data, tabulated candidate genes across the fetal cell clusters, and answered A in twenty-one model calls. The same model in Codex CLI answered A and D; in Claude Code, A.",
+      "visual": "Three outcome cards side by side, Jeus first with an accent border: the answer letters large, correct or incorrect, calls and tokens. Under Jeus's card, its recorded method summary from the manuscript.",
+      "numbers_used": [
+        "21 calls",
+        "470,963 tokens",
+        "19 calls",
+        "528,249 tokens",
+        "19 calls",
+        "564,613 tokens"
+      ],
+      "caption": "With GLM-5.3, Jeus read the single-cell data, tabulated candidate genes across the fetal cell clusters, and answered A in 21 model calls. The same model in Codex CLI answered A and D; in Claude Code, A."
+    },
+    {
+      "n": 5,
+      "seconds": 16,
+      "narration": "Across five open-weight models and three benchmarks, Jeus had the highest five-model mean: fifty-one point three percent on BixBench, eighty-four point four on Verified-50, and sixty-eight point zero on BAISBench.",
+      "visual": "Grouped bars growing from a shared axis for BixBench, Verified-50 and BAISBench: Jeus in accent, Codex CLI blue, Claude Code green, Biomni A1 plum where evaluated, each labelled with its value.",
+      "numbers_used": [
+        "51.3",
+        "49.5",
+        "47.9",
+        "46.3",
+        "84.4",
+        "82.4",
+        "82.8",
+        "79.2",
+        "68.0",
+        "61.4",
+        "65.1"
+      ],
+      "caption": "Across five open-weight models and three benchmarks, Jeus had the highest five-model mean: 51.3% on BixBench, 84.4% on Verified-50, and 68.0% on BAISBench."
+    },
+    {
+      "n": 6,
+      "seconds": 16,
+      "narration": "The other agents used four point one to twenty-four point four times the peak process memory of Jeus. With Claude Sonnet 5 and GPT-6 Sol, Jeus's model-access costs were twenty-four to eighty-one percent lower in fourteen of sixteen comparisons.",
+      "visual": "Two stat cards fading in: '4.1–24.4×' with 'peak process memory of Codex CLI, Claude Code and Biomni A1, relative to Jeus, 28 benchmark summaries', and '24–81% lower' with 'model-access costs, 14 of 16 comparisons'. The numbers are shown as they are, never counted up, so a paused frame never shows a wrong value.",
+      "numbers_used": [
+        "4.1",
+        "24.4",
+        "28",
+        "24",
+        "81",
+        "14 of 16"
+      ],
+      "caption": "The other agents used 4.1 to 24.4 times the peak process memory of Jeus. With Claude Sonnet 5 and GPT-6 Sol, Jeus's model-access costs were 24 to 81 percent lower in 14 of 16 comparisons."
+    },
+    {
+      "n": 7,
+      "seconds": 14,
+      "narration": "The manuscript also evaluates twenty-four clinical prediction tasks with the same agents and models. Every number here comes from its released records. Islam lab dot org, slash jeus.",
+      "visual": "Closing card: the Jeus wordmark, 'islamlab.org/jeus', and a caps line: five benchmarks, 24 clinical prediction tasks, open-weight or proprietary models.",
+      "numbers_used": [
+        "24 clinical prediction tasks"
+      ],
+      "caption": "The manuscript also evaluates 24 clinical prediction tasks with the same agents and models. Every number here comes from its released records. islamlab.org/jeus"
+    }
+  ]
+}
