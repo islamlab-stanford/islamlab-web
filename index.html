@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Islam Lab &middot; Stanford University School of Medicine</title>
-<meta name="description" content="The Islam Lab at Stanford University School of Medicine develops artificial intelligence and statistical methods for biomedical research. Explore MolCrew, Graph Foundation Model, scVision, BioGlyph, Graph-in-Graph, Graph2Image, and Dynomap.">
+<meta name="description" content="The Islam Lab at Stanford University School of Medicine develops artificial intelligence and statistical methods for biomedical research. Explore Jeus, MolCrew, Graph Foundation Model, scVision, BioGlyph, Graph-in-Graph, Graph2Image, and Dynomap.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Islam Lab &middot; Stanford University School of Medicine">
 <meta property="og:description" content="AI, statistics, and biomedical research at Stanford. Explore foundation models, graph and network learning, and tabular representation learning.">
@@ -50,9 +50,34 @@
   <div class="wrap">
     <div class="eyebrow">Projects</div>
     <h2>Open research from the lab</h2>
-    <p class="sub">Models, tools, and methods we develop and share across molecules, biomedical tables, networks, and single-cell biology.</p>
+    <p class="sub">Models, tools, and methods we develop and share across biomedical data analysis, molecules, biomedical tables, networks, and single-cell biology.</p>
 
     <div class="project-browser">
+      <section class="project-category" aria-labelledby="agent-projects">
+        <div class="project-category-heading">
+          <div><h3 id="agent-projects">Agents for Biomedical Analysis</h3><p>Language-model agents that analyse biomedical data step by step, with open-weight or proprietary models.</p></div>
+        </div>
+        <div class="project-carousel" data-project-carousel>
+          <button class="project-arrow project-arrow-prev" type="button" data-carousel-prev aria-label="Previous agent">&#8592;</button>
+          <div class="project-stage" tabindex="0" aria-label="Agent projects">
+
+        <article class="project project-slide is-active" data-project-category="agent" data-project-order="1" data-project-name="Jeus">
+          <div class="thumb"><a href="/jeus/"><img src="assets/jeus-cover.svg" width="1200" height="675" alt="Jeus cover: a folder of biomedical data and a question go into Jeus, which works step by step with a language model and returns an answer."></a></div>
+          <div class="body">
+            <span class="ptag">AI agent &middot; Biomedical data analysis</span>
+            <h3>Jeus</h3>
+            <p>An AI agent that answers research questions from biomedical data. Give it a folder of data and a question; it analyses the data with an open-weight or proprietary model, records every step, and returns an answer. Evaluated on five biomedical benchmarks and 24 clinical prediction tasks against Codex CLI, Claude Code and Biomni A1, with the same models for every agent.</p>
+            <a class="plink" href="/jeus/">Explore Jeus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <div class="meta"><span>2026 &middot; manuscript under review</span><span>Open-weight and proprietary models &middot; Worked examples</span></div>
+          </div>
+        </article>
+
+          </div>
+          <button class="project-arrow project-arrow-next" type="button" data-carousel-next aria-label="Next agent">&#8594;</button>
+          <div class="project-carousel-footer"><div class="project-dots" data-carousel-dots aria-label="Choose an agent"></div><span data-carousel-status aria-live="polite">1 / 1</span></div>
+        </div>
+      </section>
+
       <section class="project-category" aria-labelledby="foundation-projects">
         <div class="project-category-heading">
           <div><h3 id="foundation-projects">Foundation Models</h3><p>Pretrained representations designed to transfer across molecules, cells, networks, and biomedical tasks.</p></div>
@@ -257,6 +282,7 @@
       <a href="#research">Research</a>
       <a href="/team/">Team</a>
       <a href="/publications/">Publications</a>
+      <a href="/jeus/">Jeus</a>
       <a href="/bioglyph/">BioGlyph</a>
       <a href="/gig/">Graph-in-Graph</a>
       <a href="/dynomap/">Dynomap</a>
