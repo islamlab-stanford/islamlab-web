@@ -1,5 +1,5 @@
 window.JEUS_EXAMPLES = {
- "source": "Supplementary Note 2 of the manuscript (its worked examples)",
+ "source": "Our worked examples",
  "models": [
   {
    "id": "GLM-5.3",

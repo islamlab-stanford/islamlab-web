@@ -1,5 +1,5 @@
 window.JEUS_RESULTS = {
- "source": "Supplementary Data 1 of the manuscript",
+ "source": "Our released records",
  "open_models": [
   "GLM-5.3",
   "Qwen3.8-Flash-Next",

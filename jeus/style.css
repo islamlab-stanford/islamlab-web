@@ -55,6 +55,9 @@ h2{font-size:clamp(2.1rem,3.7vw,3.5rem);max-width:880px}
 .paper-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.5fr);gap:70px;align-items:start}
 .abstract-copy{color:var(--soft);font:1rem/1.7 var(--serif)}
 .paper-links{border-top:3px solid var(--accent);background:var(--warm);padding:24px}
+.limits .paper-links{background:#fff;margin-top:26px;padding:8px 22px 20px}
+.limits .paper-links>a:first-child{border-top:0}
+.limits .paper-links>p{margin:14px 0 0}
 .paper-links h3{font:600 1.35rem var(--serif);margin:0 0 14px}
 .paper-links>a{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-weight:600;font-size:.86rem}
 .paper-links>a span{font:400 .7rem var(--mono);color:var(--muted)}

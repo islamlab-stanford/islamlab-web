@@ -1,6 +1,6 @@
 /* Jeus project page: the example browser and the results chart.
    Data comes from assets/examples.js and assets/results.js (one window.* object each), built
-   from the manuscript's released records. Nothing on this page is computed; it is shown. */
+   from our released records. Nothing on this page is computed; it is shown. */
 (function () {
   "use strict";
   var EX = window.JEUS_EXAMPLES, RES = window.JEUS_RESULTS;
@@ -19,7 +19,7 @@
   }
   function fmtInt(n) { return n == null ? "—" : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   function fail(container, what) {
-    container.replaceChildren(el("p", { class: "widget-fail", text: what + " could not be loaded. The same content is in the manuscript's Supplementary Note 2." }));
+    container.replaceChildren(el("p", { class: "widget-fail", text: what + " could not be loaded. Please reload the page." }));
   }
 
   /* ---------------------------------------------------------------- examples */
@@ -124,7 +124,7 @@
       var verbatim = ex.runs.some(function (r) { return r.model === current && r.verbatim; });
       note.textContent = "Reasoning setting: " + level + ". " + (verbatim
         ? "Excerpts are reproduced verbatim from the graded final answer; \"what it did\" describes the recorded steps in a sentence, without code."
-        : "Excerpts and summaries are shown for GLM-5.3, Claude Sonnet 5 and GPT-6 Sol, the models the manuscript quotes.");
+        : "Excerpts and summaries are shown for GLM-5.3, Claude Sonnet 5 and GPT-6 Sol.");
     }
     EX.models.forEach(function (m) {
       var b = el("button", { class: "model", type: "button", "data-model": m.id, text: m.id });
@@ -222,7 +222,7 @@
     });
     var legend = el("div", { class: "legend" }, agents.map(function (a) { return el("span", null, [el("i", { style: "background:" + AGENT_COLOR[a] }), a]); }));
     box.replaceChildren(legend, svg, el("p", { class: "chart-cap" }, [el("b", { text: "Five-model mean score, in percent. " }),
-      "Biomni A1 was evaluated on BixBench and Verified-50. Paired differences and their 95% confidence intervals are in the manuscript; several of the gaps between Jeus, Codex CLI and Claude Code are within the interval that includes zero."]));
+      "Biomni A1 was evaluated on BixBench and Verified-50. Several of the gaps between Jeus, Codex CLI and Claude Code are within the 95% confidence interval that includes zero."]));
   }
 
   /* ------------------------------------------------------------- captions */
