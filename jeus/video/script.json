@@ -1,6 +1,6 @@
 {
   "title": "Jeus: ask your data a question",
-  "reference": "Modelled on bioglyph/video/script.json: 7 segments, under two minutes, 13-16 s each, two or three declarative sentences per segment, no filler. Every number is from the manuscript's released records (jeus/assets/results.js and examples.js); scenes.py reads them from those files so the picture and the voice cannot drift apart.",
+  "reference": "Modelled on bioglyph/video/script.json: 7 segments, under two minutes, 13-16 s each, two or three declarative sentences per segment, no filler. Every number is from jeus/assets/results.js and examples.js; scenes.py reads them from those files so the picture and the voice cannot drift apart.",
   "voice_notes": "Numbers are written the way the neural voice reads them correctly. Percentages spelled as 'percent'. 'FOXL1 positive' rather than 'FOXL1+'. Model names as spoken: 'GLM five point three'. Each segment's `caption` is the written form of the same sentences (digits, symbols, the URL) and goes into the WebVTT track; `narration` is what is spoken.",
   "segments": [
     {
@@ -31,7 +31,7 @@
       "n": 4,
       "seconds": 16,
       "narration": "With GLM five point three, Jeus read the single-cell data, tabulated candidate genes across the fetal cell clusters, and answered A in twenty-one model calls. The same model in Codex CLI answered A and D; in Claude Code, A.",
-      "visual": "Three outcome cards side by side, Jeus first with an accent border: the answer letters large, correct or incorrect, calls and tokens. Under Jeus's card, its recorded method summary from the manuscript.",
+      "visual": "Three outcome cards side by side, Jeus first with an accent border: the answer letters large, correct or incorrect, calls and tokens. Under Jeus's card, its recorded method summary.",
       "numbers_used": [
         "21 calls",
         "470,963 tokens",
@@ -80,12 +80,12 @@
     {
       "n": 7,
       "seconds": 14,
-      "narration": "The manuscript also evaluates twenty-four clinical prediction tasks with the same agents and models. Every number here comes from its released records. Islam lab dot org, slash jeus.",
+      "narration": "We also tested Jeus on twenty-four clinical prediction tasks, with the same agents and models. Try it live at Islam lab dot org, slash jeus.",
       "visual": "Closing card: the Jeus wordmark, 'islamlab.org/jeus', and a caps line: five benchmarks, 24 clinical prediction tasks, open-weight or proprietary models.",
       "numbers_used": [
         "24 clinical prediction tasks"
       ],
-      "caption": "The manuscript also evaluates 24 clinical prediction tasks with the same agents and models. Every number here comes from its released records. islamlab.org/jeus"
+      "caption": "We also tested Jeus on 24 clinical prediction tasks, with the same agents and models. Try it live at islamlab.org/jeus"
     }
   ]
 }

@@ -1,29 +1,29 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:17.024
+00:00:00.000 --> 00:00:15.440
 A folder of biomedical data, and a question. Which genes separate the two patient groups? Answering it means loading the files, choosing a method, writing the code, running it, and reading what comes back.
 
 2
-00:00:17.024 --> 00:00:31.096
+00:00:15.440 --> 00:00:29.440
 Jeus is an AI agent that does this with a language model, open-weight or proprietary. It writes and runs analysis code one step at a time, and every step is recorded.
 
 3
-00:00:31.096 --> 00:00:48.768
+00:00:29.440 --> 00:00:45.552
 Take a question from BAISBench, a benchmark built on published single-cell studies. What role did FOXL1+ fibroblasts play in intestinal development? Four options, and the answer key says A.
 
 4
-00:00:48.768 --> 00:01:08.744
+00:00:45.552 --> 00:01:03.464
 With GLM-5.3, Jeus read the single-cell data, tabulated candidate genes across the fetal cell clusters, and answered A in 21 model calls. The same model in Codex CLI answered A and D; in Claude Code, A.
 
 5
-00:01:08.744 --> 00:01:25.480
+00:01:03.464 --> 00:01:19.936
 Across five open-weight models and three benchmarks, Jeus had the highest five-model mean: 51.3% on BixBench, 84.4% on Verified-50, and 68.0% on BAISBench.
 
 6
-00:01:25.480 --> 00:01:45.024
+00:01:19.936 --> 00:01:37.896
 The other agents used 4.1 to 24.4 times the peak process memory of Jeus. With Claude Sonnet 5 and GPT-6 Sol, Jeus's model-access costs were 24 to 81 percent lower in 14 of 16 comparisons.
 
 7
-00:01:45.024 --> 00:02:00.968
-The manuscript also evaluates 24 clinical prediction tasks with the same agents and models. Every number here comes from its released records. islamlab.org/jeus
+00:01:37.896 --> 00:01:51.896
+We also tested Jeus on 24 clinical prediction tasks, with the same agents and models. Try it live at islamlab.org/jeus

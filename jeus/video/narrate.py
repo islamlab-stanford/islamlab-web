@@ -21,10 +21,11 @@ import imageio_ffmpeg
 
 HERE = Path(__file__).parent
 RATE = 24000
-# The voice of the BioGlyph explainer, so the two read as siblings.
-VOICE = "en-US-ChristopherNeural"
+# The voice chosen from the samples (python narrate.py --samples).
+VOICE = "en-US-EmmaMultilingualNeural"
 PROSODY_RATE = "-8%"
-SAMPLE_VOICES = ["en-US-ChristopherNeural", "en-US-AndrewNeural", "en-US-EricNeural", "en-US-AriaNeural"]
+SAMPLE_VOICES = ["en-US-AvaMultilingualNeural", "en-US-EmmaMultilingualNeural", "en-US-AvaNeural",
+                 "en-US-JennyNeural", "en-US-AriaNeural", "en-GB-SoniaNeural"]
 
 
 async def _say(text: str, voice: str, mp3: Path) -> None:
@@ -46,8 +47,12 @@ def samples() -> None:
             "fifty-one point three percent on BixBench.")
     for v in SAMPLE_VOICES:
         mp3 = out / f"{v}.mp3"
-        asyncio.run(_say(line, v, mp3))
-        secs = _to_wav(mp3, out / f"{v}.wav")
+        try:
+            asyncio.run(_say(line, v, mp3))
+            secs = _to_wav(mp3, out / f"{v}.wav")
+        except Exception as e:  # one voice the service does not offer must not stop the others
+            print(f"  {v:28s} failed: {e}")
+            continue
         print(f"  {v:28s} {secs:5.2f}s   {out / (v + '.wav')}")
     print(f"\nlisten, then set VOICE in {Path(__file__).name} and rerun without --samples")
 

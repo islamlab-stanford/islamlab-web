@@ -342,7 +342,7 @@ def seg7(d, size, t):
         d.ellipse([x - r, y - r, x + r, y + r], fill=mix(BG, c, k))
     k2 = ease((t - 0.3) / 0.4)
     d.text((62, 444), "islamlab.org/jeus", font=font("mono_b", 30), fill=mix(BG, ACCENT, k2))
-    d.text((62, 496), "Every number here comes from the manuscript's released records.", font=font("sans", 21),
+    d.text((62, 496), "Worked examples, results, and a live demo to try.", font=font("sans", 21),
            fill=mix(BG, TEXT, k2))
     chrome(d, size, 7, "Ask your data a question.",
            "five benchmarks  \u00b7  24 clinical prediction tasks  \u00b7  open-weight or proprietary models", t)
